@@ -8,8 +8,3 @@
 .sync-diagnostics button { min-height:44px; padding:9px 12px; border:1px solid #c49ff566; border-radius:8px; background:#30283f; color:inherit; font:inherit; }
 
 .sync-markers { display:flex; flex-wrap:wrap; gap:6px; }
-
-.sync-chart-context { padding-bottom:6px; border-bottom:1px solid #ffe3a133; }
-.sync-chart-context [data-chart-warning] { color:#ffe3a1; }
-.sync-chart-context a { display:inline-flex; align-items:center; min-height:44px; color:#cfb8ff; }
-.sync-chart-context a[hidden] { display:none; }

@@ -4,15 +4,12 @@ import { readFile } from 'node:fs/promises';
 import { api } from '../browser/mock-video';
 
 test.beforeEach(async ({page}) => {
-  // Clock diagnostics do not exercise trusted-gesture audio activation.
-  await page.addInitScript(()=>localStorage.setItem('hey-rhythm-settings-v1',JSON.stringify({sound:false})));
-  await page.route('https://firestore.googleapis.com/**',r=>r.fulfill({status:404,body:'{}'}));
   await page.route('https://www.youtube.com/iframe_api',route=>route.fulfill({body:api}));
   await page.route('https://fonts.googleapis.com/**',route=>route.fulfill({body:''}));
 });
-async function begin(page: Page,url='/game.html?sync=1') {
+async function begin(page: Page) {
   await page.clock.install(); await page.clock.pauseAt(new Date(Date.now()+1000));
-  await page.goto(url);
+  await page.goto('/game.html?sync=1');
   // The API script is asynchronous even with frozen timers; wait for construction before onReady.
   await expect.poll(()=>page.evaluate(()=>Boolean((window as any).testVideo))).toBe(true);
   await page.clock.runFor(100); await expect(page.locator('#restart')).toBeEnabled();
@@ -98,33 +95,4 @@ test('exports startup, API metadata and user-marked transition points without ch
   expect(data.markers[0].lastSample.noteOffsetMs).toBe(100);
   expect(data.samples.some((row:any)=>row.loadedFraction===.8)).toBe(true);
   expect(await page.evaluate(()=>localStorage.getItem('hey-rhythm-settings-v1'))).toBe(saved);
-});
-
-test('identifies the actual POJI chart and compares the bundled version without backend or storage changes',async({page})=>{
-  await page.addInitScript(()=>localStorage.setItem('hey-rhythm-settings-v1',JSON.stringify({noteOffset:-15,inputOffset:0,sound:false})));
-  const backend:string[]=[];page.on('request',r=>{if(/\.php(?:\?|$)/.test(r.url()))backend.push(r.url());});
-  await begin(page,'/game.html?song=poji-poji-go&sync=1');
-  const saved=await page.evaluate(()=>localStorage.getItem('hey-rhythm-settings-v1'));
-  await expect(page.locator('[data-chart-active]')).toContainText('収録譜面');
-  await expect(page.locator('[data-chart-active]')).toContainText('拍の基準 3.300秒 / 最初のノーツ 3.915秒');
-  const initial=await log(page);
-  expect(initial.buildId).toBeTruthy();expect(initial.page.path).toBe('/game.html');
-  expect(initial.charts).toMatchObject({source:'bundled',difficulty:'normal',revision:null,forcedBundled:false,
-    active:{beatOrigin:3.3,firstNoteTime:3.915384,savedNotes:791,playableNotes:776}});
-  expect(initial.charts.bundled).toEqual(initial.charts.active);
-  await page.locator('[data-chart-compare]').click();
-  await expect(page).toHaveURL(/bundled=1/);
-  await expect.poll(()=>page.evaluate(()=>Boolean((window as any).testVideo))).toBe(true);await page.clock.runFor(100);
-  await expect(page.locator('[data-chart-warning]')).toContainText('収録版限定');
-  await page.locator('.sync-diagnostics summary').click();await page.locator('#play-start').click();await page.clock.runFor(500);
-  expect((await log(page)).charts.forcedBundled).toBe(true);
-  expect(backend).toEqual([]);
-  expect(await page.evaluate(()=>localStorage.getItem('hey-rhythm-settings-v1'))).toBe(saved);
-});
-
-test('bundled comparison cannot expose an unpublished difficulty',async({page})=>{
-  const youtube:string[]=[];page.on('request',r=>{if(r.url().includes('youtube.com'))youtube.push(r.url());});
-  await page.goto('/game.html?song=poji-poji-go&difficulty=hard&sync=1&bundled=1');
-  await expect(page).toHaveURL(/unavailable-song=1/);
-  await expect(page.locator('iframe')).toHaveCount(0);expect(youtube).toEqual([]);
 });
