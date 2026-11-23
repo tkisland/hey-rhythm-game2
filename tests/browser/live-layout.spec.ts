@@ -13,15 +13,14 @@ test('compact video keeps its native controls usable while the field starts high
       const field=document.getElementById('game-canvas')!.getBoundingClientRect();
       const iframe=document.querySelector('iframe')!,video=iframe.getBoundingClientRect();
       const center=document.elementFromPoint(video.x+video.width/2,video.y+video.height/2);
-      const split=innerWidth>innerHeight&&innerHeight<=600&&innerWidth>=568;
-      const separate=split||video.right<=field.left||field.right<=video.left||video.bottom<=field.top||field.bottom<=video.top;
+      const separate=video.right<=field.left||field.right<=video.left||video.bottom<=field.top||field.bottom<=video.top;
       const pads=[...document.querySelectorAll('.lane-button')].every(node=>{
         const r=node.getBoundingClientRect();return r.width>=44&&r.height>=60&&r.bottom<=innerHeight-43.9;
       });
       const hud=document.querySelector('.field-hud')!.getBoundingClientRect();
       const score=document.getElementById('score')!.getBoundingClientRect();
       const panel=document.querySelector('.media-panel')!.getBoundingClientRect();
-      const inMonitor=split ? score.left>=video.right&&score.right<=innerWidth : hud.top>=panel.top&&hud.bottom<=panel.bottom&&score.left>=panel.left&&score.right<=panel.right;
+      const inMonitor= hud.top>=panel.top&&hud.bottom<=panel.bottom&&score.left>=panel.left&&score.right<=panel.right;
       return video.width>=200&&video.height>=200&&center===iframe&&separate&&pads&&
         inMonitor&&field.top<=(video.bottom<=field.top?video.bottom+4.5:64)&&field.bottom<=innerHeight+.5&&document.documentElement.scrollWidth<=innerWidth;
     })).toBe(true);

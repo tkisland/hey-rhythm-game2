@@ -1,5 +1,5 @@
 import { LANE_COLORS } from './colors';
-import { laneStrip, project } from './field-geometry';
+import { project } from './field-geometry';
 import type { FieldGeometry } from './field-geometry';
 import stageUrl from './assets/concert-venue.webp?url';
 
@@ -26,7 +26,7 @@ export function drawVenue(ctx:CanvasRenderingContext2D,field:FieldGeometry):void
     art.fillStyle = consoleShade; art.fillRect(0,padTop-14,field.width,field.height-padTop+14);
     for (let lane = 0; lane < 6; lane++) {
       const color = LANE_COLORS[lane];
-      const edges = field.splitStage ? laneStrip(field,lane,0,1,.56) : [project(field, lane, 0, -.49),project(field, lane, 0, +.49),project(field, lane, 1, +.49),project(field, lane, 1, -.49)];
+      const edges = [project(field, lane, 0, -.49),project(field, lane, 0, +.49),project(field, lane, 1, +.49),project(field, lane, 1, -.49)];
       const runway = art.createLinearGradient(0,field.origin,0,field.near);
       runway.addColorStop(0,field.sharedVenue?'#0b071bea':'#141121f5');
       runway.addColorStop(.4,field.sharedVenue?'#100a1cbd':'#151122ee');
