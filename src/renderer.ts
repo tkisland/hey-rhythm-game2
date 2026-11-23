@@ -34,6 +34,7 @@ export class Renderer {
   }
   private resize(): void {
     const rect = this.canvas.getBoundingClientRect();
+    if(rect.width<1||rect.height<1){this.canvas.width=0;this.canvas.height=0;this.rail=null;return;}
     this.field = canvasGeometry(this.canvas);
     this.rail = null; this.bands = [];
     this.frameClip = new Path2D();
@@ -110,7 +111,9 @@ export class Renderer {
   }
   draw(notes: PlayNote[], time: number, travel: number, now: number, options: { inputOffsetMs?: number; playing?: boolean; chart?: Chart } = {}): void {
     const { inputOffsetMs = 0, playing = true, chart } = options;
+    if(!this.field||!this.canvas.width||!this.canvas.height)return;
     if (this.canvas.width !== Math.round(this.field.width * Math.min(2, window.devicePixelRatio || 1))) this.resize();
+    if(!this.canvas.width||!this.canvas.height)return;
     const ctx = this.ctx, field = this.field, w = field.width, h = field.height;
     // Match the input clock so every compensated PERFECT arrives at a fixed button.
     const judgeTime = time - inputOffsetMs / 1000;
@@ -236,11 +239,11 @@ export class Renderer {
         ctx.font = 'bold 10px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
         // A violet keyline preserves white lettering over the white/yellow lanes.
         ctx.strokeStyle = '#593b83'; ctx.lineWidth = 2.5; ctx.lineJoin = 'round';
-        ctx.strokeText('DD', center.x, center.y); ctx.fillText('DD', center.x, center.y);
+        for(const x of field.splitStage ? [project(field,1,p).x,project(field,4,p).x] : [center.x]) { ctx.strokeText('DD',x,center.y); ctx.fillText('DD',x,center.y); }
         ctx.font = 'bold 10px "RocknRoll One",sans-serif'; ctx.textBaseline = 'alphabetic';
         const label = 'どこでも1タップ ↓';
         ctx.strokeStyle = '#21112e'; ctx.lineWidth = 3;
-        ctx.strokeText(label, center.x, top - 7); ctx.fillText(label, center.x, top - 7);
+        for(const x of field.splitStage ? [project(field,1,p).x,project(field,4,p).x] : [center.x]) { ctx.strokeText(label,x,top-7); ctx.fillText(label,x,top-7); }
         ctx.restore();
         continue;
       }
@@ -332,7 +335,7 @@ export class Renderer {
     ctx.font='bold 10px "RocknRoll One",sans-serif';ctx.textAlign='center';ctx.fillStyle='#ffe28a';
     ctx.strokeStyle='#21170c';ctx.lineWidth=3;
     const label=progress?'2本とも左右の端へ！':'箱オシ · 2本指で中央から外へ';
-    ctx.strokeText(label,field.width/2,y-height/2-7);ctx.fillText(label,field.width/2,y-height/2-7);
+    for(const x of field.splitStage ? [project(field,1,p).x,project(field,4,p).x] : [field.width/2]) { const text=field.splitStage?'箱オシ · 外へ':label;ctx.strokeText(text,x,y-height/2-7);ctx.fillText(text,x,y-height/2-7); }
     ctx.restore();
   }
   private drawBoxEffects(now: number): void {

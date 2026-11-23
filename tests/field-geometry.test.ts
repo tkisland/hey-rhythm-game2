@@ -138,3 +138,22 @@ describe('perspective timing windows and horizontal targets', () => {
     expect(WINDOWS).toEqual({ PERFECT: 0.05, GREAT: 0.1, GOOD: 0.16 });
   });
 });
+
+it('fans landscape responses around a 200px central monitor with six equal thumb pads and equal timing',()=>{
+  for(const width of [552,624,828,1008])for(const height of [224,278,348,520]){
+    const field=fieldGeometry(width,height,40,true);
+    expect(field.centerSpace).toBe(240);
+    for(let lane=0;lane<6;lane++){
+      expect(field.pads[lane].width).toBe(field.pads[0].width);expect(field.pads[lane].width).toBeGreaterThanOrEqual(44);
+      for(const progress of [0,.25,.5,.75,1]){
+        const point=project(field,lane,progress);
+        expect(point.y).toBe(project(field,0,progress).y);
+        if(lane<3)expect(point.x+point.width/2).toBeLessThan(width/2-110);
+        else expect(point.x-point.width/2).toBeGreaterThan(width/2+110);
+        expect(project(field,2.5,progress).x).toBeCloseTo(width/2);
+      }
+      const late=timingBands(field,lane,1)[0].bottom.y;
+      expect(late).toBeLessThanOrEqual(field.pads[lane].y-field.padHeight/2-15.9);
+    }
+  }
+});

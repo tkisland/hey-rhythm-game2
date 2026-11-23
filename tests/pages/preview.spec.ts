@@ -85,3 +85,16 @@ test('reads a published online chart on Pages when Firebase is configured',async
   await page.goto('./game.html');await expect.poll(()=>page.evaluate(()=>Boolean((window as any).testVideo))).toBe(true);await page.clock.runFor(100);
   await expect(page.locator('#chart-info')).toHaveText('120 BPM · 1 NOTES');
 });
+
+test('keeps the central monitor and both thumb wings usable in Pages landscape mode',async({page})=>{
+  for(const [width,height] of [[568,320],[844,390]]){
+    await page.setViewportSize({width,height});await page.goto('./game.html');
+    await expect.poll(()=>page.evaluate(()=>Boolean((window as any).testVideo))).toBe(true);await page.clock.runFor(100);
+    expect(await page.evaluate(()=>{
+      const video=document.querySelector('iframe')!.getBoundingClientRect(),canvas=document.querySelector('#game-canvas')!,field=canvas.getBoundingClientRect();
+      const buttons=[...document.querySelectorAll('.lane-button'),document.querySelector('#play-start')!];
+      return getComputedStyle(canvas).getPropertyValue('--split-stage').trim()==='1'&&Math.abs(video.x+video.width/2-field.x-field.width/2)<.5&&
+        buttons.every(n=>{const r=n.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return r.width>=44&&r.top>=0&&r.bottom<=innerHeight&&(hit===n||n.contains(hit));});
+    })).toBe(true);
+  }
+});

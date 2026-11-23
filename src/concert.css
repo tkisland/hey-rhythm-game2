@@ -123,3 +123,36 @@
   .game-page .stage-song-title { max-width:100%; }
   .game-page .game { grid-column:2; grid-row:1; }
 }
+
+/* Landscape keeps the live monitor at center stage, with three response lanes per thumb. */
+@media (orientation:landscape) and (max-height:600px) and (min-width:568px) {
+  .game-page #pages-preview-notice { padding:1px 8px !important; font-size:9px !important; line-height:1.2 !important; }
+  body.game-page { height:100svh; min-height:0; overflow:hidden; padding-bottom:0; }
+  .game-page #app { max-width:none; padding:max(4px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) 0 max(8px,env(safe-area-inset-left)); }
+  .game-page .header { height:32px; margin-bottom:4px; }
+  .game-page .header .wordmark { font-size:20px; }
+  .game-page .header .icon-button { min-height:32px; padding:4px 10px; }
+  .game-page .live-layout { display:block; }
+  .game-page .game { width:100%; grid-column:auto; grid-row:auto; background:none; }
+  .game-page .game .stage { position:fixed; top:var(--surface-top,44px); left:var(--surface-left,8px); width:var(--surface-width,calc(100% - 16px)); height:var(--surface-height,calc(100svh - 44px)); box-shadow:none; }
+  .game-page .game #game-canvas { --split-stage:1; }
+  .game-page .media-panel { position:absolute; z-index:20; left:calc(50% - 100px); top:0; width:200px; display:block; padding:0; border:0; background:none; }
+  .game-page .media-panel .video-section { width:200px; height:200px; }
+  .game-page .media-panel .video-frame { width:200px; height:200px; }
+  .game-page .media-panel .field-hud { position:absolute; top:0; left:calc(100px - var(--surface-width) / 2); width:var(--surface-width); min-height:28px; display:flex; flex-direction:row; justify-content:space-between; align-items:start; padding:2px 8px; }
+  .game-page .field-hud .stage-song-title { width:calc((var(--surface-width) - 264px) / 2); max-width:none; font-size:10px; }
+  .game-page .field-hud .scoreboard { display:flex; flex-direction:column; align-items:end; gap:2px; }
+  .game-page .field-hud .scoreboard > div { display:flex; flex-direction:row; gap:5px; }
+  .game-page .field-hud #score,.game-page .field-hud #combo { font-size:14px; }
+  .game-page .session-summary { position:absolute; top:max(204px,calc(var(--surface-height) - 88px)); left:0; width:200px; display:block; margin:0; }
+  .game-page .media-controls { flex-direction:row; gap:6px; }
+  .game-page .play-button { flex:1; width:auto; max-width:none; min-height:44px; font-size:11px; padding:4px; }
+  .game-page .replay-button { width:44px; height:44px; }
+  .game-page .playback-details { position:fixed; top:calc(var(--surface-top,44px) - 36px); left:calc(50% - 22px); width:44px; margin:0; }
+  .game-page .playback-details summary { min-height:32px; }
+  .game-page .playback-popover { position:fixed; top:calc(var(--surface-top) + 8px); left:50%; right:auto; transform:translateX(-50%); max-height:calc(100svh - var(--surface-top) - 16px); overflow:auto; }
+  .game-page .game .stage-hint { top:64px; left:8px; right:auto; width:calc((100% - 240px) / 2 - 16px); padding:8px; backdrop-filter:none; }
+  .game-page .game .stage-hint strong { font-size:11px; }
+  .game-page .game .stage-hint .hint-kicker { font-size:8px; letter-spacing:1px; }
+  .game-page .game #control-status { font-size:8px; }
+}
