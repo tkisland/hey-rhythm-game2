@@ -1,3 +1,4 @@
+import boxSweepUrl from './assets/box-sweep.wav?inline';
 import { playbackSession } from './audio-session';
 export const TAP_DURATION = 0.24;
 export const MAX_LATE_TAP_MS = 80;
@@ -10,7 +11,8 @@ export interface SoundInputDiagnostic {
 export interface SoundDiagnostics { enabled:boolean; volume:number; state:string; contextTime:number|null; requested:number; started:number; lateDrops:number; blocked:number; sessionType:string|null; firstInputs?:SoundInputDiagnostic[]; baseLatencyMs?:number|null; outputLatencyMs?:number|null }
 type VoiceKind = 'tap' | 'box' | 'beat' | 'sweep';
 export const BOX_SWEEP_GAP = .014;
-let sweepSamples: Float32Array<ArrayBuffer> | null = null;
+// Decode before any input handlers are installed; no AudioContext or sound is started.
+const sweepSamples = preparedBoxSweepSamples();
 const SAMPLE_RATE = 48000;
 const PITCHES = [0.98, 0.988, 0.996, 1.004, 1.012, 1.02];
 export const BOX_PITCHES = [1046.502, 1174.659, 1318.51, 1567.982, 1760, 2093.005];
@@ -28,10 +30,8 @@ function warmSamples(): void {
   let lane = 0;
   const next = () => {
     beatSamples ??= createBeatSamples(SAMPLE_RATE);
-    if (lane === 5) sweepSamples ??= createBoxSweepSamples(SAMPLE_RATE);
     tapSamples[lane] ??= createTapSamples(SAMPLE_RATE, lane);
     holdSamples[lane] ??= createHoldSamples(SAMPLE_RATE, lane);
-    boxSamples[lane] ??= createBoxSamples(SAMPLE_RATE, lane);
     if (++lane < PITCHES.length) schedule();
   };
   const schedule = () => {
@@ -101,6 +101,14 @@ export function createBoxSamples(sampleRate: number, index: number) {
   }
   if (peak) for (let i = 0; i < samples.length; i++) samples[i] *= .48 / peak;
   return samples;
+}
+
+/** The shipped float WAV has the exact synthesized waveform, without input-time synthesis. */
+function preparedBoxSweepSamples(): Float32Array<ArrayBuffer> {
+  const binary = atob(boxSweepUrl.slice(boxSweepUrl.indexOf(',') + 1));
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new Float32Array(bytes.buffer, 44);
 }
 
 /** Six attacks in 70ms, synthesized together so sparse touch events still produce a run. */
@@ -411,7 +419,7 @@ export class TapSound {
     lane = Number.isInteger(lane) && lane >= 0 && lane < 6 ? lane : 0;
     const buffers = kind === 'box' ? this.boxBuffers : kind === 'beat' ? this.beatBuffers : kind === 'sweep' ? this.sweepBuffers : this.buffers;
     if (!buffers[lane]) {
-      const samples = kind === 'sweep' ? (sweepSamples ??= createBoxSweepSamples(SAMPLE_RATE)) : kind === 'beat' ? (beatSamples ??= createBeatSamples(SAMPLE_RATE))
+      const samples = kind === 'sweep' ? sweepSamples : kind === 'beat' ? (beatSamples ??= createBeatSamples(SAMPLE_RATE))
         : kind === 'box' ? (boxSamples[lane] ??= createBoxSamples(SAMPLE_RATE, lane)) : (tapSamples[lane] ??= createTapSamples(SAMPLE_RATE, lane));
       const buffer = context.createBuffer(1, samples.length, SAMPLE_RATE);
       buffer.copyToChannel(samples, 0); buffers[lane] = buffer;
