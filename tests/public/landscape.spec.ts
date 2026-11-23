@@ -9,7 +9,7 @@ test.beforeEach(async({page})=>{
   await page.goto('/game.html');await expect(page.locator('#restart')).toBeEnabled();
 });
 
-test('centers the live monitor between equal three-lane wings while all controls remain reachable',async({page})=>{
+test('keeps a compact continuous input row below the central live monitor',async({page})=>{
   for(const [width,height] of [[568,320],[640,360],[844,390],[932,430],[1024,560]]){
     await page.setViewportSize({width,height});
     await expect.poll(()=>page.evaluate(()=>{
@@ -18,7 +18,9 @@ test('centers the live monitor between equal three-lane wings while all controls
       const controls=[...document.querySelectorAll('.lane-button'),document.querySelector('#play-start')!,document.querySelector('#settings-toggle')!,document.querySelector('.playback-details summary')!];
       return getComputedStyle(canvas).getPropertyValue('--split-stage').trim()==='1'&&Math.abs(video.x+video.width/2-field.x-field.width/2)<.5&&video.width>=200&&video.height>=200&&
         [[1,1],[199,1],[1,199],[199,199],[100,100]].every(([x,y])=>document.elementFromPoint(video.x+x,video.y+y)===iframe)&&
-        pads.every((p,lane)=>p.width>=44&&Math.abs(p.width-pads[0].width)<.1&&p.height>=60&&p.bottom<=innerHeight-43.9&&(lane<3?p.right<video.left:p.left>video.right))&&
+        pads.every(p=>p.width>=44&&Math.abs(p.width-pads[0].width)<.1&&p.height>=60&&p.bottom<=innerHeight-43.9&&(p.bottom<=video.top||p.top>=video.bottom||p.right<=video.left||p.left>=video.right))&&
+        pads[5].right-pads[0].left<=560&&pads[3].left-pads[2].right<=40&&
+        !document.elementFromPoint((pads[2].right+pads[3].left)/2,pads[2].y+pads[2].height/2)?.closest('button,iframe')&&
         controls.every(n=>{const r=n.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return r.top>=0&&r.bottom<=innerHeight&&(hit===n||n.contains(hit));})&&document.documentElement.scrollWidth<=innerWidth;
     })).toBe(true);
   }

@@ -19,7 +19,7 @@ export function bindConcertVenue(canvas: HTMLCanvasElement, monitor: HTMLElement
     const field = canvasGeometry(canvas);
     // Portrait shares the deck with the note origin; landscape surrounds a central monitor.
     const beside = monitorRect.right <= fieldRect.left;
-    const top = field.splitStage || beside ? fieldRect.top : monitorRect.top;
+    const top = field.splitStage ? Math.min(fieldRect.top,monitorRect.top) : beside ? fieldRect.top : monitorRect.top;
     let stageY = fieldRect.top - top + field.origin;
     const height = fieldRect.top - top + field.pads[0].y + field.padHeight / 2 + 14;
     if (field.splitStage) {
