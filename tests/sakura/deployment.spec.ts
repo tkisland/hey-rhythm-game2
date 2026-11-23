@@ -1,3 +1,4 @@
+import {SONGS} from '../../src/songs';
 import {test,expect} from '@playwright/test';
 import {api} from '../browser/mock-video';
 
@@ -12,21 +13,17 @@ test.beforeEach(async({page})=>{
   });
 });
 
-test('FTP output serves all three songs, settings and administrator entry beneath /rhythm/',async({page})=>{
+test('FTP output serves all registered songs, settings and administrator entry beneath /rhythm/',async({page})=>{
   const errors:string[]=[],badAssets:string[]=[];
   page.on('pageerror',error=>errors.push(error.message));
   page.on('response',response=>{
     const url=new URL(response.url());
     if(url.origin==='http://127.0.0.1:4185' && response.status()>=400)badAssets.push(url.pathname);
   });
-  await page.goto('./');await expect(page.locator('.song-card')).toHaveCount(3);
+  await page.goto('./');await expect(page.locator('.song-card')).toHaveCount(SONGS.length);
   await page.locator('#settings-toggle').click();await expect(page.locator('#settings-panel')).toBeVisible();
   await page.locator('#settings-close').click();
-  for(const [id,title,videoId] of [
-    ['super-mommy-girls','SUPER MOMMY GIRLS','pJDfWpZ7CI4'],
-    ['biscuit-case','ビスケットケース','JUsGoi24rug'],
-    ['playful-romantic','PLAYFUL ROMANTIC','94DtjMOtbP4'],
-  ]){
+  for(const {id,title,videoId} of SONGS){
     await page.locator(`[data-song="${id}"] .song-play`).click();
     await expect(page).toHaveURL(new RegExp(`/rhythm/game.html\\?song=${id}$`));
     await expect(page.locator('#restart')).toBeEnabled();await expect(page.locator('#song-title')).toHaveText(title);

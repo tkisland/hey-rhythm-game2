@@ -1,3 +1,4 @@
+import {SONGS} from '../../src/songs';
 import { test, expect } from '@playwright/test';
 import { api, seekPlay } from '../browser/mock-video';
 
@@ -24,7 +25,7 @@ test('public selection offers only the published chart and loads no video', asyn
   expect(await page.locator('body').innerText()).not.toMatch(/エディター|編集|保存譜面|練習譜面|SMG00[234]/);
   expect(requests).toEqual([]);
   await page.locator('#song-search').fill('missing'); await expect(page.locator('#song-empty')).toBeVisible();
-  await page.locator('#song-search').fill('mommy'); await expect(page.locator('.song-card')).toHaveCount(3);
+  await page.locator('#song-search').fill('mommy'); await expect(page.locator('.song-card')).toHaveCount(SONGS.length);
   await page.locator('[data-song="super-mommy-girls"] .song-play').click(); await expect(page.locator('#restart')).toBeEnabled();
   await expect(page.locator('#chart-info')).toHaveText('166 → 192 BPM · 508 NOTES');
 });
@@ -108,7 +109,7 @@ test('player controls remain reachable with clearance from the bottom on small s
 });
 
 test('Biscuit Case plays the uploaded BSC002 chart at MIDI zero plus 2.95s', async ({page}) => {
-  await page.goto('/');await expect(page.locator('#song-count')).toHaveText('3曲 / 全3曲');
+  await page.goto('/');await expect(page.locator('#song-count')).toHaveText(`${SONGS.length}曲 / 全${SONGS.length}曲`);
   await page.locator('#song-search').fill('ビスケット');
   const card=page.locator('[data-song="biscuit-case"]');
   await expect(card.locator('.song-name')).toHaveText('ビスケットケース');
