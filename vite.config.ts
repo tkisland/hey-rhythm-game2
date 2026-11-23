@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
     base: './',
     appType: 'mpa',
     preview: {headers:securityHeaders},
-    define: { __ADMIN__: JSON.stringify(admin), __FIREBASE_CONFIG__:JSON.stringify(cloud), __FIREBASE_EMULATORS__:JSON.stringify(cloudTest) },
+    define: { __BUILD_ID__:JSON.stringify(process.env.GITHUB_SHA ?? 'local'), __ADMIN__: JSON.stringify(admin), __FIREBASE_CONFIG__:JSON.stringify(cloud), __FIREBASE_EMULATORS__:JSON.stringify(cloudTest) },
     plugins: [{
       name: 'separate-player-and-admin',
       transformIndexHtml(html) {

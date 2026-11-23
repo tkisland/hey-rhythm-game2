@@ -85,3 +85,37 @@ test('reads a published online chart on Pages when Firebase is configured',async
   await page.goto('./game.html');await expect.poll(()=>page.evaluate(()=>Boolean((window as any).testVideo))).toBe(true);await page.clock.runFor(100);
   await expect(page.locator('#chart-info')).toHaveText('120 BPM · 1 NOTES');
 });
+
+test('diagnoses an older online POJI chart and bypasses it only in explicit bundled comparison mode',async({page})=>{
+  test.skip(!configured,'No Firebase Web configuration in this build.');
+  const chart={videoId:'F0bagOeDMFc',title:'POJI POJI GO',bpm:195.000195,beatOrigin:3.3,startTime:3.915384,notes:[{id:1,lane:0,type:'tap',time:3.915384}]};
+  const fields={schemaVersion:{integerValue:'1'},songId:{stringValue:'poji-poji-go'},videoId:{stringValue:chart.videoId},revision:{integerValue:'7'},noteCount:{integerValue:'1'},json:{stringValue:JSON.stringify(chart)}};
+  let reads=0;
+  await page.route('https://firestore.googleapis.com/**/publishedCharts/poji-poji-go?*',r=>{reads++;return r.fulfill({json:{fields}});});
+  // A bare bundled parameter must not silently override normal publication.
+  await page.goto('./game.html?song=poji-poji-go&bundled=1');
+  await expect.poll(()=>page.evaluate(()=>Boolean((window as any).testVideo))).toBe(true);await page.clock.runFor(100);
+  await expect(page.locator('#chart-info')).toHaveText('195 BPM · 1 NOTES');
+  await expect(page.locator('.sync-diagnostics')).toHaveCount(0);
+  await page.goto('./game.html?song=poji-poji-go&sync=1');
+  await expect.poll(()=>page.evaluate(()=>Boolean((window as any).testVideo))).toBe(true);await page.clock.runFor(100);
+  await expect(page.locator('[data-chart-active]')).toContainText('オンライン公開（改訂7）');
+  await expect(page.locator('[data-chart-active]')).toContainText('拍の基準 3.300秒 / 最初のノーツ 3.915秒');
+  await expect(page.locator('[data-chart-bundled]')).toContainText('拍の基準 3.920秒 / 最初のノーツ 4.535秒');
+  await expect(page.locator('[data-chart-warning]')).toContainText('最初のノーツ時刻が異なります');
+  const before=reads;
+  await page.locator('[data-chart-compare]').click();
+  await expect.poll(()=>page.evaluate(()=>Boolean((window as any).testVideo))).toBe(true);await page.clock.runFor(100);
+  await expect(page.locator('#chart-info')).toHaveText('195 BPM · 776 NOTES');
+  await expect(page.locator('[data-chart-active]')).toContainText('拍の基準 3.920秒 / 最初のノーツ 4.535秒');
+  expect(reads).toBe(before);
+  await page.locator('[data-chart-compare]').click();
+  await expect.poll(()=>page.evaluate(()=>Boolean((window as any).testVideo))).toBe(true);await page.clock.runFor(100);
+  await expect(page.locator('[data-chart-active]')).toContainText('オンライン公開（改訂7）');
+  expect(reads).toBe(before+1);
+  // Legacy charts use the first note as their grid origin; this does not shift notes.
+  fields.json.stringValue=JSON.stringify({...chart,beatOrigin:undefined,startTime:4.535384,notes:[{id:1,lane:0,type:'tap',time:4.535384}]});
+  await page.reload();await expect.poll(()=>page.evaluate(()=>Boolean((window as any).testVideo))).toBe(true);await page.clock.runFor(100);
+  await expect(page.locator('[data-chart-active]')).toContainText('拍の基準 4.535秒 / 最初のノーツ 4.535秒');
+  await expect(page.locator('[data-chart-warning]')).toHaveText('');
+});
