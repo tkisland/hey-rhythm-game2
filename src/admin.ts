@@ -115,7 +115,8 @@ el('admin-logout').addEventListener('click', () => {
 save.addEventListener('click', () => void perform(async () => { await persist(editor!.chart()); }), {signal});
 publish.addEventListener('click', () => void perform(async () => {
   const chart = editor!.chart(); chartJson(chart, song, true);
-  if (!confirm(`「${song.title} / ${difficultyLabel(difficulty)}」の${playableNotes(chart.notes).length}ノーツを公開します。公開後はプレーヤーが新しい譜面で遊びます。よろしいですか？`)) return;
+  const destination = import.meta.env.MODE === 'pages' ? '本番と同じFirebaseを使う場合、本番のオンライン譜面にも反映されます。' : '';
+  if (!confirm(`「${song.title} / ${difficultyLabel(difficulty)}」の${playableNotes(chart.notes).length}ノーツを公開します。公開後はプレーヤーが新しい譜面で遊びます。${destination}よろしいですか？`)) return;
   const current = generation, actor = user!;
   const snapshot = dirty || !saved ? await persist(chart) : saved;
   const release = await publishDraft(song, actor, snapshot, difficulty);

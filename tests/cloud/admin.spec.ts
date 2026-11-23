@@ -20,6 +20,7 @@ async function importChart(page:Page, data:unknown=chart) {
 }
 test.beforeEach(async ({page}) => {
   const response=await fetch(`${base}/emulator/v1/projects/demo-hey-rtm/databases/(default)/documents`,{method:'DELETE'});expect(response.ok).toBe(true);
+  await page.route('https://fonts.googleapis.com/**',route=>route.fulfill({body:''}));
   await page.route('https://www.youtube.com/iframe_api',route=>route.fulfill({body:api}));
   await page.goto('/admin.html');await expect(page.locator('#google-login')).toBeEnabled();
 });

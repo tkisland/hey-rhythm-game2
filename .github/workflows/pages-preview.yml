@@ -18,6 +18,8 @@ jobs:
   build:
     name: Pages preview build
     runs-on: ubuntu-latest
+    env:
+      VITE_FIREBASE_CONFIG: ${{ vars.FIREBASE_WEB_CONFIG }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -25,11 +27,18 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
-      - name: Build isolated static preview
+      - name: Build static preview with Firebase administrator login
         run: npm run build:pages
       - run: npx playwright install --with-deps chromium
       - name: Check game, demo and static-only behavior under the Pages path
         run: npm run test:pages
+      - name: Set up Java for administrator permission tests
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Check administrator roles and private save/publish with Firebase emulators
+        run: npx --yes firebase-tools@15.34.0 emulators:exec --project demo-hey-rtm --only auth,firestore "npm run test:cloud -- tests/cloud/admin.spec.ts --grep 'keeps the editor|saves drafts privately'"
       - name: Upload Pages site
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
