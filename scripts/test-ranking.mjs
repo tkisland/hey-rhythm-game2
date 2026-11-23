@@ -47,6 +47,7 @@ try {
   docker(['create','--name',php,'--network',network,'-p','127.0.0.1:4194:8080','-e','RHYTHM_CONFIG_PATH=/private/config.php','hey-rhythm-ranking-test','php','-d','openssl.cafile=/private/auth-fixture/ca.pem','-S','0.0.0.0:8080','-t','/app']);
   docker(['cp','dist',`${php}:/app/rhythm`]);docker(['cp',temporary,`${php}:/private`]);
   const catalog=JSON.parse(readFileSync('dist/api/catalog.json','utf8'));
+  const shippedSongIds=Object.keys(catalog.songs);
   // The deployed catalog keeps its real public configuration; only this test copy
   // disables remote reads so CI never contacts a production Firebase project.
   catalog.firebase=null;
@@ -67,7 +68,7 @@ try {
     await pause(200);
   }
   assert.equal((await api('status')).enabled,true);
-  for(const song of Object.keys(catalog.songs))for(const difficulty of ['easy','hard']){
+  for(const song of shippedSongIds)for(const difficulty of ['easy','hard']){
     assert.deepEqual(catalog.songs[song].publicDifficulties,['normal']);
     assert.equal(catalog.songs[song].charts[difficulty],undefined);
     const board={songId:song,difficulty,chartHash:'0'.repeat(64),rulesVersion:catalog.rulesVersion};
@@ -254,7 +255,7 @@ try {
   // Fast-forwarding the browser clock must not bypass the API's real elapsed-time
   // check in production. Only these isolated test DB rows are shortened.
   sql('TRUNCATE TABLE rhythm_rate_limits;TRUNCATE TABLE rhythm_sessions;TRUNCATE TABLE rhythm_entries;');
-  for(const song of Object.keys(catalog.songs))await api('start',{songId:song,difficulty:'normal',chartHash:hash(catalog.songs[song].charts.normal),rulesVersion:7});
+  for(const song of shippedSongIds)await api('start',{songId:song,difficulty:'normal',chartHash:hash(catalog.songs[song].charts.normal),rulesVersion:7});
   sql('UPDATE rhythm_boards SET minimum_seconds=0;TRUNCATE TABLE rhythm_rate_limits;TRUNCATE TABLE rhythm_sessions;');
   execFileSync(process.execPath,['node_modules/@playwright/test/cli.js','test','--config','playwright.ranking.config.ts'],{stdio:'inherit',env:{...env,RANKING_DB_CONTAINER:mysql}});
 } finally {
