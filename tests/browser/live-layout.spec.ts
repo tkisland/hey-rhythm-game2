@@ -2,6 +2,7 @@ import {test,expect} from '@playwright/test';
 import {api,seekPlay} from './mock-video';
 
 test.beforeEach(async({page})=>{
+  await page.route('https://fonts.googleapis.com/**',route=>route.fulfill({body:''}));
   await page.route('https://www.youtube.com/iframe_api',route=>route.fulfill({body:api}));
   await page.goto('/game.html');await expect(page.locator('#restart')).toBeEnabled();
 });

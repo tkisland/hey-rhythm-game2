@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { api, seekPlay } from './mock-video';
 
 test.beforeEach(async ({ page }) => {
+  await page.route('https://fonts.googleapis.com/**',route=>route.fulfill({body:''}));
   await page.route('https://www.youtube.com/iframe_api', route => route.fulfill({ body: api }));
   await page.addInitScript(() => {
     localStorage.setItem('hey-rhythm-settings-v1', JSON.stringify({ sound: false }));

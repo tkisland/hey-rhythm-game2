@@ -148,7 +148,7 @@
   .game-page .media-controls { flex-direction:row; gap:6px; }
   .game-page .play-button { flex:1; width:auto; max-width:none; min-height:44px; font-size:11px; padding:4px; }
   .game-page .replay-button { width:44px; height:44px; }
-  .game-page .playback-details { position:absolute; top:-36px; left:78px; width:44px; margin:0; }
+  .game-page .playback-details { position:fixed; top:calc(var(--surface-top,44px) - 36px); left:calc(50% - 22px); width:44px; margin:0; }
   .game-page .playback-details summary { min-height:32px; }
   .game-page .playback-popover { position:fixed; top:calc(var(--surface-top) + 8px); left:50%; right:auto; transform:translateX(-50%); max-height:calc(100svh - var(--surface-top) - 16px); overflow:auto; }
   .game-page .game .stage-hint { top:64px; left:8px; right:auto; width:calc((100% - 240px) / 2 - 16px); padding:8px; backdrop-filter:none; }
