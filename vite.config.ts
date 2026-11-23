@@ -8,7 +8,7 @@ export default defineConfig(({ mode }) => {
   const pages = mode === 'pages';
   const env = loadEnv(mode, process.cwd(), '');
   const cloudTest = mode === 'cloud-test';
-  const cloud = parseCloudConfig(pages ? null : cloudTest ? {apiKey:'demo-key', authDomain:'demo-hey-rtm.firebaseapp.com', projectId:'demo-hey-rtm', appId:'1:123:web:demo'} : env.VITE_FIREBASE_CONFIG);
+  const cloud = parseCloudConfig(cloudTest ? {apiKey:'demo-key', authDomain:'demo-hey-rtm.firebaseapp.com', projectId:'demo-hey-rtm', appId:'1:123:web:demo'} : env.VITE_FIREBASE_CONFIG);
   const template = readFileSync('src/editor-template.html', 'utf8');
   return {
     base: './',
@@ -20,6 +20,8 @@ export default defineConfig(({ mode }) => {
       transformIndexHtml(html) {
         html = html.replace('<!-- editor:template -->', template);
         if (pages) {
+          html = html.replace('<div id="admin-session"', '<p id="pages-admin-warning" style="padding:10px 14px;background:#392c1c;color:#fff0cd;font-size:13px;line-height:1.8">本番と同じFirebaseを使う場合、下書きと公開譜面は共通です。「公開する」は本番のオンライン譜面にも反映されます。</p><div id="admin-session"');
+          html = html.replace('href="./moderation.html">ランキング管理', 'href="https://hey.jpn.org/rhythm/moderation.html">本番のランキング管理');
           html = html.replace('</head>', '<meta name="robots" content="noindex, nofollow" /></head>');
           html = html.replace(/(<body[^>]*>)/, '$1<aside id="pages-preview-notice" style="padding:4px 10px;text-align:center;font-size:11px;line-height:1.6;background:#30213e;color:#f5e9ff">テストプレイ環境 · <a href="https://hey.jpn.org/rhythm/" style="color:inherit">本番サイト</a></aside>');
         }

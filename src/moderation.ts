@@ -18,6 +18,7 @@ const controller=new AbortController(),signal=controller.signal;
 let rowsController=new AbortController();
 const format=new Intl.NumberFormat('ja-JP'),date=(time:number)=>new Date(time*1000).toLocaleString('ja-JP');
 async function request<T>(data:Record<string,unknown>):Promise<T>{
+  if(import.meta.env.MODE==='pages')throw new Error('ランキング管理は本番サイトの管理画面から行ってください。');
   const user=await requireCloudAdmin(),idToken=await user.getIdToken();
   const response=await fetch(new URL('./api/moderation.php',location.href),{method:'POST',credentials:'omit',headers:{'Content-Type':'application/json'},body:JSON.stringify({...data,idToken}),signal:AbortSignal.timeout(20000)});
   const result=await response.json();if(!response.ok||result.ok!==true)throw new Error(result.message ?? '操作を完了できません。');return result as T;

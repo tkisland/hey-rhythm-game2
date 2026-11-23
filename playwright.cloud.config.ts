@@ -1,5 +1,6 @@
 import { defineConfig } from '@playwright/test';
 export default defineConfig({
+  reporter:process.env.CI?[['list'],['github']]:[['list']],
   testDir:'./tests/cloud', testMatch:'**/*.spec.ts', workers:1,
   outputDir:'test-results/cloud',
   use:{baseURL:'http://127.0.0.1:4184',launchOptions:{executablePath:process.env.CHROMIUM_PATH || (process.env.CI?undefined:'/usr/bin/chromium'),args:['--no-sandbox']}},
