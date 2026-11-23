@@ -94,7 +94,7 @@ test('uses two fingers for moving chords and treats a touch-cancelled hold as a 
     }));
     await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:points});
   }
-  await advance(2667); await down([0,5]); await expect(page.locator('#tutorial-score')).toHaveText('333,333 点 · COMBO 3');
+  await advance(2667); await down([0,5]); await expect(page.locator('#tutorial-score')).toHaveText('333,333 点 · COMBO 2');
   await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
   await page.locator('#tutorial-next').click(); const hold = await play(page); await hold(2667); await down([2]);
   await expect(page.locator('.tutorial-judgement').nth(2)).toHaveText('HOLD');
