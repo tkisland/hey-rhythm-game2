@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
-import type { Page } from '@playwright/test';
-import { api } from './mock-video';
+import { api, seekPlay } from './mock-video';
 
 test.beforeEach(async ({ page }) => {
   await page.route('https://fonts.googleapis.com/**',route=>route.fulfill({body:''}));
@@ -12,19 +11,10 @@ test.beforeEach(async ({ page }) => {
       notes: [0, 5].map(lane => ({ id: lane + 1, lane, time: 12, type: 'hold', endTime: 16 })),
     }));
   });
+  await page.goto('/game.html?chart=custom'); await expect(page.locator('#restart')).toBeEnabled();
 });
 
-async function openGame(page:Page,controlledClock=false){
-  await page.goto('/game.html?chart=custom');
-  if(controlledClock){
-    await expect.poll(()=>page.evaluate(()=>Boolean((window as any).testVideo))).toBe(true);
-    await page.clock.runFor(100);
-  }
-  await expect(page.locator('#restart')).toBeEnabled();
-}
-
 test('all six thumb pads leave the complete timing window above the input row across screen sizes', async ({ page }, info) => {
-  await openGame(page);
   const sizes = [[320, 480], [390, 844], [640, 360], [1280, 900]];
   if (info.project.name === 'mobile-touch') sizes.push([844, 390]);
   for (const [width, height] of sizes) {
@@ -52,23 +42,13 @@ test('all six thumb pads leave the complete timing window above the input row ac
 });
 
 test('two thumbs can hold the lower pads while the receptors and HOLD feedback remain above their contacts', async ({ page }) => {
-  // Freeze both clocks: a frozen API timestamp with a real wall clock goes stale
-  // and can expire the note while CI is between touch commands.
-  await page.clock.install();await page.clock.pauseAt(new Date(Date.now()+1000));
-  await openGame(page,true);
   await page.evaluate(()=>(window as any).testVideo.liveClock=false);
-  const seekToHold=async()=>{
-    await page.evaluate(()=>{const video=(window as any).testVideo;video.pauseVideo();video.seekTo(12);});
-    await page.clock.runFor(16);
-    await page.evaluate(()=>(window as any).testVideo.playVideo());
-    await page.clock.runFor(16);
-  };
   await page.locator('.lane-buttons').scrollIntoViewIfNeeded();
   const session = await page.context().newCDPSession(page);
   const receptors = await page.locator('.lane-receptor').evaluateAll(nodes => nodes.map(node => {
     const r = node.getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
   }));
-  await seekToHold();
+  await seekPlay(page, 12);
   // The upper receptor is a visual cue, not a second touch input.
   await session.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ id: 1, ...receptors[0] }] });
   await expect(page.locator('.lane-button.pressed')).toHaveCount(0);
@@ -77,13 +57,8 @@ test('two thumbs can hold the lower pads while the receptors and HOLD feedback r
     const r = nodes[lane].getBoundingClientRect();
     return { id: lane + 1, x: r.x + r.width / 2, y: r.y + r.height * .72, radiusX: 24, radiusY: 28 };
   }));
-  await seekToHold();
-  // Model a slow host between commands, longer than the API prediction horizon.
-  const inputTime=await page.evaluate(()=>performance.now());
-  await new Promise(resolve=>setTimeout(resolve,650));
-  expect(await page.evaluate(()=>performance.now())).toBe(inputTime);
+  await seekPlay(page, 12);
   await session.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: contacts });
-  await page.clock.runFor(16);
   await expect(page.locator('.lane-button.holding')).toHaveCount(2);
   for (const lane of [0, 5]) {
     await expect(page.locator(`#judgement-${lane} .judgement-label`)).toHaveText('HOLD');
@@ -94,7 +69,6 @@ test('two thumbs can hold the lower pads while the receptors and HOLD feedback r
     expect(receptor.y + receptor.height).toBeLessThan(contact.y - contact.radiusY);
   }
   await session.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [contacts[0]] });
-  await page.clock.runFor(16);
   await expect(page.locator('.lane-button.holding')).toHaveCount(1);
   await expect(page.locator('#judgement-5 .judgement-label')).toHaveText('HOLD');
   await session.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });

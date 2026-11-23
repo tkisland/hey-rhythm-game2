@@ -53,9 +53,6 @@ else void startGame(song,difficulty).catch(() => {
   element('stage-hint').querySelector('strong')!.textContent = '譜面を読み込めませんでした';
 });
 async function startGame(song: Song, difficulty:Difficulty): Promise<void> {
-const query = new URLSearchParams(location.search);
-// Read-only comparison: never bypass administrator draft-preview authorization.
-const forceBundled = !__ADMIN__ && query.get('sync') === '1' && query.get('bundled') === '1' && query.get('preview') !== '1';
 let online: CloudChart | null = null, previewUid: string | null = null;
 if (!__ADMIN__) {
   element('player-status').textContent = '譜面を読み込んでいます…';
@@ -69,7 +66,7 @@ if (!__ADMIN__) {
     } catch { location.replace(`./admin.html?song=${encodeURIComponent(song.id)}&difficulty=${difficulty}`); return; }
   } else {
     if(!isPublicDifficulty(song,difficulty)){location.replace('./?unavailable-song=1');return;}
-    online = forceBundled ? null : await publishedChart(song,difficulty);
+    online = await publishedChart(song,difficulty);
   }
 }
 const bundled = bundledChart(song,difficulty);
@@ -140,7 +137,7 @@ sound.delay = settings.soundDelay;
 const unbindLayout = bindDockLayout(document.querySelector('.stage')!, document.querySelector('.controls-dock')!);
 const unbindVenue = bindConcertVenue(element<HTMLCanvasElement>('game-canvas'), document.querySelector('.media-panel')!, document.querySelector('.live-layout')!);
 const result = element('result'), stageHint = element('stage-hint');
-const ranking = !__ADMIN__ && !previewUid && !demoMode && !forceBundled && import.meta.env.MODE !== 'pages' ? mountResultRanking(song.id,difficulty,online?.json ?? JSON.stringify(bundled!)) : null;
+const ranking = !__ADMIN__ && !previewUid && !demoMode && import.meta.env.MODE !== 'pages' ? mountResultRanking(song.id,difficulty,online?.json ?? JSON.stringify(bundled!)) : null;
 const hintTitle = stageHint.querySelector('strong')!;
 const hintDescription = stageHint.querySelector<HTMLElement>('span:last-child')!;
 const status = element('player-status'), notice = element('game-notice');
@@ -272,7 +269,7 @@ function showResults(): void {
   const finishedResult={score:engine.score,maxCombo:engine.maxCombo,results:engine.rankingJudgements()};
   const eligible=engine.skipped===0 && videoRate===1;
   void ranking?.show(finishedResult,eligible);
-  if(!__ADMIN__&&!previewUid&&!demoMode&&!forceBundled&&import.meta.env.MODE!=='pages'){
+  if(!__ADMIN__&&!previewUid&&!demoMode&&import.meta.env.MODE!=='pages'){
     const share=element<HTMLAnchorElement>('result-share'),shareStatus=element('result-share-status'),retry=element<HTMLButtonElement>('result-share-retry');
     const display={score:engine.score,baseScore:engine.baseScore,maxCombo:engine.maxCombo,skipped:engine.skipped};
     const generation=++shareGeneration;
@@ -401,8 +398,6 @@ function showError(message: string): void {
   element<HTMLButtonElement>('play-start').disabled = true;
 }
 function updateChartInfo(): void {
-  diagnostics?.setCharts({chart:engine.chart,bundled,source:__ADMIN__ ? source : previewUid ? 'draft-preview' : online ? 'published' : 'bundled',
-    revision:online?.revision ?? null,difficulty,forcedBundled:forceBundled,allowCompare:!__ADMIN__&&!previewUid});
   element('chart-info').textContent = __ADMIN__ ? `${source === 'custom' ? 'EDITOR CHART' : source === 'bundled' ? 'BUNDLED CHART' : 'PRACTICE CHART'} · ${tempoLabel(engine.chart)} BPM · ${engine.chart.startTime.toFixed(source === 'bundled' ? 2 : 1)}秒〜 · ${engine.notes.length} NOTES` : `${tempoLabel(engine.chart)} BPM · ${engine.notes.length} NOTES`;
 }
 
