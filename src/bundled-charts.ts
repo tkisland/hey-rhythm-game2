@@ -1,3 +1,4 @@
+import hgr001 from './charts/hgr001.json';
 import playful001 from './charts/playful001.json';
 import smgEasy from './charts/smg005-easy.json';
 import smgHard from './charts/smg005-hard.json';
@@ -6,12 +7,13 @@ import bscHard from './charts/bsc002-hard.json';
 import bsc002 from './charts/bsc002.json';
 import smg005 from './charts/smg005.json';
 import { copyChart, parseChart } from './chart-data';
-import { BISCUIT_CASE, DEFAULT_SONG, PLAYFUL_ROMANTIC } from './songs';
+import { BISCUIT_CASE, DEFAULT_SONG, PLAYFUL_ROMANTIC, HAPPY_GO_ROUND } from './songs';
 import type { Song } from './songs';
 import { DEFAULT_DIFFICULTY } from './difficulties';
 import type { Difficulty } from './difficulties';
 
 const charts = new Map([
+  ['hgr001', parseChart(JSON.stringify(hgr001), true, HAPPY_GO_ROUND)],
   ['playful001', parseChart(JSON.stringify(playful001), true, PLAYFUL_ROMANTIC)],
   ['smg005-easy', parseChart(JSON.stringify(smgEasy), true, DEFAULT_SONG)],
   ['smg005-hard', parseChart(JSON.stringify(smgHard), true, DEFAULT_SONG)],
