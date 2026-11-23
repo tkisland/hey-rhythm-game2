@@ -16,11 +16,15 @@ export function bindConcertVenue(canvas: HTMLCanvasElement, monitor: HTMLElement
     if (disposed || !image.complete || !image.naturalWidth) return;
     const fieldRect = canvas.getBoundingClientRect(), monitorRect = monitor.getBoundingClientRect();
     const field = canvasGeometry(canvas);
-    // On short landscape screens, the monitor stays beside the runway.
+    // Portrait shares the deck with the note origin; landscape surrounds a central monitor.
     const beside = monitorRect.right <= fieldRect.left;
-    const top = beside ? fieldRect.top : monitorRect.top;
-    const stageY = fieldRect.top - top + field.origin;
+    const top = field.splitStage || beside ? fieldRect.top : monitorRect.top;
+    let stageY = fieldRect.top - top + field.origin;
     const height = fieldRect.top - top + field.pads[0].y + field.padHeight / 2 + 14;
+    if (field.splitStage) {
+      const screen = monitor.querySelector('.video-section')!.getBoundingClientRect();
+      stageY = Math.min(height - 24,screen.bottom - top + 32);
+    }
     const width = fieldRect.width, dpr = Math.min(2,window.devicePixelRatio || 1);
     backdrop.style.left = `${fieldRect.left}px`; backdrop.style.top = `${top}px`;
     backdrop.style.width = `${width}px`; backdrop.style.height = `${height}px`;
@@ -28,7 +32,7 @@ export function bindConcertVenue(canvas: HTMLCanvasElement, monitor: HTMLElement
     ctx.setTransform(dpr,0,0,dpr,0,0);
     // The same image and horizontal scale meet at the deck; there are no
     // separately cropped video/notes backgrounds or rounded panel seams.
-    const sourceTop = beside ? STAGE_DECK - 120 : 0;
+    const sourceTop = beside && !field.splitStage ? STAGE_DECK - 120 : 0;
     ctx.drawImage(image,0,sourceTop,image.naturalWidth,STAGE_DECK-sourceTop,0,0,width,stageY);
     ctx.drawImage(image,0,STAGE_DECK,image.naturalWidth,image.naturalHeight-STAGE_DECK,0,stageY,width,height-stageY);
   };

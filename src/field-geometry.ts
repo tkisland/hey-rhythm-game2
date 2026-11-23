@@ -3,16 +3,17 @@ import { WINDOWS } from './engine';
 export type HitZone = 'PERFECT' | 'GREAT' | 'GOOD';
 export interface Target { x: number; y: number; width: number; height: number }
 export interface FieldGeometry {
-  width: number; height: number; origin: number; cell: number; margin: number; centerSpace: number; sharedVenue: boolean;
+  width: number; height: number; origin: number; cell: number; margin: number; centerSpace: number; sharedVenue: boolean; splitStage: boolean;
   near: number; approach: number; padWidth: number; padHeight: number; targets: Target[]; pads: Target[];
 }
 export interface FieldPoint { x: number; y: number; width: number; scale: number }
-export function fieldGeometry(width: number, height: number, stageHeight?: number): FieldGeometry {
+export function fieldGeometry(width: number, height: number, stageHeight?: number, splitStage = false): FieldGeometry {
   // Six equal playable lanes; reserve 60% of the original empty center lane.
   // On narrow screens, shrink only the empty lane to keep every button at least 44px.
   const margin = Math.max(0, Math.min(8, (width - 6 * 44) / 2));
   const available = width - 2 * margin;
-  const centerSpace = .6 * Math.max(0, Math.min(available / 7, available - 6 * 44));
+  // Landscape leaves the native 200px player plus its frame between the two wings.
+  const centerSpace = splitStage ? Math.min(240,Math.max(0,available - 6 * 44)) : .6 * Math.max(0, Math.min(available / 7, available - 6 * 44));
   const cell = (available - centerSpace) / 6;
   const padWidth = Math.min(80, Math.max(44, cell * .96));
   const padHeight = Math.min(74, Math.max(60, height * 0.15));
@@ -26,7 +27,7 @@ export function fieldGeometry(width: number, height: number, stageHeight?: numbe
   const lateBottom = padY - padHeight / 2 - 16;
   const near = Math.max(origin, (lateBottom + (lateProgress - 1) * origin) / lateProgress);
   const approach = near - origin;
-  const field: FieldGeometry = { width, height, origin, cell, margin, centerSpace, sharedVenue: stageHeight !== undefined, near, approach, padWidth, padHeight, targets: [], pads: [] };
+  const field: FieldGeometry = { width, height, origin, cell, margin, centerSpace, sharedVenue: stageHeight !== undefined, splitStage, near, approach, padWidth, padHeight, targets: [], pads: [] };
   field.targets = Array.from({ length: 6 }, (_, lane) => {
     const point = project(field, lane, 1);
     return { x: point.x, y: point.y, width: padWidth, height: 20 };
@@ -41,7 +42,9 @@ export function project(field: FieldGeometry, lane: number, progress: number, la
   // offsets within a single lane, so the white/red surfaces never absorb the blank.
   const split = Math.max(0, Math.min(1, lane - 2));
   const targetX = field.margin + (lane + 0.5 + laneEdge) * field.cell + field.centerSpace * split;
-  return { x: field.width / 2 + (targetX - field.width / 2) * scale,
+  // Each wing converges beside the live monitor, keeping every head out of its controls.
+  const pivot = field.splitStage ? field.margin + 3 * field.cell + split * field.centerSpace : field.width / 2;
+  return { x: pivot + (targetX - pivot) * scale,
     y: field.near + (progress - 1) * field.approach, width: field.padWidth * 0.86 * scale, scale };
 }
 export function timingBands(field: FieldGeometry, lane: number, travel: number) {
@@ -52,7 +55,7 @@ export function timingBands(field: FieldGeometry, lane: number, travel: number) 
 /** The main concert uses a shallow stage below its monitor; previews keep their original stage. */
 export function canvasGeometry(canvas: HTMLCanvasElement): FieldGeometry {
   const rect = canvas.getBoundingClientRect(), stageHeight = Number(canvas.dataset.stageHeight);
-  return fieldGeometry(rect.width, rect.height, stageHeight > 0 && Number.isFinite(stageHeight) ? stageHeight : undefined);
+  return fieldGeometry(rect.width, rect.height, stageHeight > 0 && Number.isFinite(stageHeight) ? stageHeight : undefined, getComputedStyle(canvas).getPropertyValue('--split-stage').trim() === '1');
 }
 /** Bind thumb pads below the receptors; expose the receptor position for visible feedback. */
 export function bindTargets(canvas: HTMLCanvasElement, elements: HTMLElement[]): () => void {

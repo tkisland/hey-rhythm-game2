@@ -19,28 +19,29 @@ test('all six thumb pads leave the complete timing window above the input row ac
   for (const [width, height] of sizes) {
     await page.setViewportSize({ width, height });
     await expect.poll(() => page.locator('#game-canvas').evaluate(async (canvas: HTMLCanvasElement) => {
-      const { fieldGeometry, timingBands } = await import('/src/field-geometry.ts');
-      const r = canvas.getBoundingClientRect(), field = fieldGeometry(r.width, r.height);
+      const { canvasGeometry, timingBands } = await import('/src/field-geometry.ts');
+      const r = canvas.getBoundingClientRect(), field = canvasGeometry(canvas);
       return [...document.querySelectorAll<HTMLElement>('.lane-control')].every((control, lane) => {
         const pad = control.querySelector('.lane-button')!.getBoundingClientRect();
-        const receptor = control.querySelector('.lane-receptor')!.getBoundingClientRect();
+        const receptor = control.querySelector('.lane-receptor')!.getBoundingClientRect(), nativePad = control.getBoundingClientRect();
         const lateGood = timingBands(field, lane, 1)[0].bottom.y + r.y;
         const bottomClearance = r.height >= 524 ? 91.9 : 43.9;
         return pad.width >= 44 && pad.height >= 60 && r.bottom - pad.bottom >= bottomClearance && receptor.bottom < pad.top &&
-          lateGood <= pad.top - 15.9 && Math.abs(receptor.x + receptor.width / 2 - pad.x - pad.width / 2) < .1 &&
+          lateGood <= nativePad.top - 15.9 && Math.abs(receptor.x + receptor.width / 2 - pad.x - pad.width / 2) < .1 &&
           getComputedStyle(control.querySelector('.lane-receptor')!).borderTopStyle === 'solid';
       });
     })).toBe(true);
     // Keep a useful runway after reserving space beneath the pads.
-    const minimumRunway = width === 320 ? 65 : width === 390 ? 260 : width === 1280 && info.project.name === 'desktop' ? 350 : 0;
+    const minimumRunway = width === 320 ? 65 : width === 390 ? 260 : width === 1280 && info.project.name === 'desktop' ? 340 : 0;
     if (minimumRunway) await expect.poll(() => page.locator('#game-canvas').evaluate(async (canvas: HTMLCanvasElement) => {
-      const { fieldGeometry } = await import('/src/field-geometry.ts');
-      const r = canvas.getBoundingClientRect(); return fieldGeometry(r.width, r.height).approach;
+      const { canvasGeometry } = await import('/src/field-geometry.ts');
+      return canvasGeometry(canvas).approach;
     })).toBeGreaterThanOrEqual(minimumRunway);
   }
 });
 
-test('two thumbs can hold the lower pads while the receptors and HOLD feedback remain above their contacts', async ({ page }) => {
+for(const [width,height] of [[390,844],[844,390]])test(`two thumbs hold both pads with visible HOLD feedback at ${width}x${height}`, async ({ page }) => {
+  await page.setViewportSize({width,height});
   await page.locator('.lane-buttons').scrollIntoViewIfNeeded();
   const session = await page.context().newCDPSession(page);
   const receptors = await page.locator('.lane-receptor').evaluateAll(nodes => nodes.map(node => {

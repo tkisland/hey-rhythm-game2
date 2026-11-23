@@ -2,6 +2,8 @@ import {test,expect} from '@playwright/test';
 import {api,seekPlay} from '../browser/mock-video';
 
 test.beforeEach(async({page})=>{
+  await page.route('https://fonts.googleapis.com/**',r=>r.fulfill({body:''}));
+  await page.route('https://firestore.googleapis.com/**',r=>r.fulfill({status:404,body:'{}'}));
   await page.route('https://www.youtube.com/iframe_api',r=>r.fulfill({body:api}));
   await page.goto('/game.html');
   await expect(page.locator('#restart')).toBeEnabled();
@@ -18,8 +20,10 @@ test('built concert keeps the complete monitor exposed and thumb pads clear on p
         .every(([x,y])=>document.elementFromPoint(v.left+x,v.top+y)===iframe);
       const pads=[...document.querySelectorAll('.lane-button')].map(p=>p.getBoundingClientRect());
       const portrait=innerHeight>=innerWidth;
+      const split=innerWidth>innerHeight&&innerHeight<=600&&innerWidth>=568;
+      const placement=split ? Math.abs(v.left+v.width/2-field.left-field.width/2)<.5&&pads.every(p=>p.right<=v.left||p.left>=v.right) : portrait ? Math.abs(panel.bottom-field.top)<.5&&Math.abs(field.top-v.bottom-4)<.5 : v.right<=field.left||v.bottom<=field.top;
       return v.width>=200&&v.height>=200&&v.top>=0&&v.bottom<=innerHeight&&clear&&
-        (portrait ? Math.abs(panel.bottom-field.top)<.5&&Math.abs(field.top-v.bottom-4)<.5 : v.right<=field.left||v.bottom<=field.top)&&
+        placement&&
         pads.every(p=>p.width>=44&&Math.abs(p.width-pads[0].width)<.1&&p.height>=60&&p.bottom<=innerHeight-43.9)&&
         field.bottom<=innerHeight+.5&&document.documentElement.scrollWidth<=innerWidth;
     })).toBe(true);
