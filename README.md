@@ -45,7 +45,7 @@ FTPで`dist/`の中身を公開ディレクトリへ配置します。assetsを�
 
 **開発用HTMLをそのまま配信すると、文字だけ表示される原因になります。** `.github/workflows/build-site.yml`の **Build site for Sakura FTP** がテスト・ビルドを実行し、アップロード用成果物 **rhythm-site** を作成します。ZIPを展開した中身を、ドメインの公開フォルダー内の`rhythm`へ転送します。マージだけでは本番へ公開されません。
 
-初回のディレクトリ作成、Firebaseのドメイン追加、ZIP取得、FTPの配置順序、公開確認、元へ戻す手順は[さくらへのFTP公開手順](docs/sakura-deployment.md)にまとめています。GitHub Pagesへの自動更新は停止しますが、以前の公開ページは移行確認まで残ります。
+初回のディレクトリ作成、Firebaseのドメイン追加、ZIP取得、FTPの配置順序、公開確認、元へ戻す手順は[さくらへのFTP公開手順](docs/sakura-deployment.md)にまとめています。GitHub Pagesは[テストプレイ環境](docs/pages-preview.md)として自動更新し、動作確認が済んだ版をFTPで本番へ反映します。
 
 ## 選曲メニューと曲の追加
 
