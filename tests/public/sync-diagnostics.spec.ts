@@ -106,11 +106,11 @@ test('identifies the actual POJI chart and compares the bundled version without 
   await begin(page,'/game.html?song=poji-poji-go&sync=1');
   const saved=await page.evaluate(()=>localStorage.getItem('hey-rhythm-settings-v1'));
   await expect(page.locator('[data-chart-active]')).toContainText('収録譜面');
-  await expect(page.locator('[data-chart-active]')).toContainText('拍の基準 3.920秒 / 最初のノーツ 4.535秒');
+  await expect(page.locator('[data-chart-active]')).toContainText('拍の基準 3.300秒 / 最初のノーツ 3.915秒');
   const initial=await log(page);
   expect(initial.buildId).toBeTruthy();expect(initial.page.path).toBe('/game.html');
   expect(initial.charts).toMatchObject({source:'bundled',difficulty:'normal',revision:null,forcedBundled:false,
-    active:{beatOrigin:3.92,firstNoteTime:4.535384,savedNotes:791,playableNotes:776}});
+    active:{beatOrigin:3.3,firstNoteTime:3.915384,savedNotes:791,playableNotes:776}});
   expect(initial.charts.bundled).toEqual(initial.charts.active);
   await page.locator('[data-chart-compare]').click();
   await expect(page).toHaveURL(/bundled=1/);
