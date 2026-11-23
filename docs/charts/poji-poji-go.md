@@ -3,7 +3,8 @@
 - 動画：https://www.youtube.com/watch?v=F0bagOeDMFc
 - 曲ID：`poji-poji-go`、収録譜面ID：`poji001`
 - 公開難易度：ふつう。かんたん・むずかしいは準備中。
-- 原本：アップロードされた `charts/source/game-POJIGO.mid`。音程置換や重複除去は行っていません。
+- 原本：再送された `game-pojigo.mid` を `charts/source/game-POJIGO.mid` として保存。音程置換や重複除去は行っていません。
+- 再送前との差分はMIDI内のトラック名 `game-POJIGO` → `game-pojigo` のみです。ノーツの開始・終了tick、音程、テンポ、冒頭の2拍の空白は同一で、再生成した譜面JSONに変更はありません。
 - 変換設定：`charts/source/game-POJIGO.config.json`。
 - MIDIの0tickを動画の **3.3秒** に合わせます。冒頭に2拍の休符があり、最初のノーツは動画3.915384秒です。
 - MIDIテンポは約195 BPM（195.000195）、途中のテンポ変更はありません。長オシは1.5拍以上です。
