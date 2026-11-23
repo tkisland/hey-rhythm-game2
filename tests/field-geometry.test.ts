@@ -139,24 +139,34 @@ describe('perspective timing windows and horizontal targets', () => {
   });
 });
 
-it('fans landscape responses around a 200px central monitor with six equal thumb pads and equal timing',()=>{
-  for(const width of [552,624,828,1008])for(const height of [224,278,348,520]){
+it('arcs around the monitor and arrives vertically on each matching landscape button',()=>{
+  for(const width of [552,624,828,1008])for(const height of [278,318,348,518]){
     const field=fieldGeometry(width,height,40,true);
-    expect(field.centerSpace).toBe(240);
     expect(width-2*field.margin).toBeLessThanOrEqual(544);
     expect(field.pads[3].x-field.pads[2].x-field.padWidth).toBeLessThanOrEqual(40);
-    expect(field.pads[5].x+field.padWidth/2-field.pads[0].x+field.padWidth/2).toBeLessThanOrEqual(560);
     for(let lane=0;lane<6;lane++){
-      expect(field.pads[lane].width).toBe(field.pads[0].width);expect(field.pads[lane].width).toBeGreaterThanOrEqual(44);
-      for(const progress of [0,.25,.5,.75,1]){
-        const point=project(field,lane,progress);
-        expect(point.y).toBe(project(field,0,progress).y);
-        if(lane<3)expect(point.x+point.width/2).toBeLessThan(width/2-110);
-        else expect(point.x-point.width/2).toBeGreaterThan(width/2+110);
-        expect(project(field,2.5,progress).x).toBeCloseTo(width/2);
+      const pad=field.pads[lane],target=field.targets[lane],arrival=project(field,lane,1);
+      expect(project(field,lane,.1).y).toBeLessThan(project(field,lane,0).y);
+      expect(pad.width).toBe(field.pads[0].width);expect(pad.width).toBeGreaterThanOrEqual(44);
+      expect(arrival.x).toBeCloseTo(pad.x,8);expect(arrival.y).toBeCloseTo(pad.y,8);
+      expect(target.x).toBeCloseTo(pad.x,8);expect(target.y).toBeCloseTo(pad.y,8);
+      // The tangent at arrival is vertical, with no sideways jump or drift after judgement.
+      expect(Math.abs(project(field,lane,.9999).x-arrival.x)).toBeLessThan(.001);
+      expect(project(field,lane,1.16).x).toBe(arrival.x);
+      for(let step=0;step<=200;step++){
+        const p=step/200,point=project(field,lane,p);
+        expect(point.y).toBe(project(field,0,p).y);
+        expect(point.x-point.width/2).toBeGreaterThanOrEqual(0);
+        expect(point.x+point.width/2).toBeLessThanOrEqual(width);
+        // The complete head (including its 16px maximum thickness) stays off the video.
+        expect(point.y-8>=164||point.x+point.width/2<=width/2-100||point.x-point.width/2>=width/2+100).toBe(true);
+        if(lane>0){const previous=project(field,lane-1,p);expect(point.x-point.width/2).toBeGreaterThan(previous.x+previous.width/2);}
+        const mirror=project(field,5-lane,p);expect(point.x+mirror.x).toBeCloseTo(width,8);
       }
-      const late=timingBands(field,lane,1)[0].bottom.y;
-      expect(late).toBeLessThanOrEqual(field.pads[lane].y-field.padHeight/2-15.9);
+      for(const band of timingBands(field,lane,1)){
+        expect(band.top.y).toBeLessThan(target.y);expect(band.bottom.y).toBeGreaterThan(target.y);
+        expect(band.bottom.y).toBeLessThanOrEqual(height-8);
+      }
     }
   }
 });

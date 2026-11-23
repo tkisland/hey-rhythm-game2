@@ -14,7 +14,7 @@ test.beforeEach(async ({ page }) => {
   await page.goto('/game.html?chart=custom'); await expect(page.locator('#restart')).toBeEnabled();
 });
 
-test('all six thumb pads leave the complete timing window above the input row across screen sizes', async ({ page }, info) => {
+test('all six receptors match the intended portrait or landscape input position', async ({ page }, info) => {
   const sizes = [[320, 480], [390, 844], [640, 360], [1280, 900]];
   if (info.project.name === 'mobile-touch') sizes.push([844, 390]);
   for (const [width, height] of sizes) {
@@ -27,8 +27,7 @@ test('all six thumb pads leave the complete timing window above the input row ac
         const receptor = control.querySelector('.lane-receptor')!.getBoundingClientRect(), nativePad = control.getBoundingClientRect();
         const lateGood = timingBands(field, lane, 1)[0].bottom.y + r.y;
         const bottomClearance = r.height >= 524 ? 91.9 : 43.9;
-        return pad.width >= 44 && pad.height >= 60 && r.bottom - pad.bottom >= bottomClearance && receptor.bottom < pad.top &&
-          lateGood <= nativePad.top - 15.9 && Math.abs(receptor.x + receptor.width / 2 - r.x - field.targets[lane].x) < .1 &&
+        return pad.width >= 44 && pad.height >= 60 && r.bottom - pad.bottom >= bottomClearance && (field.splitStage ? Math.abs(receptor.x+receptor.width/2-pad.x-pad.width/2)<.1&&Math.abs(receptor.y+receptor.height/2-pad.y-pad.height/2)<.1 : receptor.bottom < pad.top && lateGood <= nativePad.top - 15.9) && Math.abs(receptor.x + receptor.width / 2 - r.x - field.targets[lane].x) < .1 &&
           getComputedStyle(control.querySelector('.lane-receptor')!).borderTopStyle === 'solid';
       });
     })).toBe(true);
@@ -50,10 +49,12 @@ for(const [width,height] of [[390,844],[844,390]])test(`two thumbs hold both pad
     const r = node.getBoundingClientRect(); return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
   }));
   await seekPlay(page, 12);
-  // The upper receptor is a visual cue, not a second touch input.
+  // In portrait the upper receptor is a visual cue; in landscape it is on the input.
+  if(width<height){
   await session.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ id: 1, ...receptors[0] }] });
   await expect(page.locator('.lane-button.pressed')).toHaveCount(0);
   await session.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  }
   const contacts = await page.locator('.lane-button').evaluateAll(nodes => [0, 5].map(lane => {
     const r = nodes[lane].getBoundingClientRect();
     return { id: lane + 1, x: r.x + r.width / 2, y: r.y + r.height * .72, radiusX: 24, radiusY: 28 };
@@ -66,8 +67,12 @@ for(const [width,height] of [[390,844],[844,390]])test(`two thumbs hold both pad
     const feedback = (await page.locator(`#judgement-${lane}`).boundingBox())!;
     const receptor = (await page.locator('.lane-receptor').nth(lane).boundingBox())!;
     const contact = contacts[lane === 0 ? 0 : 1];
-    expect(feedback.y + feedback.height).toBeLessThan(receptor.y);
-    expect(receptor.y + receptor.height).toBeLessThan(contact.y - contact.radiusY);
+    if(width<height){
+      expect(feedback.y + feedback.height).toBeLessThan(receptor.y);
+      expect(receptor.y + receptor.height).toBeLessThan(contact.y - contact.radiusY);
+    } else {
+      expect(feedback.y).toBeGreaterThan(receptor.y);
+    }
   }
   await session.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [contacts[0]] });
   await expect(page.locator('.lane-button.holding')).toHaveCount(1);

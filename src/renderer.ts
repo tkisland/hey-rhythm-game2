@@ -8,13 +8,14 @@ import { LANE_COLORS } from './colors';
 import { chordCurve, chordGroups, playNoteThickness } from './note-display';
 import type { Chart, ChartNote } from './chart';
 import { beatsBetween } from './tempo';
-import { canvasGeometry, project, timingBands } from './field-geometry';
+import { canvasGeometry, laneStrip, project, timingBands } from './field-geometry';
 import type { FieldGeometry, FieldPoint, HitZone } from './field-geometry';
 
 export class Renderer {
   private ctx: CanvasRenderingContext2D;
   private field!: FieldGeometry;
   private frameClip!: Path2D;
+  private laneSurfaces: FieldPoint[][] = [];
   private observer: ResizeObserver;
   private flashes = new Map<number, { time: number; kind: HitZone }>();
   private boxTrail: { lane: number; time: number; step: number; id: number; complete: boolean }[] = [];
@@ -26,6 +27,7 @@ export class Renderer {
   private rail: HTMLCanvasElement | null = null;
   private bandTravel = 0;
   private bands: ReturnType<typeof timingBands>[] = [];
+  private bandSurfaces: FieldPoint[][][] = [];
   constructor(private canvas: HTMLCanvasElement) {
     const ctx = canvas.getContext('2d');
     if (!ctx) throw new Error('Canvas 2Dを利用できません。別のブラウザをお試しください。');
@@ -36,6 +38,7 @@ export class Renderer {
     const rect = this.canvas.getBoundingClientRect();
     if(rect.width<1||rect.height<1){this.canvas.width=0;this.canvas.height=0;this.rail=null;return;}
     this.field = canvasGeometry(this.canvas);
+    this.laneSurfaces = Array.from({length:6},(_,lane)=>laneStrip(this.field,lane,0,1,.56));
     this.rail = null; this.bands = [];
     this.frameClip = new Path2D();
     this.frameClip.roundRect(0, 0, rect.width, this.field.pads[0].y + this.field.padHeight / 2 + 14, this.field.sharedVenue ? [0,0,20,20] : 20);
@@ -65,6 +68,9 @@ export class Renderer {
   private ribbon(top: FieldPoint, bottom: FieldPoint, factor = 0.5): void {
     this.polygon([{ x: top.x - top.width * factor, y: top.y }, { x: top.x + top.width * factor, y: top.y },
       { x: bottom.x + bottom.width * factor, y: bottom.y }, { x: bottom.x - bottom.width * factor, y: bottom.y }]);
+  }
+  private laneRibbon(lane:number,from:number,to:number,factor=.5,fill=true):void {
+    this.polygon(laneStrip(this.field,lane,from,to,factor),fill);
   }
   private releaseCap(point: FieldPoint, thickness: number, color: string): void {
     const ctx = this.ctx;
@@ -96,7 +102,7 @@ export class Renderer {
         const near = Math.min(p, progressAt(from.time)), far = Math.max(0, progressAt(to.time));
         if (far > near) continue;
         ctx.fillStyle = LANE_COLORS[from.lane] + (note.state === 'holding' ? '85' : '48');
-        this.ribbon(project(field, from.lane, far), project(field, from.lane, near), .22);
+        this.laneRibbon(from.lane,far,near,.22);
       }
     }
     if (note.type === 'hold') {
@@ -129,19 +135,21 @@ export class Renderer {
     drawVenue(ctx,field);
     if (!this.bands.length || this.bandTravel !== travel) {
       this.bands = Array.from({length:6},(_,lane)=>timingBands(field,lane,travel)); this.bandTravel = travel;
+      this.bandSurfaces = field.splitStage ? this.bands.map((bands,lane)=>bands.map(band=>laneStrip(field,lane,1-WINDOWS[band.kind]/travel,1+WINDOWS[band.kind]/travel))) : [];
     }
     for (let lane = 0; lane < 6; lane++) {
       const color = LANE_COLORS[lane];
       // The stage floor meets the receiving line. Late judgement bands remain below it.
-      const edges = [project(field, lane, 0, -.49), project(field, lane, 0, +.49),
+      const edges = field.splitStage ? this.laneSurfaces[lane] : [project(field, lane, 0, -.49), project(field, lane, 0, +.49),
         project(field, lane, 1, +.49), project(field, lane, 1, -.49)];
       const age = now - (this.flashes.get(lane)?.time ?? -1000);
       const alpha = this.pressed.has(lane) ? 0.10 : Math.max(0, 1 - age / 220) * 0.20;
       if (alpha > 0) { ctx.globalAlpha = alpha; ctx.fillStyle = color; this.polygon(edges); ctx.globalAlpha = 1; }
       ctx.fillStyle = color+'80';
-      for (const band of this.bands[lane]) {
+      for (const [index,band] of this.bands[lane].entries()) {
         ctx.globalAlpha = band.kind === 'PERFECT' ? 0.12 : 0.08;
-        this.ribbon(band.top, band.bottom);
+        if(field.splitStage)this.polygon(this.bandSurfaces[lane][index]);
+        else this.ribbon(band.top, band.bottom);
       }
       ctx.globalAlpha = 1;
       const target = project(field, lane, 1);
@@ -209,11 +217,10 @@ export class Renderer {
         const light=ctx.createLinearGradient(0,project(field,note.lane,tailP).y,0,head.y);
         light.addColorStop(0,color+'a0');light.addColorStop(.5,color+'68');light.addColorStop(1,color+(note.state==='holding'?'c0':'a0'));
         ctx.fillStyle=light;
-        for (let i = 1; i < segments.length; i++) this.ribbon(project(field, note.lane, segments[i - 1]), project(field, note.lane, segments[i]), 0.3);
+        for (let i = 1; i < segments.length; i++) this.laneRibbon(note.lane,segments[i-1],segments[i],.3);
         const tail = project(field, note.lane, tailP);
         ctx.strokeStyle = color; ctx.lineWidth = note.state === 'holding' ? 2 : 1;
-        this.polygon([{ x: tail.x - tail.width * 0.3, y: tail.y }, { x: tail.x + tail.width * 0.3, y: tail.y },
-          { x: head.x + head.width * 0.3, y: head.y }, { x: head.x - head.width * 0.3, y: head.y }], false); ctx.lineWidth = 1;
+        this.laneRibbon(note.lane,tailP,p,.3,false); ctx.lineWidth = 1;
         if (rawTail >= 0) this.releaseCap(tail, referenceThickness * tail.scale, color);
       }
       if (note.gimmick === 'dd') {
