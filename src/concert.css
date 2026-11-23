@@ -134,7 +134,7 @@
   .game-page .header .icon-button { min-height:32px; padding:4px 10px; }
   .game-page .live-layout { display:block; }
   .game-page .game { width:100%; grid-column:auto; grid-row:auto; background:none; }
-  .game-page .game .stage { position:fixed; top:var(--surface-top); left:var(--surface-left); width:var(--surface-width); height:var(--surface-height); box-shadow:none; }
+  .game-page .game .stage { position:fixed; top:var(--surface-top,44px); left:var(--surface-left,8px); width:var(--surface-width,calc(100% - 16px)); height:var(--surface-height,calc(100svh - 44px)); box-shadow:none; }
   .game-page .game #game-canvas { --split-stage:1; }
   .game-page .media-panel { position:absolute; z-index:20; left:calc(50% - 100px); top:0; width:200px; display:block; padding:0; border:0; background:none; }
   .game-page .media-panel .video-section { width:200px; height:200px; }

@@ -46,3 +46,16 @@ test('rotation preserves the same video and pause position, and two thumbs use b
   const monitor=(await page.locator('iframe').boundingBox())!,runway=(await page.locator('#game-canvas').boundingBox())!;
   expect(monitor.y+monitor.height).toBeLessThanOrEqual(runway.y);
 });
+
+test('recovers from a temporarily collapsed surface without canvas errors or reloading the video',async({page})=>{
+  const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
+  await page.setViewportSize({width:844,height:390});
+  await page.evaluate(()=>(window as any).rotationVideo=(window as any).testVideo);
+  await page.locator('.stage').evaluate(n=>{n.style.display='none';});
+  await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve())))));
+  await page.locator('.stage').evaluate(n=>n.style.removeProperty('display'));
+  await expect.poll(()=>page.locator('#game-canvas').evaluate((n:HTMLCanvasElement)=>n.width)).toBeGreaterThan(0);
+  await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
+  expect(errors).toEqual([]);expect(await page.evaluate(()=>(window as any).rotationVideo===(window as any).testVideo)).toBe(true);
+  await expect(page.locator('.lane-button').first()).toBeVisible();
+});

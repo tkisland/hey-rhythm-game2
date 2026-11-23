@@ -34,6 +34,7 @@ export class Renderer {
   }
   private resize(): void {
     const rect = this.canvas.getBoundingClientRect();
+    if(rect.width<1||rect.height<1){this.canvas.width=0;this.canvas.height=0;this.rail=null;return;}
     this.field = canvasGeometry(this.canvas);
     this.rail = null; this.bands = [];
     this.frameClip = new Path2D();
@@ -110,7 +111,9 @@ export class Renderer {
   }
   draw(notes: PlayNote[], time: number, travel: number, now: number, options: { inputOffsetMs?: number; playing?: boolean; chart?: Chart } = {}): void {
     const { inputOffsetMs = 0, playing = true, chart } = options;
+    if(!this.field||!this.canvas.width||!this.canvas.height)return;
     if (this.canvas.width !== Math.round(this.field.width * Math.min(2, window.devicePixelRatio || 1))) this.resize();
+    if(!this.canvas.width||!this.canvas.height)return;
     const ctx = this.ctx, field = this.field, w = field.width, h = field.height;
     // Match the input clock so every compensated PERFECT arrives at a fixed button.
     const judgeTime = time - inputOffsetMs / 1000;
