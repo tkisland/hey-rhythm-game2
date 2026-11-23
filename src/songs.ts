@@ -43,8 +43,12 @@ export const HAPPY_GO_ROUND: Song = {
   id: 'happy-go-round', title: 'Happy Go Round', artist: 'Hey!Mommy!',
   videoId: 'y5Qz8PcPhYs', bpm: 220.00022, startTime: 1.2, chartId: 'hgr001', publicDifficulties: ['normal'],
 };
+export const POJI_POJI_GO: Song = {
+  id: 'poji-poji-go', title: 'POJI POJI GO', artist: 'Hey!Mommy!',
+  videoId: 'F0bagOeDMFc', bpm: 195.000195, startTime: 3.2, chartId: 'poji001', publicDifficulties: ['normal'],
+};
 /** Register additional songs here; routing and storage use the stable ID. */
-export const SONGS: readonly Song[] = [DEFAULT_SONG, BISCUIT_CASE, PLAYFUL_ROMANTIC, HAPPY_GO_ROUND];
+export const SONGS: readonly Song[] = [DEFAULT_SONG, BISCUIT_CASE, PLAYFUL_ROMANTIC, HAPPY_GO_ROUND, POJI_POJI_GO];
 export function findSong(id: string | null): Song | undefined {
   return id === null ? DEFAULT_SONG : SONGS.find(song => song.id === id);
 }
