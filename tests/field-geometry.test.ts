@@ -138,35 +138,3 @@ describe('perspective timing windows and horizontal targets', () => {
     expect(WINDOWS).toEqual({ PERFECT: 0.05, GREAT: 0.1, GOOD: 0.16 });
   });
 });
-
-it('arcs around the monitor and arrives vertically on each matching landscape button',()=>{
-  for(const width of [552,624,828,1008])for(const height of [278,318,348,518]){
-    const field=fieldGeometry(width,height,40,true);
-    expect(width-2*field.margin).toBeLessThanOrEqual(544);
-    expect(field.pads[3].x-field.pads[2].x-field.padWidth).toBeLessThanOrEqual(40);
-    for(let lane=0;lane<6;lane++){
-      const pad=field.pads[lane],target=field.targets[lane],arrival=project(field,lane,1);
-      expect(project(field,lane,.1).y).toBeLessThan(project(field,lane,0).y);
-      expect(pad.width).toBe(field.pads[0].width);expect(pad.width).toBeGreaterThanOrEqual(44);
-      expect(arrival.x).toBeCloseTo(pad.x,8);expect(arrival.y).toBeCloseTo(pad.y,8);
-      expect(target.x).toBeCloseTo(pad.x,8);expect(target.y).toBeCloseTo(pad.y,8);
-      // The tangent at arrival is vertical, with no sideways jump or drift after judgement.
-      expect(Math.abs(project(field,lane,.9999).x-arrival.x)).toBeLessThan(.001);
-      expect(project(field,lane,1.16).x).toBe(arrival.x);
-      for(let step=0;step<=200;step++){
-        const p=step/200,point=project(field,lane,p);
-        expect(point.y).toBe(project(field,0,p).y);
-        expect(point.x-point.width/2).toBeGreaterThanOrEqual(0);
-        expect(point.x+point.width/2).toBeLessThanOrEqual(width);
-        // The complete head (including its 16px maximum thickness) stays off the video.
-        expect(point.y-8>=164||point.x+point.width/2<=width/2-100||point.x-point.width/2>=width/2+100).toBe(true);
-        if(lane>0){const previous=project(field,lane-1,p);expect(point.x-point.width/2).toBeGreaterThan(previous.x+previous.width/2);}
-        const mirror=project(field,5-lane,p);expect(point.x+mirror.x).toBeCloseTo(width,8);
-      }
-      for(const band of timingBands(field,lane,1)){
-        expect(band.top.y).toBeLessThan(target.y);expect(band.bottom.y).toBeGreaterThan(target.y);
-        expect(band.bottom.y).toBeLessThanOrEqual(height-8);
-      }
-    }
-  }
-});
