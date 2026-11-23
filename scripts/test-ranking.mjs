@@ -67,7 +67,7 @@ try {
     await pause(200);
   }
   assert.equal((await api('status')).enabled,true);
-  for(const song of ['super-mommy-girls','biscuit-case'])for(const difficulty of ['easy','hard']){
+  for(const song of ['super-mommy-girls','biscuit-case','playful-romantic'])for(const difficulty of ['easy','hard']){
     assert.deepEqual(catalog.songs[song].publicDifficulties,['normal']);
     assert.equal(catalog.songs[song].charts[difficulty],undefined);
     const board={songId:song,difficulty,chartHash:'0'.repeat(64),rulesVersion:catalog.rulesVersion};
@@ -254,7 +254,7 @@ try {
   // Fast-forwarding the browser clock must not bypass the API's real elapsed-time
   // check in production. Only these isolated test DB rows are shortened.
   sql('TRUNCATE TABLE rhythm_rate_limits;TRUNCATE TABLE rhythm_sessions;TRUNCATE TABLE rhythm_entries;');
-  for(const song of ['super-mommy-girls','biscuit-case'])await api('start',{songId:song,difficulty:'normal',chartHash:hash(catalog.songs[song].charts.normal),rulesVersion:7});
+  for(const song of ['super-mommy-girls','biscuit-case','playful-romantic'])await api('start',{songId:song,difficulty:'normal',chartHash:hash(catalog.songs[song].charts.normal),rulesVersion:7});
   sql('UPDATE rhythm_boards SET minimum_seconds=0;TRUNCATE TABLE rhythm_rate_limits;TRUNCATE TABLE rhythm_sessions;');
   execFileSync(process.execPath,['node_modules/@playwright/test/cli.js','test','--config','playwright.ranking.config.ts'],{stdio:'inherit',env:{...env,RANKING_DB_CONTAINER:mysql}});
 } finally {

@@ -1,5 +1,5 @@
 import { afterEach, expect, it, vi } from 'vitest';
-import { BISCUIT_CASE, DEFAULT_SONG, findSong, SONGS, songStorageKey, songUrl } from '../src/songs';
+import { BISCUIT_CASE, PLAYFUL_ROMANTIC, DEFAULT_SONG, findSong, SONGS, songStorageKey, songUrl } from '../src/songs';
 import { generateChart } from '../src/chart';
 import { CUSTOM_CHART_KEY, EDITOR_KEY, emptyChart, loadChart, parseChart, storeChart } from '../src/editor-model';
 import { loadSettings, normalizePlayerSettings, saveSettings } from '../src/settings';
@@ -34,7 +34,7 @@ it('shares selected lead-in across songs and reloads without losing correction',
   }
 });
 it('registers only real available content and resolves stable song URLs', () => {
-  expect(SONGS).toEqual([DEFAULT_SONG, BISCUIT_CASE]); expect(findSong(null)).toBe(DEFAULT_SONG);
+  expect(SONGS).toEqual([DEFAULT_SONG, BISCUIT_CASE, PLAYFUL_ROMANTIC]); expect(findSong(null)).toBe(DEFAULT_SONG);
   expect(findSong(DEFAULT_SONG.id)).toBe(DEFAULT_SONG); expect(findSong('unknown')).toBeUndefined();
   expect(songUrl(second, 'game', true)).toBe('./game.html?song=second-song&chart=custom');
   expect(songUrl(second, 'editor')).toBe('./editor.html?song=second-song');

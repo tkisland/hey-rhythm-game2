@@ -108,7 +108,7 @@ test('player controls remain reachable with clearance from the bottom on small s
 });
 
 test('Biscuit Case plays the uploaded BSC002 chart at MIDI zero plus 2.95s', async ({page}) => {
-  await page.goto('/');await expect(page.locator('#song-count')).toHaveText('2曲 / 全2曲');
+  await page.goto('/');await expect(page.locator('#song-count')).toHaveText('3曲 / 全3曲');
   await page.locator('#song-search').fill('ビスケット');
   const card=page.locator('[data-song="biscuit-case"]');
   await expect(card.locator('.song-name')).toHaveText('ビスケットケース');
