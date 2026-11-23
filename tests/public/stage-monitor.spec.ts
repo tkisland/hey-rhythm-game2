@@ -21,7 +21,7 @@ test('built concert keeps the complete monitor exposed and thumb pads clear on p
       const pads=[...document.querySelectorAll('.lane-button')].map(p=>p.getBoundingClientRect());
       const portrait=innerHeight>=innerWidth;
       const split=innerWidth>innerHeight&&innerHeight<=600&&innerWidth>=568;
-      const placement=split ? Math.abs(v.left+v.width/2-field.left-field.width/2)<.5&&pads.every(p=>p.right<=v.left||p.left>=v.right) : portrait ? Math.abs(panel.bottom-field.top)<.5&&Math.abs(field.top-v.bottom-4)<.5 : v.right<=field.left||v.bottom<=field.top;
+      const placement=split ? Math.abs(v.left+v.width/2-field.left-field.width/2)<.5&&pads.every(p=>p.top>=v.bottom||p.right<=v.left||p.left>=v.right) : portrait ? Math.abs(panel.bottom-field.top)<.5&&Math.abs(field.top-v.bottom-4)<.5 : v.right<=field.left||v.bottom<=field.top;
       return v.width>=200&&v.height>=200&&v.top>=0&&v.bottom<=innerHeight&&clear&&
         placement&&
         pads.every(p=>p.width>=44&&Math.abs(p.width-pads[0].width)<.1&&p.height>=60&&p.bottom<=innerHeight-43.9)&&

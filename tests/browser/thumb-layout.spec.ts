@@ -28,7 +28,7 @@ test('all six thumb pads leave the complete timing window above the input row ac
         const lateGood = timingBands(field, lane, 1)[0].bottom.y + r.y;
         const bottomClearance = r.height >= 524 ? 91.9 : 43.9;
         return pad.width >= 44 && pad.height >= 60 && r.bottom - pad.bottom >= bottomClearance && receptor.bottom < pad.top &&
-          lateGood <= nativePad.top - 15.9 && Math.abs(receptor.x + receptor.width / 2 - pad.x - pad.width / 2) < .1 &&
+          lateGood <= nativePad.top - 15.9 && Math.abs(receptor.x + receptor.width / 2 - r.x - field.targets[lane].x) < .1 &&
           getComputedStyle(control.querySelector('.lane-receptor')!).borderTopStyle === 'solid';
       });
     })).toBe(true);
@@ -43,6 +43,7 @@ test('all six thumb pads leave the complete timing window above the input row ac
 
 for(const [width,height] of [[390,844],[844,390]])test(`two thumbs hold both pads with visible HOLD feedback at ${width}x${height}`, async ({ page }) => {
   await page.setViewportSize({width,height});
+  await page.evaluate(()=>(window as any).testVideo.liveClock=false);
   await page.locator('.lane-buttons').scrollIntoViewIfNeeded();
   const session = await page.context().newCDPSession(page);
   const receptors = await page.locator('.lane-receptor').evaluateAll(nodes => nodes.map(node => {

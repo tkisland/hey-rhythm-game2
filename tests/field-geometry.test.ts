@@ -143,6 +143,9 @@ it('fans landscape responses around a 200px central monitor with six equal thumb
   for(const width of [552,624,828,1008])for(const height of [224,278,348,520]){
     const field=fieldGeometry(width,height,40,true);
     expect(field.centerSpace).toBe(240);
+    expect(width-2*field.margin).toBeLessThanOrEqual(544);
+    expect(field.pads[3].x-field.pads[2].x-field.padWidth).toBeLessThanOrEqual(40);
+    expect(field.pads[5].x+field.padWidth/2-field.pads[0].x+field.padWidth/2).toBeLessThanOrEqual(560);
     for(let lane=0;lane<6;lane++){
       expect(field.pads[lane].width).toBe(field.pads[0].width);expect(field.pads[lane].width).toBeGreaterThanOrEqual(44);
       for(const progress of [0,.25,.5,.75,1]){
