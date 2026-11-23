@@ -5,9 +5,10 @@ import { parseCloudConfig } from './src/cloud-schema';
 
 export default defineConfig(({ mode }) => {
   const admin = mode === 'admin';
+  const pages = mode === 'pages';
   const env = loadEnv(mode, process.cwd(), '');
   const cloudTest = mode === 'cloud-test';
-  const cloud = parseCloudConfig(cloudTest ? {apiKey:'demo-key', authDomain:'demo-hey-rtm.firebaseapp.com', projectId:'demo-hey-rtm', appId:'1:123:web:demo'} : env.VITE_FIREBASE_CONFIG);
+  const cloud = parseCloudConfig(pages ? null : cloudTest ? {apiKey:'demo-key', authDomain:'demo-hey-rtm.firebaseapp.com', projectId:'demo-hey-rtm', appId:'1:123:web:demo'} : env.VITE_FIREBASE_CONFIG);
   const template = readFileSync('src/editor-template.html', 'utf8');
   return {
     base: './',
@@ -18,6 +19,10 @@ export default defineConfig(({ mode }) => {
       name: 'separate-player-and-admin',
       transformIndexHtml(html) {
         html = html.replace('<!-- editor:template -->', template);
+        if (pages) {
+          html = html.replace('</head>', '<meta name="robots" content="noindex, nofollow" /></head>');
+          html = html.replace(/(<body[^>]*>)/, '$1<aside id="pages-preview-notice" style="padding:4px 10px;text-align:center;font-size:11px;line-height:1.6;background:#30213e;color:#f5e9ff">テストプレイ環境 · <a href="https://hey.jpn.org/rhythm/" style="color:inherit">本番サイト</a></aside>');
+        }
         return admin ? html : html.replace(/<!-- admin:start -->[\s\S]*?<!-- admin:end -->/g, '');
       },
       configureServer(server) {

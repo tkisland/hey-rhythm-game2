@@ -27,7 +27,7 @@ async function show():Promise<void>{
     if(current!==generation)return;
     if(!chart){status.textContent='この難易度の譜面は準備中です。';return;}
     play.href=songUrl(song,'game',false,difficulty);play.hidden=false;
-    if(!await rankingEnabled()){if(current===generation)status.textContent='ランキングは準備中です。';return;}
+    if(!await rankingEnabled()){if(current===generation)status.textContent=import.meta.env.MODE==='pages'?'テスト環境ではランキングを利用できません。本番サイトでご確認ください。':'ランキングは準備中です。';return;}
     const entries=await loadRanking(rankingBoard(song.id,difficulty,await chartHash(online?.json ?? JSON.stringify(chart))));
     if(current!==generation)return;
     renderRanking(list,entries);status.textContent=entries.length?'点数 → 最大コンボ → 登録順で表示しています。':'まだ記録がありません。最初の記録を登録しよう！';

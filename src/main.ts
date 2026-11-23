@@ -137,7 +137,7 @@ sound.delay = settings.soundDelay;
 const unbindLayout = bindDockLayout(document.querySelector('.stage')!, document.querySelector('.controls-dock')!);
 const unbindVenue = bindConcertVenue(element<HTMLCanvasElement>('game-canvas'), document.querySelector('.media-panel')!, document.querySelector('.live-layout')!);
 const result = element('result'), stageHint = element('stage-hint');
-const ranking = !__ADMIN__ && !previewUid && !demoMode ? mountResultRanking(song.id,difficulty,online?.json ?? JSON.stringify(bundled!)) : null;
+const ranking = !__ADMIN__ && !previewUid && !demoMode && import.meta.env.MODE !== 'pages' ? mountResultRanking(song.id,difficulty,online?.json ?? JSON.stringify(bundled!)) : null;
 const hintTitle = stageHint.querySelector('strong')!;
 const hintDescription = stageHint.querySelector<HTMLElement>('span:last-child')!;
 const status = element('player-status'), notice = element('game-notice');
@@ -269,7 +269,7 @@ function showResults(): void {
   const finishedResult={score:engine.score,maxCombo:engine.maxCombo,results:engine.rankingJudgements()};
   const eligible=engine.skipped===0 && videoRate===1;
   void ranking?.show(finishedResult,eligible);
-  if(!__ADMIN__&&!previewUid&&!demoMode){
+  if(!__ADMIN__&&!previewUid&&!demoMode&&import.meta.env.MODE!=='pages'){
     const share=element<HTMLAnchorElement>('result-share'),shareStatus=element('result-share-status'),retry=element<HTMLButtonElement>('result-share-retry');
     const display={score:engine.score,baseScore:engine.baseScore,maxCombo:engine.maxCombo,skipped:engine.skipped};
     const generation=++shareGeneration;

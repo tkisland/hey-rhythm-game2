@@ -8,6 +8,7 @@ export interface RankingResult {score:number;maxCombo:number;results:{id:number;
 export class RankingError extends Error {constructor(public code:string,message:string){super(message);}}
 const endpoint = () => new URL('./api/ranking.php',location.href);
 async function request(action:string,data:Record<string,unknown>={},post=false):Promise<any> {
+  if(import.meta.env.MODE==='pages')throw new RankingError('static_preview','テスト環境ではランキング登録・結果画像の共有は利用できません。');
   const url=endpoint();url.searchParams.set('action',action);
   if(!post)for(const [key,value] of Object.entries(data))url.searchParams.set(key,String(value));
   let response:Response,body:any;
@@ -23,7 +24,7 @@ export async function chartHash(json:string):Promise<string> {
   const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(json));
   return [...new Uint8Array(digest)].map(value=>value.toString(16).padStart(2,'0')).join('');
 }
-export async function rankingEnabled():Promise<boolean> {return (await request('status')).enabled===true;}
+export async function rankingEnabled():Promise<boolean> {return import.meta.env.MODE!=='pages' && (await request('status')).enabled===true;}
 export async function startRanking(board:RankingBoard):Promise<string> {return (await request('start',{...board},true)).token;}
 export async function loadRanking(board:RankingBoard):Promise<RankingEntry[]> {return (await request('leaderboard',{...board})).entries;}
 export async function submitRanking(token:string,name:string,result:RankingResult):Promise<{entry:RankingEntry;rank:number}> {
