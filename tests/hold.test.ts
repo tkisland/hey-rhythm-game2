@@ -16,7 +16,7 @@ describe('hold endpoint judgement and chord scoring', () => {
     expect(engine.advance(10.5, held(0))).toEqual([]);
     expect(engine.advance(11, held(0))).toEqual([]); expect(engine.baseScore).toBe(0);
     expect(engine.release(0, 11)).toMatchObject([{ judgement: 'GREAT', noteId: 1 }]);
-    expect(engine.baseScore).toBe(Math.floor(750 * 1000 / engine.notes.length)); expect(engine.combo).toBe(1); expect(engine.finished).toBe(true);
+    expect(engine.baseScore).toBe(Math.floor(800 * 1000 / engine.notes.length)); expect(engine.combo).toBe(1); expect(engine.finished).toBe(true);
     expect(engine.release(0, 11.1)).toEqual([]); expect(engine.advance(12, held(0))).toEqual([]);
     expect(engine.counts.GREAT).toBe(1);
   });
@@ -48,7 +48,7 @@ describe('hold endpoint judgement and chord scoring', () => {
     engine.input(0, 10); engine.input(3, 10.12);
     expect(engine.combo).toBe(1); expect(engine.input(0, 10)).toBeNull();
     expect(engine.baseScore).toBe(0); engine.advance(11, held(0)); engine.release(0, 11); engine.input(0, 11.05);
-    expect(engine.baseScore).toBe(Math.floor(2500 * 1000 / engine.notes.length)); expect(engine.combo).toBe(3); expect(engine.finished).toBe(true);
+    expect(engine.baseScore).toBe(Math.floor(2600 * 1000 / engine.notes.length)); expect(engine.combo).toBe(3); expect(engine.finished).toBe(true);
   });
   it('keeps two holds independent when one finger releases', () => {
     const engine = game([hold(), hold(3, 2)]);

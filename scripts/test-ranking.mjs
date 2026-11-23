@@ -182,7 +182,7 @@ try {
       }
     }
   } finally {await server.close();}
-  const board={songId:'ranking-test',difficulty:'normal',chartHash:hash(fixture),rulesVersion:7};
+  const board={songId:'ranking-test',difficulty:'normal',chartHash:hash(fixture),rulesVersion:catalog.rulesVersion};
   const start=async(target=board)=>{
     const {token}=await api('start',target);
     sql(`UPDATE rhythm_sessions SET issued_at=issued_at-30 WHERE token_hash='${hash(token)}';`);return token;
@@ -195,9 +195,10 @@ try {
   await api('start',{...board,rulesVersion:4},400);
   await api('start',{...board,rulesVersion:5},400);
   await api('start',{...board,rulesVersion:6},400);
+  await api('start',{...board,rulesVersion:7},400);
   await api('start',{...board,chartHash:'0'.repeat(64)},409);
   await api('start',board,403,'https://other.example');
-  for(const version of [1,2,3,4,5,6]) {
+  for(const version of [1,2,3,4,5,6,7]) {
     const oldId=hash(`ranking-test|normal|${hash(fixture)}|rules${version}`),oldToken=String(version).repeat(64);
     sql(`INSERT INTO rhythm_boards (id,song_id,difficulty,chart_hash,rules_version,chart_json,minimum_seconds) VALUES ('${oldId}','ranking-test','normal','${hash(fixture)}',${version},'${fixture}',0);
       INSERT INTO rhythm_entries (board_id,token_hash,submission_hash,name,score,max_combo,created_at) VALUES ('${oldId}','${hash(oldToken)}','${hash('old')}','OLD',${version===1?8000:1002200},8,1);
@@ -255,7 +256,7 @@ try {
   // Fast-forwarding the browser clock must not bypass the API's real elapsed-time
   // check in production. Only these isolated test DB rows are shortened.
   sql('TRUNCATE TABLE rhythm_rate_limits;TRUNCATE TABLE rhythm_sessions;TRUNCATE TABLE rhythm_entries;');
-  for(const song of shippedSongIds)await api('start',{songId:song,difficulty:'normal',chartHash:hash(catalog.songs[song].charts.normal),rulesVersion:7});
+  for(const song of shippedSongIds)await api('start',{songId:song,difficulty:'normal',chartHash:hash(catalog.songs[song].charts.normal),rulesVersion:catalog.rulesVersion});
   sql('UPDATE rhythm_boards SET minimum_seconds=0;TRUNCATE TABLE rhythm_rate_limits;TRUNCATE TABLE rhythm_sessions;');
   execFileSync(process.execPath,['node_modules/@playwright/test/cli.js','test','--config','playwright.ranking.config.ts'],{stdio:'inherit',env:{...env,RANKING_DB_CONTAINER:mysql}});
 } finally {

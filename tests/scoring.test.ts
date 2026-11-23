@@ -15,7 +15,7 @@ it('normalizes base score once over the whole chart, with no loss from individua
 it('uses judgement weights for base accuracy without counting bonus as accuracy',()=>{
   const game=new GameEngine(chart(taps(4)));
   game.input(0,1);game.input(0,2.08);game.input(0,3.15);game.advance(4.17);
-  expect(game.baseScore).toBe(562500);expect(game.accuracy).toBeCloseTo(56.25);
+  expect(game.baseScore).toBe(600000);expect(game.accuracy).toBeCloseTo(60);
   expect(game.counts).toEqual({PERFECT:1,GREAT:1,GOOD:1,MISS:1});
 });
 it('increments combo tiers at 10, caps at 100, and preserves earned bonus after MISS',()=>{
@@ -37,22 +37,22 @@ it('restarts the combo bonus tier after a MISS and scales it by the final grade'
   for(let time=12;time<=20;time++)game.input(0,time);
   const before=game.comboBonus;game.input(0,21.15);
   expect(before).toBe(Math.floor(15000/21));
-  expect(game.comboBonus).toBe(Math.floor(22500/21));
+  expect(game.comboBonus).toBe(Math.floor(24000/21));
 });
 it('counts whole hold beats through tempo changes and commits bonus only on successful release',()=>{
   const data=chart([{id:1,type:'hold',lane:0,time:1,endTime:3}],{tempoChanges:[{time:2,bpm:180}]});
   const game=new GameEngine(data);game.input(0,1);game.advance(2,new Set([0]));
   expect(game.score).toBe(0);expect(game.specialBonus).toBe(0);
-  game.release(0,3.15); // 2 beats + 3 beats, GREAT => 750 * .75
-  expect(game.baseScore).toBe(750000);expect(game.specialBonus).toBe(562);expect(game.score).toBe(750562);
-  expect(game.accuracy).toBe(75);
+  game.release(0,3.15); // 2 beats + 3 beats, GREAT => 750 * .8
+  expect(game.baseScore).toBe(800000);expect(game.specialBonus).toBe(600);expect(game.score).toBe(800600);
+  expect(game.accuracy).toBe(80);
   game.reset();game.input(0,1);game.release(0,2.5);
   expect(game.score).toBe(0);expect(game.specialBonus).toBe(0);
 });
 it('uses the worst slide checkpoint grade for all special bonus, and a missed tail forfeits it',()=>{
   const game=new GameEngine(chart([{id:1,type:'hold',gimmick:'slide',lane:0,time:1,endTime:3,path:[{time:2,lane:5}]}]));
   game.input(0,1);game.advance(2.12,new Set([5]));expect(game.specialBonus).toBe(0);game.release(5,3);
-  expect(game.specialBonus).toBe(787);expect(game.score).toBe(750787); // (4*150 + 450) * .75
+  expect(game.specialBonus).toBe(840);expect(game.score).toBe(800840); // (4*150 + 450) * .8
   game.reset();game.input(0,1);game.advance(2,new Set([5]));game.release(5,2.5);
   expect(game.score).toBe(0);
 });
@@ -63,11 +63,11 @@ it('awards one quality-weighted box completion and one DD bonus, never per lane 
   ]));
   for(const lane of [2,3,1,4,0])game.input(lane,1.2);
   expect(game.specialBonus).toBe(0);game.input(5,1.2);
-  expect(game.specialBonus).toBe(1125); // GREAT
-  game.input(4,2.15);expect(game.specialBonus).toBe(1350); // GOOD
-  expect(game.baseScore).toBe(625000);expect(game.score).toBe(626350);
+  expect(game.specialBonus).toBe(1200); // GREAT
+  game.input(4,2.15);expect(game.specialBonus).toBe(1470); // GOOD
+  expect(game.baseScore).toBe(700000);expect(game.score).toBe(701470);
   for(let lane=0;lane<6;lane++)game.input(lane,2.15);
-  expect(game.score).toBe(626350);
+  expect(game.score).toBe(701470);
 });
 it('forfeits base, combo and special bonus for a failed chord, while preserving successful judgement counts',()=>{
   const notes=taps(10);notes[9]={id:9,lane:0,time:10,type:'hold',endTime:12};notes.push({id:10,lane:1,time:10,type:'tap'});
