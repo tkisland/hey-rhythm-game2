@@ -9,7 +9,7 @@ import chart from '../src/charts/hgr001.json';
 
 const input=readFileSync(new URL('../charts/source/game-HAPPYGOROUND.mid',import.meta.url));
 const config=JSON.parse(readFileSync(new URL('../charts/source/game-HAPPYGOROUND.config.json',import.meta.url),'utf8'));
-it('ships the final corrected Happy Go Round MIDI exactly at video 1.2s with all authored gestures',()=>{
+it('ships the updated Happy Go Round MIDI exactly at video 1.2s with all authored gestures',()=>{
   const midi=readMidi(input),converted=convertMidi(input,config),notes=playableNotes(converted.notes);
   expect(converted).toEqual(chart);expect(bundledChart(HAPPY_GO_ROUND)).toEqual(converted);
   expect(midi.notes).toHaveLength(708);expect(midi.notes.some(n=>[61,63,74,77].includes(n.pitch))).toBe(false);
@@ -18,10 +18,11 @@ it('ships the final corrected Happy Go Round MIDI exactly at video 1.2s with all
   expect(converted).toMatchObject({videoId:'y5Qz8PcPhYs',title:'Happy Go Round',bpm:220.00022,startTime:1.2,beatOrigin:1.2});
   expect(converted.tempoChanges).toBeUndefined();
   expect(notes.filter(n=>n.gimmick==='slide').map(n=>[n.lane,...(n.path??[]).map(p=>p.lane)])).toEqual([[1,0],[5,4,3,2,1,0]]);
-  // The authored tap at the final pink slide tail must not require a second release.
+  // The shortened slide ends before the next pink tap, which now remains playable.
+  expect(notes.find(n=>n.gimmick==='slide'&&n.lane===5)?.endTime).toBe(166.745289);
   expect(converted.notes.some(n=>n.type==='tap'&&!n.gimmick&&n.lane===0&&n.time===167.018016)).toBe(true);
-  expect(notes.some(n=>n.type==='tap'&&!n.gimmick&&n.lane===0&&n.time===167.018016)).toBe(false);
-  expect(converted.notes).toHaveLength(702);expect(notes).toHaveLength(676);
+  expect(notes.some(n=>n.type==='tap'&&!n.gimmick&&n.lane===0&&n.time===167.018016)).toBe(true);
+  expect(converted.notes).toHaveLength(702);expect(notes).toHaveLength(677);
   expect(notes.filter(n=>n.type==='hold'&&!n.gimmick)).toHaveLength(10);
   for(const [gimmick,count] of [['box',5],['dd',0],['slide',2]] as const)expect(notes.filter(n=>n.gimmick===gimmick)).toHaveLength(count);
   for(const raw of midi.notes.filter(n=>n.pitch<50)){
