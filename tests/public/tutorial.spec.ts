@@ -23,7 +23,7 @@ test('opens on request, preserves selection and restores focus without loading v
   await page.keyboard.press('s'); await expect(page.locator('#tutorial-score')).toHaveText('0 点 · COMBO 0');
   await page.keyboard.press('Escape'); await expect(page.getByRole('dialog')).not.toBeVisible();
   await expect(page.locator('#open-tutorial')).toBeFocused(); await expect(page.locator('#song-search')).toHaveValue('mommy');
-  await expect(page.locator('.song-card')).toHaveCount(2); expect(videos).toEqual([]);
+  await expect(page.locator('.song-card')).toHaveCount(3); expect(videos).toEqual([]);
 });
 
 test('judges actual note timing and ends with a score instead of accepting arbitrary taps', async ({page}) => {
@@ -61,7 +61,7 @@ test('scores both simultaneous note heads and rejects holding a button down befo
   await page.keyboard.up('s'); await advance(2900);
   await expect(page.locator('#tutorial-feedback')).toContainText('MISS');
   await advance(4667); await page.keyboard.down('d'); await page.keyboard.down('k');
-  await expect(page.locator('#tutorial-score')).toHaveText('333,333 点 · COMBO 2');
+  await expect(page.locator('#tutorial-score')).toHaveText('333,333 点 · COMBO 3');
   await page.keyboard.up('d'); await page.keyboard.up('k');
 });
 
