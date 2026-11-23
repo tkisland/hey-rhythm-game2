@@ -72,3 +72,16 @@ test('selects Happy Go Round with the supplied video and 676-note normal chart',
   expect(await page.evaluate(()=>(window as any).testVideo.options.videoId)).toBe('y5Qz8PcPhYs');
   await expect(page.locator('#song-difficulty')).toHaveText('ふつう');await expect(page.locator('#chart-info')).toContainText('676 NOTES');
 });
+
+test('selects POJI POJI GO with the supplied video and 776-note normal chart',async({page})=>{
+  await page.goto('/');await expect(page.locator('#song-count')).toHaveText(`${SONGS.length}曲 / 全${SONGS.length}曲`);
+  await page.locator('#song-search').fill('POJI POJI GO');const card=page.locator('[data-song="poji-poji-go"]');
+  await expect(page.locator('.song-card')).toHaveCount(1);
+  await expect(card.locator('.song-meta')).toHaveText('6 LANES · 195 BPM · 776 NOTES');
+  await expect(card.locator('.song-demo')).toHaveAttribute('href','./game.html?song=poji-poji-go&mode=demo');
+  await card.locator('.song-play').click();await expect(page.locator('#restart')).toBeEnabled();
+  await expect(page).toHaveURL(/game.html\?song=poji-poji-go$/);
+  await expect(page.locator('#song-title')).toHaveText('POJI POJI GO');
+  expect(await page.evaluate(()=>(window as any).testVideo.options.videoId)).toBe('F0bagOeDMFc');
+  await expect(page.locator('#song-difficulty')).toHaveText('ふつう');await expect(page.locator('#chart-info')).toContainText('776 NOTES');
+});
