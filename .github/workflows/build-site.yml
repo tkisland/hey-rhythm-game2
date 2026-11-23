@@ -39,7 +39,7 @@ jobs:
       - name: Install browser for subdirectory checks
         run: npx playwright install --with-deps chromium
       - name: Check difficulty selection, replay, demonstrations and sharing
-        run: npm run test:public -- tests/public/difficulties.spec.ts tests/public/demo-play.spec.ts tests/public/result-share.spec.ts tests/public/security-headers.spec.ts tests/public/surface-recovery.spec.ts tests/public/stage-monitor.spec.ts
+        run: npm run test:public -- tests/public/difficulties.spec.ts tests/public/demo-play.spec.ts tests/public/result-share.spec.ts tests/public/security-headers.spec.ts tests/public/surface-recovery.spec.ts tests/public/stage-monitor.spec.ts tests/public/sync-diagnostics.spec.ts
       - name: Check administrator moderation UI with isolated Firebase
         run: npx --yes firebase-tools@15.34.0 emulators:exec --project demo-hey-rtm --only auth,firestore "npm run test:cloud -- tests/cloud/moderation.spec.ts"
       - name: Check FTP output under /rhythm/
