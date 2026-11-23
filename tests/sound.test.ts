@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { expect, it } from 'vitest';
 import { BEAT_DURATION, BOX_DURATION, BOX_PITCHES, createBeatSamples, createBoxSamples, createBoxSweepSamples, createHoldSamples, createTapSamples, TAP_DURATION } from '../src/sound';
 import { normalizeSettings } from '../src/settings';
@@ -116,4 +117,13 @@ it.each([44100, 48000])('creates a seamless sustained metallic loop with bounded
     expect(Math.min(...windows)).toBeGreaterThan(0.02);
     expect(Math.max(...windows) / Math.min(...windows)).toBeGreaterThan(1.5);
   }
+});
+
+it('ships the exact six-note sweep waveform so a first box never needs synthesis',()=>{
+  const wav=readFileSync(new URL('../src/assets/box-sweep.wav',import.meta.url));
+  expect(wav.toString('ascii',0,4)).toBe('RIFF');expect(wav.toString('ascii',8,12)).toBe('WAVE');
+  expect(wav.readUInt16LE(20)).toBe(3);expect(wav.readUInt16LE(22)).toBe(1);
+  expect(wav.readUInt32LE(24)).toBe(48000);expect(wav.readUInt16LE(34)).toBe(32);
+  const samples=new Float32Array(wav.buffer.slice(wav.byteOffset+44,wav.byteOffset+wav.length));
+  expect(samples).toEqual(createBoxSweepSamples(48000));
 });
