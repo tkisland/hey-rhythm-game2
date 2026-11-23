@@ -41,3 +41,51 @@ test('a single thumb slides white to red and back through an unobstructed center
     await expect(page.locator('#result-counts div').filter({hasText:'PERFECT'}).locator('strong')).toHaveText('2');
   }
 });
+
+
+test('rendered landscape heads follow the curved lanes and hit the centers of the six actual buttons',async({page})=>{
+  await page.route('https://www.youtube.com/iframe_api',r=>r.fulfill({body:api}));
+  await page.route('https://fonts.googleapis.com/**',r=>r.fulfill({body:''}));
+  for(const [width,height] of [[568,320],[844,390],[1024,560]]){
+    await page.setViewportSize({width,height});await page.goto('/game.html?chart=test');await expect(page.locator('#restart')).toBeEnabled();
+    const results=await page.locator('#game-canvas').evaluate(async(base:HTMLCanvasElement)=>{
+      const {Renderer}=await import('/src/renderer.ts'),{canvasGeometry,project}=await import('/src/field-geometry.ts'),{GameEngine}=await import('/src/engine.ts');
+      const rect=base.getBoundingClientRect(),canvas=document.createElement('canvas');
+      canvas.style.cssText=`position:fixed;left:${rect.x}px;top:${rect.y}px;width:${rect.width}px;height:${rect.height}px;opacity:0;pointer-events:none;--split-stage:1`;
+      canvas.dataset.stageHeight=base.dataset.stageHeight;document.body.append(canvas);
+      const renderer=new Renderer(canvas),ctx=canvas.getContext('2d')!,round=ctx.roundRect.bind(ctx),field=canvasGeometry(canvas);
+      const engine=new GameEngine({videoId:'pJDfWpZ7CI4',title:'Arc test',bpm:120,startTime:12,notes:Array.from({length:6},(_,lane)=>({id:lane+1,lane,type:'tap' as const,time:12}))});
+      const pads=[...document.querySelectorAll('.lane-button')].map(n=>{const r=n.getBoundingClientRect();return {x:r.x+r.width/2-rect.x,y:r.y+r.height/2-rect.y};});
+      const video=document.querySelector('iframe')!.getBoundingClientRect(),results=[];
+      let heads:{x:number;y:number;width:number;height:number}[]=[];
+      ctx.roundRect=(...args)=>{heads.push({x:args[0]+args[2]/2,y:args[1]+args[3]/2,width:args[2],height:args[3]});return round(...args);};
+      try{
+        for(const progress of [0,.15,.4,.65,.8,.95,1]){
+          heads=[];renderer.draw(engine.notes,12+(progress-1)*2.5,2.5,0,{playing:false});
+          results.push({progress,heads:heads.map((head,lane)=>({head,expected:project(field,lane,progress),pad:pads[lane],video:{left:video.left-rect.left,right:video.right-rect.left,bottom:video.bottom-rect.top}}))});
+        }
+        // Curved hold ribbons must not take a straight shortcut through the monitor.
+        const move=ctx.moveTo.bind(ctx),line=ctx.lineTo.bind(ctx),fill=ctx.fill.bind(ctx);
+        let path:{x:number;y:number}[]=[],curvedHold=false;
+        ctx.moveTo=(x,y)=>{path=[{x,y}];return move(x,y);};
+        ctx.lineTo=(x,y)=>{path.push({x,y});return line(x,y);};
+        ctx.fill=((...args:any[])=>{
+          if(ctx.fillStyle instanceof CanvasGradient&&path.length>8)curvedHold=true;
+          return (fill as any)(...args);
+        }) as typeof ctx.fill;
+        const hold=new GameEngine({videoId:'pJDfWpZ7CI4',title:'Curved hold',bpm:120,startTime:12,notes:[{id:1,lane:2,type:'hold',time:12,endTime:14}]});
+        renderer.draw(hold.notes,12,2.5,0,{playing:false});
+        if(!curvedHold)throw new Error('Long hold did not follow the sampled curved lane');
+      }finally{renderer.destroy();canvas.remove();}
+      return results;
+    });
+    for(const frame of results){
+      expect(frame.heads).toHaveLength(6);
+      for(const {head,expected,pad,video} of frame.heads){
+        expect(head.x).toBeCloseTo(expected.x,5);expect(head.y).toBeCloseTo(expected.y,5);
+        expect(head.y-head.height/2>=video.bottom||head.x+head.width/2<=video.left||head.x-head.width/2>=video.right).toBe(true);
+        if(frame.progress===1){expect(head.x).toBeCloseTo(pad.x,1);expect(head.y).toBeCloseTo(pad.y,1);}
+      }
+    }
+  }
+});
