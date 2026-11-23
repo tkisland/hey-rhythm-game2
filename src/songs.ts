@@ -31,8 +31,16 @@ export const BISCUIT_CASE: Song = {
     {time:235.83734215,bpm:200},
   ],
 };
+export const PLAYFUL_ROMANTIC: Song = {
+  id: 'playful-romantic', title: 'PLAYFUL ROMANTIC', artist: 'Hey!Mommy!',
+  videoId: '94DtjMOtbP4', bpm: 98.000143734, startTime: 0.9, chartId: 'playful001', publicDifficulties: ['normal'],
+  tempoChanges: [
+    {time:10.695904,bpm:195.000195},
+    {time:20.542048,bpm:196.000287467},
+  ],
+};
 /** Register additional songs here; routing and storage use the stable ID. */
-export const SONGS: readonly Song[] = [DEFAULT_SONG, BISCUIT_CASE];
+export const SONGS: readonly Song[] = [DEFAULT_SONG, BISCUIT_CASE, PLAYFUL_ROMANTIC];
 export function findSong(id: string | null): Song | undefined {
   return id === null ? DEFAULT_SONG : SONGS.find(song => song.id === id);
 }
