@@ -12,11 +12,11 @@ const config=JSON.parse(readFileSync(new URL('../charts/source/game-POJIGO.confi
 it('preserves the supplied POJI POJI GO MIDI, its initial rest and 1.5-beat hold threshold',()=>{
   const midi=readMidi(input),converted=convertMidi(input,config),notes=playableNotes(converted.notes);
   expect(converted).toEqual(chart);expect(bundledChart(POJI_POJI_GO)).toEqual(converted);
-  expect(midi.notes).toHaveLength(791);expect(converted.notes).toHaveLength(791);expect(notes).toHaveLength(776);
-  expect(converted).toMatchObject({videoId:'F0bagOeDMFc',title:'POJI POJI GO',bpm:195.000195,beatOrigin:3.41,startTime:4.025384});
+  expect(midi.notes).toHaveLength(797);expect(converted.notes).toHaveLength(797);expect(notes).toHaveLength(782);
+  expect(converted).toMatchObject({videoId:'F0bagOeDMFc',title:'POJI POJI GO',bpm:195.000195,beatOrigin:3.41,startTime:3.717692});
   expect(converted.tempoChanges).toBeUndefined();expect(config.pitchAliases).toBeUndefined();
-  expect(notes.filter(n=>n.type==='tap'&&!n.gimmick)).toHaveLength(767);
-  expect(notes.filter(n=>n.type==='hold'&&!n.gimmick)).toHaveLength(6);
+  expect(notes.filter(n=>n.type==='tap'&&!n.gimmick)).toHaveLength(772);
+  expect(notes.filter(n=>n.type==='hold'&&!n.gimmick)).toHaveLength(7);
   expect(notes.filter(n=>n.gimmick==='box')).toHaveLength(3);
   expect(notes.some(n=>n.gimmick==='dd'||n.gimmick==='slide')).toBe(false);
   for(const raw of midi.notes.filter(n=>n.pitch<50)){
@@ -35,5 +35,5 @@ it('registers only normal difficulty with isolated storage and the authored edit
     expect(bundledChart(POJI_POJI_GO,difficulty)).toBeNull();
   }
   const copy=bundledChart(POJI_POJI_GO)!;copy.notes.length=0;
-  expect(bundledChart(POJI_POJI_GO)!.notes).toHaveLength(791);
+  expect(bundledChart(POJI_POJI_GO)!.notes).toHaveLength(797);
 });

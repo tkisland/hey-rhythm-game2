@@ -2,4794 +2,4831 @@
   "videoId": "F0bagOeDMFc",
   "title": "POJI POJI GO",
   "bpm": 195.000195,
-  "startTime": 4.025384,
+  "startTime": 3.717692,
   "beatOrigin": 3.41,
   "notes": [
     {
       "id": 1,
-      "time": 4.025384,
+      "time": 3.717692,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 2,
-      "time": 4.17923,
+      "time": 3.871538,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 3,
-      "time": 4.333076,
+      "time": 4.025384,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 4,
-      "time": 4.486922,
+      "time": 4.17923,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 5,
-      "time": 4.794614,
+      "time": 4.486922,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 6,
-      "time": 4.94846,
+      "time": 4.640768,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 7,
-      "time": 5.102306,
+      "time": 4.794614,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 8,
-      "time": 5.409998,
+      "time": 5.102306,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 9,
-      "time": 5.563844,
+      "time": 5.256152,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 10,
-      "time": 5.71769,
+      "time": 5.409998,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 11,
-      "time": 5.871536,
+      "time": 5.563844,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 12,
-      "time": 6.025382,
+      "time": 5.71769,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 13,
-      "time": 6.179228,
+      "time": 5.871536,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 14,
-      "time": 6.333074,
+      "time": 6.025382,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 15,
-      "time": 6.48692,
+      "time": 6.179228,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 16,
-      "time": 6.640766,
+      "time": 6.333074,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 17,
-      "time": 6.794612,
+      "time": 6.48692,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 18,
-      "time": 6.948458,
+      "time": 6.640766,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 19,
-      "time": 7.25615,
+      "time": 6.948458,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 20,
-      "time": 7.409996,
+      "time": 7.102304,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 21,
-      "time": 7.563842,
+      "time": 7.25615,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 22,
-      "time": 7.871534,
+      "time": 7.563842,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 23,
-      "time": 8.02538,
+      "time": 7.717688,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 24,
-      "time": 8.179226,
+      "time": 7.871534,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 25,
-      "time": 8.333072,
+      "time": 8.02538,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 26,
-      "time": 8.486918,
+      "time": 8.179226,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 27,
-      "time": 8.640764,
+      "time": 8.333072,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 28,
-      "time": 8.79461,
+      "time": 8.486918,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 29,
-      "time": 8.948456,
+      "time": 8.640764,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 30,
-      "time": 9.102302,
+      "time": 8.79461,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 31,
-      "time": 9.256148,
+      "time": 8.948456,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 32,
-      "time": 9.409994,
+      "time": 9.102302,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 33,
-      "time": 9.717686,
+      "time": 9.409994,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 34,
-      "time": 9.871532,
+      "time": 9.56384,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 35,
-      "time": 10.025378,
+      "time": 9.717686,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 36,
-      "time": 10.33307,
+      "time": 10.025378,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 37,
-      "time": 10.486916,
+      "time": 10.179224,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 38,
-      "time": 10.640762,
+      "time": 10.33307,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 39,
-      "time": 10.794608,
+      "time": 10.486916,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 40,
-      "time": 10.948454,
+      "time": 10.640762,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 41,
-      "time": 11.1023,
+      "time": 10.794608,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 42,
-      "time": 11.256146,
+      "time": 10.948454,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 43,
-      "time": 11.409992,
+      "time": 11.1023,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 44,
-      "time": 11.563838,
+      "time": 11.256146,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 45,
-      "time": 11.717684,
+      "time": 11.409992,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 46,
-      "time": 11.87153,
+      "time": 11.563838,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 47,
-      "time": 12.179222,
+      "time": 11.87153,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 48,
-      "time": 12.333068,
+      "time": 12.025376,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 49,
-      "time": 12.486914,
+      "time": 12.179222,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 50,
-      "time": 12.794606,
+      "time": 12.486914,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 51,
-      "time": 12.948452,
+      "time": 12.64076,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 52,
-      "time": 13.102298,
+      "time": 12.794606,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 53,
-      "time": 13.256144,
+      "time": 12.948452,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 54,
-      "time": 13.40999,
+      "time": 13.102298,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 55,
-      "time": 13.563836,
+      "time": 13.256144,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 56,
-      "time": 13.717682,
+      "time": 13.40999,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 57,
-      "time": 13.871528,
+      "time": 13.563836,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 58,
-      "time": 14.025374,
+      "time": 13.717682,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 59,
-      "time": 14.17922,
+      "time": 13.871528,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 60,
-      "time": 14.333066,
+      "time": 14.025374,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 61,
-      "time": 14.640758,
+      "time": 14.333066,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 62,
-      "time": 14.794604,
+      "time": 14.486912,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 63,
-      "time": 14.94845,
+      "time": 14.640758,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 64,
-      "time": 15.256142,
+      "time": 14.94845,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 65,
-      "time": 15.409988,
+      "time": 15.102296,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 66,
-      "time": 15.563834,
+      "time": 15.256142,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 67,
-      "time": 15.71768,
+      "time": 15.409988,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 68,
-      "time": 15.871526,
+      "time": 15.563834,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 69,
-      "time": 16.025372,
+      "time": 15.71768,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 70,
-      "time": 16.179218,
+      "time": 15.871526,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 71,
-      "time": 16.333064,
+      "time": 16.025372,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 72,
-      "time": 16.48691,
+      "time": 16.179218,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 73,
-      "time": 16.640756,
+      "time": 16.333064,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 74,
-      "time": 16.794602,
+      "time": 16.48691,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 75,
-      "time": 17.102294,
+      "time": 16.794602,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 76,
-      "time": 17.25614,
+      "time": 16.948448,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 77,
-      "time": 17.409986,
+      "time": 17.102294,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 78,
-      "time": 17.563832,
+      "time": 17.25614,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 79,
-      "time": 17.717678,
+      "time": 17.409986,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 80,
-      "time": 17.871524,
+      "time": 17.563832,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 81,
-      "time": 18.02537,
+      "time": 17.717678,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 82,
-      "time": 18.179216,
+      "time": 17.871524,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 83,
-      "time": 18.486908,
+      "time": 18.179216,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 84,
-      "time": 19.102292,
-      "lane": 2,
+      "time": 18.486908,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 85,
-      "time": 19.256138,
-      "lane": 2,
+      "time": 18.948446,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 86,
-      "time": 19.717676,
-      "lane": 2,
+      "time": 19.102292,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 87,
-      "time": 20.33306,
-      "lane": 2,
+      "time": 19.409984,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 88,
-      "time": 20.486906,
-      "lane": 2,
+      "time": 19.56383,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 89,
+      "time": 19.871522,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 90,
+      "time": 20.025368,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 91,
+      "time": 20.179214,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 92,
+      "time": 20.33306,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 93,
+      "time": 20.640752,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 94,
       "time": 20.948444,
       "lane": 2,
       "type": "tap"
     },
     {
-      "id": 90,
-      "time": 21.563828,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 91,
-      "time": 21.717674,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 92,
-      "time": 22.179212,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 93,
-      "time": 22.794596,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 94,
-      "time": 22.948442,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
       "id": 95,
-      "time": 23.40998,
-      "lane": 3,
+      "time": 21.409982,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 96,
-      "time": 23.717672,
-      "lane": 1,
+      "time": 21.563828,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 97,
-      "time": 24.025364,
-      "lane": 4,
+      "time": 21.87152,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 98,
-      "time": 24.333056,
-      "lane": 1,
+      "time": 22.025366,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 99,
-      "time": 24.640748,
-      "lane": 4,
+      "time": 22.333058,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 100,
-      "time": 24.794594,
-      "lane": 1,
+      "time": 22.486904,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 101,
-      "time": 25.102286,
-      "lane": 4,
+      "time": 22.64075,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 102,
-      "time": 25.409978,
-      "lane": 4,
+      "time": 22.794596,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 103,
-      "time": 25.563824,
-      "lane": 1,
+      "time": 23.102288,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 104,
-      "time": 25.871516,
+      "time": 23.40998,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 105,
+      "time": 23.717672,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 106,
+      "time": 24.025364,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 107,
+      "time": 24.333056,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 108,
+      "time": 24.486902,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 109,
+      "time": 24.794594,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 110,
+      "time": 25.102286,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 111,
+      "time": 25.256132,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 112,
+      "time": 25.563824,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 113,
+      "time": 25.871516,
+      "lane": 5,
+      "type": "tap"
+    },
+    {
+      "id": 114,
       "time": 26.179208,
       "lane": 5,
       "type": "tap"
     },
     {
-      "id": 106,
-      "time": 26.333054,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 107,
-      "time": 26.4869,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 108,
-      "time": 26.794592,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 109,
-      "time": 27.563822,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 110,
-      "time": 27.871514,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 111,
-      "time": 28.02536,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 112,
-      "time": 28.333052,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 113,
-      "time": 28.640744,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 114,
-      "time": 28.948436,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
       "id": 115,
-      "time": 29.256128,
+      "time": 26.4869,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 116,
-      "time": 29.56382,
+      "time": 27.25613,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 117,
+      "time": 27.563822,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
+      "id": 118,
+      "time": 27.717668,
+      "lane": 5,
+      "type": "tap"
+    },
+    {
+      "id": 119,
+      "time": 28.02536,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
+      "id": 120,
+      "time": 28.333052,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
+      "id": 121,
+      "time": 28.640744,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
+      "id": 122,
+      "time": 28.948436,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
+      "id": 123,
+      "time": 29.256128,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
+      "id": 124,
+      "time": 29.56382,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 125,
       "time": 29.871512,
       "lane": 4,
       "type": "tap"
     },
     {
-      "id": 118,
+      "id": 126,
       "time": 30.179204,
       "lane": 4,
       "type": "tap"
     },
     {
-      "id": 119,
+      "id": 127,
       "time": 30.486896,
       "lane": 4,
       "type": "tap"
     },
     {
-      "id": 120,
-      "time": 30.794588,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 121,
-      "time": 31.717664,
+      "id": 128,
+      "time": 31.409972,
       "lane": 5,
       "type": "tap"
     },
     {
-      "id": 122,
-      "time": 32.333048,
+      "id": 129,
+      "time": 32.025356,
       "lane": 1,
       "type": "tap"
     },
     {
-      "id": 123,
-      "time": 32.64074,
+      "id": 130,
+      "time": 32.333048,
       "lane": 3,
       "type": "tap"
     },
     {
-      "id": 124,
-      "time": 32.948432,
+      "id": 131,
+      "time": 32.64074,
       "lane": 0,
       "type": "tap",
       "gimmick": "box",
       "boxId": 1
     },
     {
-      "id": 125,
-      "time": 32.948432,
+      "id": 132,
+      "time": 32.64074,
       "lane": 1,
       "type": "tap",
       "gimmick": "box",
       "boxId": 1
     },
     {
-      "id": 126,
-      "time": 32.948432,
+      "id": 133,
+      "time": 32.64074,
       "lane": 2,
       "type": "tap",
       "gimmick": "box",
       "boxId": 1
     },
     {
-      "id": 127,
-      "time": 32.948432,
+      "id": 134,
+      "time": 32.64074,
       "lane": 3,
       "type": "tap",
       "gimmick": "box",
       "boxId": 1
     },
     {
-      "id": 128,
-      "time": 32.948432,
+      "id": 135,
+      "time": 32.64074,
       "lane": 4,
       "type": "tap",
       "gimmick": "box",
       "boxId": 1
     },
     {
-      "id": 129,
-      "time": 32.948432,
+      "id": 136,
+      "time": 32.64074,
       "lane": 5,
       "type": "tap",
       "gimmick": "box",
       "boxId": 1
     },
     {
-      "id": 130,
-      "time": 33.563816,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 131,
-      "time": 33.871508,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 132,
-      "time": 34.1792,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 133,
-      "time": 34.333046,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 134,
-      "time": 34.486892,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 135,
-      "time": 34.794584,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 136,
-      "time": 35.102276,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
       "id": 137,
-      "time": 35.409968,
+      "time": 33.256124,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 138,
-      "time": 35.563814,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 139,
-      "time": 35.71766,
+      "time": 33.563816,
       "lane": 5,
       "type": "tap"
     },
     {
+      "id": 139,
+      "time": 33.871508,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
       "id": 140,
-      "time": 36.025352,
-      "lane": 4,
+      "time": 34.025354,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 141,
-      "time": 36.333044,
-      "lane": 1,
+      "time": 34.1792,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 142,
-      "time": 36.640736,
-      "lane": 4,
+      "time": 34.486892,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 143,
-      "time": 36.794582,
-      "lane": 4,
+      "time": 34.794584,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 144,
-      "time": 36.948428,
-      "lane": 1,
+      "time": 35.102276,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 145,
-      "time": 37.25612,
-      "lane": 4,
+      "time": 35.256122,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 146,
-      "time": 37.563812,
-      "lane": 1,
+      "time": 35.409968,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 147,
-      "time": 37.871504,
+      "time": 35.71766,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 148,
-      "time": 38.02535,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 149,
-      "time": 38.179196,
+      "time": 36.025352,
       "lane": 1,
       "type": "tap"
     },
     {
+      "id": 149,
+      "time": 36.333044,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
       "id": 150,
-      "time": 39.102272,
-      "lane": 2,
+      "time": 36.48689,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 151,
-      "time": 40.025348,
-      "lane": 3,
+      "time": 36.640736,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 152,
-      "time": 40.33304,
-      "lane": 3,
+      "time": 36.948428,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 153,
-      "time": 41.563808,
+      "time": 37.25612,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 154,
-      "time": 42.486884,
-      "lane": 3,
+      "time": 37.563812,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 155,
-      "time": 42.794576,
-      "lane": 3,
+      "time": 37.717658,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 156,
-      "time": 43.717652,
+      "time": 37.871504,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 157,
-      "time": 44.025344,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 158,
-      "time": 44.333036,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 159,
-      "time": 44.486882,
+      "time": 38.79458,
       "lane": 2,
       "type": "tap"
     },
     {
-      "id": 160,
-      "time": 44.794574,
+      "id": 158,
+      "time": 39.717656,
       "lane": 3,
       "type": "tap"
     },
     {
+      "id": 159,
+      "time": 40.025348,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 160,
+      "time": 41.256116,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
       "id": 161,
-      "time": 45.102266,
+      "time": 42.179192,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 162,
-      "time": 45.256112,
-      "lane": 0,
+      "time": 42.486884,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 163,
-      "time": 45.563804,
-      "lane": 5,
+      "time": 43.40996,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 164,
-      "time": 45.871496,
-      "lane": 1,
+      "time": 43.717652,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 165,
-      "time": 46.333034,
-      "lane": 1,
+      "time": 44.025344,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 166,
-      "time": 46.48688,
-      "lane": 1,
+      "time": 44.17919,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 167,
+      "time": 44.486882,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 168,
+      "time": 44.794574,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 169,
+      "time": 44.94842,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
+      "id": 170,
+      "time": 45.256112,
+      "lane": 5,
+      "type": "tap"
+    },
+    {
+      "id": 171,
+      "time": 45.563804,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 172,
+      "time": 46.025342,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 173,
+      "time": 46.179188,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 174,
+      "time": 46.948418,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 175,
       "time": 47.25611,
       "lane": 4,
       "type": "tap"
     },
     {
-      "id": 168,
-      "time": 47.563802,
+      "id": 176,
+      "time": 47.409956,
       "lane": 4,
       "type": "tap"
     },
     {
-      "id": 169,
-      "time": 47.717648,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 170,
-      "time": 48.333032,
+      "id": 177,
+      "time": 48.02534,
       "lane": 2,
       "type": "tap"
     },
     {
-      "id": 171,
-      "time": 48.79457,
+      "id": 178,
+      "time": 48.486878,
       "lane": 2,
       "type": "tap"
     },
     {
-      "id": 172,
-      "time": 48.948416,
+      "id": 179,
+      "time": 48.640724,
       "lane": 2,
       "type": "tap"
     },
     {
-      "id": 173,
+      "id": 180,
+      "time": 49.102262,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 181,
       "time": 49.409954,
       "lane": 3,
       "type": "tap"
     },
     {
-      "id": 174,
+      "id": 182,
       "time": 49.717646,
       "lane": 3,
       "type": "tap"
     },
     {
-      "id": 175,
-      "time": 50.025338,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 176,
-      "time": 50.179184,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 177,
-      "time": 50.794568,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 178,
-      "time": 51.409952,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 179,
-      "time": 52.025336,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 180,
-      "time": 52.333028,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 181,
-      "time": 52.64072,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 182,
-      "time": 53.256104,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
       "id": 183,
-      "time": 53.563796,
-      "lane": 1,
+      "time": 49.871492,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 184,
-      "time": 53.717642,
-      "lane": 1,
+      "time": 50.486876,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 185,
-      "time": 53.871488,
-      "lane": 4,
+      "time": 51.10226,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 186,
-      "time": 54.17918,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 187,
-      "time": 54.333026,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 188,
-      "time": 54.486872,
+      "time": 51.717644,
       "lane": 1,
       "type": "tap"
     },
     {
+      "id": 187,
+      "time": 52.025336,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 188,
+      "time": 52.333028,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
       "id": 189,
+      "time": 52.948412,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 190,
+      "time": 53.256104,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 191,
+      "time": 53.40995,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 192,
+      "time": 53.563796,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 193,
+      "time": 53.871488,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 194,
+      "time": 54.025334,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 195,
+      "time": 54.17918,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 196,
+      "time": 54.486872,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 197,
       "time": 54.794564,
       "lane": 4,
       "type": "tap"
     },
     {
-      "id": 190,
+      "id": 198,
       "time": 55.102256,
       "lane": 4,
       "type": "tap"
     },
     {
-      "id": 191,
-      "time": 55.409948,
-      "lane": 4,
+      "id": 199,
+      "time": 55.256102,
+      "lane": 0,
       "type": "tap"
     },
     {
-      "id": 192,
+      "id": 200,
       "time": 55.563794,
       "lane": 0,
       "type": "tap"
     },
     {
-      "id": 193,
+      "id": 201,
       "time": 55.871486,
       "lane": 0,
       "type": "tap"
     },
     {
-      "id": 194,
+      "id": 202,
+      "time": 56.025332,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
+      "id": 203,
       "time": 56.179178,
       "lane": 0,
       "type": "tap"
     },
     {
-      "id": 195,
+      "id": 204,
       "time": 56.333024,
       "lane": 0,
       "type": "tap"
     },
     {
-      "id": 196,
-      "time": 56.48687,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 197,
+      "id": 205,
       "time": 56.640716,
-      "lane": 0,
+      "lane": 4,
       "type": "tap"
     },
     {
-      "id": 198,
+      "id": 206,
       "time": 56.948408,
       "lane": 4,
       "type": "tap"
     },
     {
-      "id": 199,
+      "id": 207,
       "time": 57.2561,
-      "lane": 4,
+      "lane": 5,
       "type": "tap"
     },
     {
-      "id": 200,
+      "id": 208,
       "time": 57.563792,
       "lane": 5,
       "type": "tap"
     },
     {
-      "id": 201,
-      "time": 57.871484,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 202,
-      "time": 58.02533,
+      "id": 209,
+      "time": 57.717638,
       "lane": 1,
       "type": "tap"
     },
     {
-      "id": 203,
-      "time": 58.02533,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 204,
-      "time": 59.409944,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 205,
-      "time": 59.56379,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 206,
-      "time": 59.717636,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 207,
-      "time": 59.871482,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 208,
-      "time": 60.025328,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 209,
-      "time": 60.179174,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
       "id": 210,
-      "time": 60.33302,
+      "time": 57.717638,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 211,
-      "time": 60.486866,
+      "time": 59.102252,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 212,
-      "time": 60.640712,
-      "lane": 2,
+      "time": 59.256098,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 213,
-      "time": 60.794558,
-      "lane": 2,
+      "time": 59.409944,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 214,
-      "time": 60.948404,
-      "lane": 2,
+      "time": 59.56379,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 215,
-      "time": 61.10225,
-      "lane": 2,
+      "time": 59.717636,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 216,
-      "time": 61.256096,
-      "lane": 2,
+      "time": 59.871482,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 217,
-      "time": 61.409942,
-      "lane": 2,
+      "time": 60.025328,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 218,
-      "time": 61.563788,
-      "lane": 2,
+      "time": 60.179174,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 219,
-      "time": 61.717634,
+      "time": 60.33302,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 220,
-      "time": 61.87148,
-      "lane": 4,
+      "time": 60.486866,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 221,
-      "time": 62.025326,
-      "lane": 4,
+      "time": 60.640712,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 222,
-      "time": 62.179172,
-      "lane": 4,
+      "time": 60.794558,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 223,
-      "time": 62.333018,
-      "lane": 4,
+      "time": 60.948404,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 224,
-      "time": 62.486864,
-      "lane": 4,
+      "time": 61.10225,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 225,
-      "time": 62.64071,
-      "lane": 4,
+      "time": 61.256096,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 226,
-      "time": 62.794556,
-      "lane": 4,
+      "time": 61.409942,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 227,
-      "time": 62.948402,
+      "time": 61.563788,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 228,
-      "time": 63.102248,
-      "lane": 1,
+      "time": 61.717634,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 229,
-      "time": 63.256094,
-      "lane": 1,
+      "time": 61.87148,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 230,
-      "time": 63.40994,
-      "lane": 1,
+      "time": 62.025326,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 231,
-      "time": 63.563786,
-      "lane": 1,
+      "time": 62.179172,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 232,
-      "time": 63.717632,
-      "lane": 1,
+      "time": 62.333018,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 233,
-      "time": 63.871478,
-      "lane": 1,
+      "time": 62.486864,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 234,
-      "time": 64.025324,
-      "lane": 1,
+      "time": 62.64071,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 235,
-      "time": 64.17917,
+      "time": 62.794556,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 236,
-      "time": 64.333016,
-      "lane": 5,
+      "time": 62.948402,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 237,
-      "time": 64.486862,
-      "lane": 5,
+      "time": 63.102248,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 238,
-      "time": 64.640708,
-      "lane": 5,
+      "time": 63.256094,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 239,
-      "time": 64.794554,
-      "lane": 5,
+      "time": 63.40994,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 240,
-      "time": 64.9484,
-      "lane": 5,
+      "time": 63.563786,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 241,
-      "time": 65.102246,
-      "lane": 5,
+      "time": 63.717632,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 242,
-      "time": 65.256092,
-      "lane": 5,
+      "time": 63.871478,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 243,
-      "time": 65.409938,
+      "time": 64.025324,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 244,
+      "time": 64.17917,
+      "lane": 5,
+      "type": "tap"
+    },
+    {
+      "id": 245,
+      "time": 64.333016,
+      "lane": 5,
+      "type": "tap"
+    },
+    {
+      "id": 246,
+      "time": 64.486862,
+      "lane": 5,
+      "type": "tap"
+    },
+    {
+      "id": 247,
+      "time": 64.640708,
+      "lane": 5,
+      "type": "tap"
+    },
+    {
+      "id": 248,
+      "time": 64.794554,
+      "lane": 5,
+      "type": "tap"
+    },
+    {
+      "id": 249,
+      "time": 64.9484,
+      "lane": 5,
+      "type": "tap"
+    },
+    {
+      "id": 250,
+      "time": 65.102246,
+      "lane": 5,
+      "type": "tap"
+    },
+    {
+      "id": 251,
+      "time": 65.256092,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
+      "id": 252,
+      "time": 65.409938,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
+      "id": 253,
       "time": 65.563784,
       "lane": 0,
       "type": "tap"
     },
     {
-      "id": 245,
+      "id": 254,
       "time": 65.71763,
       "lane": 0,
       "type": "tap"
     },
     {
-      "id": 246,
+      "id": 255,
       "time": 65.871476,
       "lane": 0,
       "type": "tap"
     },
     {
-      "id": 247,
+      "id": 256,
       "time": 66.025322,
       "lane": 0,
       "type": "tap"
     },
     {
-      "id": 248,
+      "id": 257,
       "time": 66.179168,
       "lane": 0,
       "type": "tap"
     },
     {
-      "id": 249,
-      "time": 66.333014,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 250,
+      "id": 258,
       "time": 66.48686,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 251,
-      "time": 66.794552,
       "lane": 4,
       "type": "hold",
-      "endTime": 67.409936
-    },
-    {
-      "id": 252,
-      "time": 67.409936,
-      "lane": 3,
-      "type": "hold",
-      "endTime": 68.02532
-    },
-    {
-      "id": 253,
-      "time": 68.02532,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 254,
-      "time": 68.333012,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 255,
-      "time": 68.640704,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 256,
-      "time": 69.256088,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 257,
-      "time": 69.409934,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 258,
-      "time": 69.56378,
-      "lane": 5,
-      "type": "tap"
+      "endTime": 67.102244
     },
     {
       "id": 259,
-      "time": 69.717626,
-      "lane": 5,
-      "type": "tap"
+      "time": 67.102244,
+      "lane": 3,
+      "type": "hold",
+      "endTime": 67.717628
     },
     {
       "id": 260,
-      "time": 69.871472,
-      "lane": 5,
+      "time": 67.717628,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 261,
-      "time": 70.025318,
-      "lane": 5,
+      "time": 68.02532,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 262,
-      "time": 70.179164,
-      "lane": 5,
+      "time": 68.333012,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 263,
-      "time": 70.33301,
+      "time": 68.948396,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 264,
-      "time": 70.486856,
-      "lane": 0,
+      "time": 69.102242,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 265,
-      "time": 70.640702,
-      "lane": 0,
+      "time": 69.256088,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 266,
-      "time": 70.794548,
-      "lane": 0,
+      "time": 69.409934,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 267,
-      "time": 70.948394,
-      "lane": 0,
+      "time": 69.56378,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 268,
-      "time": 71.10224,
-      "lane": 0,
+      "time": 69.717626,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 269,
-      "time": 71.256086,
-      "lane": 0,
+      "time": 69.871472,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 270,
-      "time": 71.409932,
-      "lane": 0,
+      "time": 70.025318,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 271,
-      "time": 71.563778,
+      "time": 70.179164,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 272,
-      "time": 71.717624,
-      "lane": 4,
+      "time": 70.33301,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 273,
-      "time": 71.87147,
-      "lane": 4,
+      "time": 70.486856,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 274,
-      "time": 72.025316,
-      "lane": 4,
+      "time": 70.640702,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 275,
-      "time": 72.179162,
-      "lane": 4,
+      "time": 70.794548,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 276,
-      "time": 72.333008,
-      "lane": 4,
+      "time": 70.948394,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 277,
-      "time": 72.486854,
-      "lane": 4,
+      "time": 71.10224,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 278,
-      "time": 72.6407,
-      "lane": 4,
+      "time": 71.256086,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 279,
-      "time": 72.794546,
+      "time": 71.409932,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 280,
-      "time": 72.948392,
-      "lane": 3,
+      "time": 71.563778,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 281,
-      "time": 73.102238,
-      "lane": 3,
+      "time": 71.717624,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 282,
-      "time": 73.256084,
-      "lane": 3,
+      "time": 71.87147,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 283,
-      "time": 73.40993,
-      "lane": 3,
+      "time": 72.025316,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 284,
-      "time": 73.563776,
-      "lane": 3,
+      "time": 72.179162,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 285,
-      "time": 73.717622,
-      "lane": 3,
+      "time": 72.333008,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 286,
-      "time": 73.871468,
-      "lane": 3,
+      "time": 72.486854,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 287,
-      "time": 74.025314,
+      "time": 72.6407,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 288,
-      "time": 74.17916,
-      "lane": 1,
+      "time": 72.794546,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 289,
-      "time": 74.333006,
-      "lane": 1,
+      "time": 72.948392,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 290,
-      "time": 74.486852,
-      "lane": 1,
+      "time": 73.102238,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 291,
-      "time": 74.640698,
-      "lane": 1,
+      "time": 73.256084,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 292,
-      "time": 74.794544,
-      "lane": 1,
+      "time": 73.40993,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 293,
-      "time": 74.94839,
-      "lane": 1,
+      "time": 73.563776,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 294,
-      "time": 75.102236,
-      "lane": 1,
+      "time": 73.717622,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 295,
-      "time": 75.256082,
+      "time": 73.871468,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 296,
-      "time": 75.409928,
-      "lane": 2,
+      "time": 74.025314,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 297,
-      "time": 75.563774,
-      "lane": 2,
+      "time": 74.17916,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 298,
-      "time": 75.71762,
-      "lane": 2,
+      "time": 74.333006,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 299,
-      "time": 75.871466,
-      "lane": 2,
+      "time": 74.486852,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 300,
-      "time": 76.025312,
-      "lane": 2,
+      "time": 74.640698,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 301,
-      "time": 76.179158,
-      "lane": 2,
+      "time": 74.794544,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 302,
-      "time": 76.333004,
-      "lane": 2,
+      "time": 74.94839,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 303,
-      "time": 76.48685,
+      "time": 75.102236,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 304,
-      "time": 76.640696,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 305,
-      "time": 76.948388,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 306,
-      "time": 77.25608,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 307,
-      "time": 77.563772,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 308,
-      "time": 77.871464,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 309,
-      "time": 78.179156,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 310,
-      "time": 78.486848,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 311,
-      "time": 79.102232,
+      "time": 75.256082,
       "lane": 2,
       "type": "tap"
     },
     {
+      "id": 305,
+      "time": 75.409928,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 306,
+      "time": 75.563774,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 307,
+      "time": 75.71762,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 308,
+      "time": 75.871466,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 309,
+      "time": 76.025312,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 310,
+      "time": 76.179158,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 311,
+      "time": 76.333004,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
       "id": 312,
-      "time": 79.717616,
-      "lane": 5,
+      "time": 76.640696,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 313,
-      "time": 80.333,
-      "lane": 1,
+      "time": 76.948388,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 314,
-      "time": 80.333,
-      "lane": 4,
+      "time": 77.25608,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 315,
-      "time": 80.640692,
-      "lane": 1,
+      "time": 77.563772,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 316,
-      "time": 80.640692,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 317,
-      "time": 80.948384,
+      "time": 77.871464,
       "lane": 1,
       "type": "tap"
     },
     {
+      "id": 317,
+      "time": 78.179156,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
       "id": 318,
-      "time": 80.948384,
-      "lane": 4,
+      "time": 78.79454,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 319,
-      "time": 81.87146,
-      "lane": 4,
+      "time": 79.409924,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 320,
-      "time": 82.025306,
-      "lane": 4,
+      "time": 80.025308,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 321,
-      "time": 82.486844,
+      "time": 80.025308,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 322,
-      "time": 83.102228,
-      "lane": 4,
+      "time": 80.333,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 323,
-      "time": 83.256074,
+      "time": 80.333,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 324,
-      "time": 83.717612,
-      "lane": 4,
+      "time": 80.640692,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 325,
-      "time": 84.332996,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 326,
-      "time": 84.486842,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 327,
-      "time": 84.94838,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 328,
-      "time": 85.563764,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 329,
-      "time": 85.71761,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 330,
-      "time": 86.179148,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 331,
-      "time": 86.794532,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 332,
-      "time": 87.102224,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 333,
-      "time": 88.0253,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 334,
-      "time": 88.332992,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 335,
-      "time": 88.948376,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 336,
-      "time": 89.256068,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 337,
-      "time": 89.409914,
+      "time": 80.640692,
       "lane": 4,
       "type": "tap"
     },
     {
+      "id": 326,
+      "time": 81.563768,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 327,
+      "time": 81.717614,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 328,
+      "time": 82.179152,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 329,
+      "time": 82.794536,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 330,
+      "time": 82.948382,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 331,
+      "time": 83.40992,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 332,
+      "time": 84.025304,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 333,
+      "time": 84.17915,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 334,
+      "time": 84.640688,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 335,
+      "time": 85.256072,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 336,
+      "time": 85.409918,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 337,
+      "time": 85.871456,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
       "id": 338,
-      "time": 89.871452,
-      "lane": 1,
+      "time": 86.48684,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 339,
+      "time": 86.794532,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 340,
+      "time": 87.717608,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 341,
+      "time": 88.0253,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 342,
+      "time": 88.640684,
+      "lane": 5,
+      "type": "tap"
+    },
+    {
+      "id": 343,
+      "time": 88.948376,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
+      "id": 344,
+      "time": 89.102222,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 345,
+      "time": 89.56376,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 346,
+      "time": 90.025298,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 347,
+      "time": 90.179144,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 348,
       "time": 90.33299,
       "lane": 3,
       "type": "tap"
     },
     {
-      "id": 340,
+      "id": 349,
       "time": 90.486836,
       "lane": 2,
       "type": "tap"
     },
     {
-      "id": 341,
-      "time": 90.640682,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 342,
+      "id": 350,
       "time": 90.794528,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 343,
-      "time": 91.10222,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 344,
-      "time": 91.409912,
       "lane": 1,
+      "type": "hold",
+      "endTime": 91.256066
+    },
+    {
+      "id": 351,
+      "time": 92.486834,
+      "lane": 5,
       "type": "tap"
     },
     {
-      "id": 345,
+      "id": 352,
+      "time": 92.64068,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
+      "id": 353,
       "time": 92.794526,
       "lane": 5,
       "type": "tap"
     },
     {
-      "id": 346,
+      "id": 354,
       "time": 92.948372,
       "lane": 0,
       "type": "tap"
     },
     {
-      "id": 347,
-      "time": 93.102218,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 348,
+      "id": 355,
       "time": 93.256064,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 349,
-      "time": 93.563756,
       "lane": 5,
       "type": "tap"
     },
     {
-      "id": 350,
-      "time": 93.871448,
+      "id": 356,
+      "time": 93.563756,
       "lane": 1,
       "type": "tap"
     },
     {
-      "id": 351,
+      "id": 357,
+      "time": 94.94837,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 358,
+      "time": 95.102216,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 359,
       "time": 95.256062,
       "lane": 3,
       "type": "tap"
     },
     {
-      "id": 352,
+      "id": 360,
       "time": 95.409908,
       "lane": 2,
       "type": "tap"
     },
     {
-      "id": 353,
-      "time": 95.563754,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 354,
-      "time": 95.7176,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 355,
-      "time": 96.025292,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 356,
-      "time": 96.332984,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 357,
-      "time": 97.25606,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 358,
-      "time": 97.871444,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 359,
-      "time": 98.486828,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 360,
-      "time": 99.102212,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
       "id": 361,
-      "time": 99.717596,
-      "lane": 0,
+      "time": 95.7176,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 362,
-      "time": 100.33298,
-      "lane": 5,
+      "time": 96.025292,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 363,
-      "time": 100.948364,
-      "lane": 0,
+      "time": 96.948368,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 364,
-      "time": 101.256056,
+      "time": 97.563752,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 365,
-      "time": 101.563748,
+      "time": 98.179136,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 366,
-      "time": 101.87144,
-      "lane": 3,
+      "time": 98.79452,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 367,
-      "time": 102.179132,
-      "lane": 2,
+      "time": 99.409904,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 368,
-      "time": 102.486824,
-      "lane": 4,
+      "time": 100.025288,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 369,
-      "time": 102.794516,
-      "lane": 1,
+      "time": 100.640672,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 370,
-      "time": 103.102208,
+      "time": 100.948364,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 371,
+      "time": 101.256056,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 372,
+      "time": 101.563748,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 373,
+      "time": 101.87144,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 374,
+      "time": 102.179132,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 375,
+      "time": 102.486824,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 376,
+      "time": 102.794516,
       "lane": 0,
       "type": "tap",
       "gimmick": "box",
       "boxId": 2
     },
     {
-      "id": 371,
-      "time": 103.102208,
+      "id": 377,
+      "time": 102.794516,
       "lane": 1,
       "type": "tap",
       "gimmick": "box",
       "boxId": 2
     },
     {
-      "id": 372,
-      "time": 103.102208,
+      "id": 378,
+      "time": 102.794516,
       "lane": 2,
       "type": "tap",
       "gimmick": "box",
       "boxId": 2
     },
     {
-      "id": 373,
-      "time": 103.102208,
+      "id": 379,
+      "time": 102.794516,
       "lane": 3,
       "type": "tap",
       "gimmick": "box",
       "boxId": 2
     },
     {
-      "id": 374,
-      "time": 103.102208,
+      "id": 380,
+      "time": 102.794516,
       "lane": 4,
       "type": "tap",
       "gimmick": "box",
       "boxId": 2
     },
     {
-      "id": 375,
-      "time": 103.102208,
+      "id": 381,
+      "time": 102.794516,
       "lane": 5,
       "type": "tap",
       "gimmick": "box",
       "boxId": 2
     },
     {
-      "id": 376,
-      "time": 103.717592,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 377,
-      "time": 104.025284,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 378,
-      "time": 104.17913,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 379,
-      "time": 104.640668,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 380,
-      "time": 104.94836,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 381,
-      "time": 105.256052,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
       "id": 382,
-      "time": 105.409898,
-      "lane": 4,
+      "time": 103.4099,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 383,
-      "time": 105.871436,
+      "time": 103.717592,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 384,
-      "time": 106.179128,
-      "lane": 2,
+      "time": 103.871438,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 385,
-      "time": 106.48682,
-      "lane": 3,
+      "time": 104.332976,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 386,
-      "time": 106.640666,
-      "lane": 3,
+      "time": 104.640668,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 387,
+      "time": 104.94836,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 388,
+      "time": 105.102206,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 389,
+      "time": 105.563744,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 390,
+      "time": 105.871436,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 391,
+      "time": 106.179128,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 392,
+      "time": 106.332974,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 393,
+      "time": 106.794512,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 394,
       "time": 107.102204,
       "lane": 2,
       "type": "tap"
     },
     {
-      "id": 388,
-      "time": 107.409896,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 389,
-      "time": 107.717588,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 390,
-      "time": 107.871434,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 391,
-      "time": 108.332972,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 392,
-      "time": 108.948356,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 393,
-      "time": 109.256048,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 394,
-      "time": 110.025278,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
       "id": 395,
-      "time": 110.33297,
-      "lane": 0,
+      "time": 107.409896,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 396,
-      "time": 110.486816,
-      "lane": 5,
+      "time": 107.563742,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 397,
-      "time": 111.1022,
-      "lane": 0,
+      "time": 108.02528,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 398,
-      "time": 111.409892,
+      "time": 108.640664,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 399,
-      "time": 111.717584,
+      "time": 108.948356,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 400,
-      "time": 111.87143,
-      "lane": 5,
+      "time": 109.717586,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 401,
-      "time": 112.179122,
-      "lane": 1,
+      "time": 110.025278,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 402,
-      "time": 112.179122,
-      "lane": 4,
+      "time": 110.179124,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 403,
+      "time": 110.794508,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
+      "id": 404,
+      "time": 111.1022,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
+      "id": 405,
+      "time": 111.409892,
+      "lane": 5,
+      "type": "tap"
+    },
+    {
+      "id": 406,
+      "time": 111.563738,
+      "lane": 5,
+      "type": "tap"
+    },
+    {
+      "id": 407,
+      "time": 111.87143,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 408,
+      "time": 111.87143,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 409,
+      "time": 113.256044,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 410,
       "time": 113.563736,
       "lane": 3,
       "type": "tap"
     },
     {
-      "id": 404,
-      "time": 113.871428,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 405,
-      "time": 114.17912,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 406,
-      "time": 114.486812,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 407,
-      "time": 114.640658,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 408,
-      "time": 114.94835,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 409,
-      "time": 115.256042,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 410,
-      "time": 115.409888,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
       "id": 411,
-      "time": 115.71758,
+      "time": 113.871428,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 412,
-      "time": 116.025272,
-      "lane": 4,
+      "time": 114.17912,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 413,
-      "time": 116.48681,
-      "lane": 4,
+      "time": 114.332966,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 414,
-      "time": 116.640656,
-      "lane": 4,
+      "time": 114.640658,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 415,
+      "time": 114.94835,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 416,
+      "time": 115.102196,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 417,
+      "time": 115.409888,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 418,
+      "time": 115.71758,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 419,
+      "time": 116.179118,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 420,
+      "time": 116.332964,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 421,
+      "time": 116.794502,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 422,
       "time": 117.102194,
       "lane": 1,
       "type": "tap"
     },
     {
-      "id": 416,
+      "id": 423,
       "time": 117.409886,
       "lane": 1,
       "type": "tap"
     },
     {
-      "id": 417,
-      "time": 117.717578,
+      "id": 424,
+      "time": 117.563732,
       "lane": 1,
       "type": "tap"
     },
     {
-      "id": 418,
-      "time": 117.871424,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 419,
-      "time": 118.486808,
+      "id": 425,
+      "time": 118.179116,
       "lane": 5,
       "type": "tap"
     },
     {
-      "id": 420,
-      "time": 118.948346,
+      "id": 426,
+      "time": 118.640654,
       "lane": 5,
       "type": "tap"
     },
     {
-      "id": 421,
-      "time": 119.102192,
+      "id": 427,
+      "time": 118.7945,
       "lane": 5,
       "type": "tap"
     },
     {
-      "id": 422,
+      "id": 428,
+      "time": 119.256038,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 429,
       "time": 119.56373,
       "lane": 2,
       "type": "tap"
     },
     {
-      "id": 423,
+      "id": 430,
       "time": 119.871422,
       "lane": 2,
       "type": "tap"
     },
     {
-      "id": 424,
-      "time": 120.179114,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 425,
-      "time": 120.33296,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 426,
-      "time": 120.948344,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 427,
-      "time": 121.563728,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 428,
-      "time": 122.179112,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 429,
-      "time": 122.486804,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 430,
-      "time": 122.794496,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
       "id": 431,
-      "time": 123.40988,
-      "lane": 1,
+      "time": 120.025268,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 432,
-      "time": 123.717572,
-      "lane": 4,
+      "time": 120.640652,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 433,
-      "time": 123.871418,
-      "lane": 4,
+      "time": 121.256036,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 434,
-      "time": 124.025264,
+      "time": 121.87142,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 435,
-      "time": 124.332956,
-      "lane": 4,
+      "time": 122.179112,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 436,
-      "time": 124.486802,
-      "lane": 0,
+      "time": 122.486804,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 437,
-      "time": 124.640648,
-      "lane": 5,
+      "time": 123.102188,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 438,
-      "time": 125.256032,
+      "time": 123.40988,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 439,
-      "time": 125.563724,
+      "time": 123.563726,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 440,
-      "time": 125.71757,
+      "time": 123.717572,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 441,
+      "time": 124.025264,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
+      "id": 442,
+      "time": 124.17911,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
+      "id": 443,
+      "time": 124.332956,
+      "lane": 5,
+      "type": "tap"
+    },
+    {
+      "id": 444,
+      "time": 124.94834,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 445,
+      "time": 125.256032,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 446,
+      "time": 125.409878,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 447,
+      "time": 125.71757,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 448,
       "time": 126.025262,
       "lane": 1,
       "type": "tap"
     },
     {
-      "id": 442,
-      "time": 126.332954,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 443,
-      "time": 126.4868,
+      "id": 449,
+      "time": 126.179108,
       "lane": 4,
       "type": "tap"
     },
     {
-      "id": 444,
-      "time": 126.794492,
+      "id": 450,
+      "time": 126.4868,
       "lane": 2,
       "type": "tap"
     },
     {
-      "id": 445,
+      "id": 451,
+      "time": 126.794492,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 452,
       "time": 127.102184,
       "lane": 3,
       "type": "tap"
     },
     {
-      "id": 446,
+      "id": 453,
       "time": 127.409876,
       "lane": 3,
       "type": "tap"
     },
     {
-      "id": 447,
+      "id": 454,
       "time": 127.717568,
       "lane": 3,
       "type": "tap"
     },
     {
-      "id": 448,
-      "time": 128.02526,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 449,
-      "time": 128.179106,
+      "id": 455,
+      "time": 127.871414,
       "lane": 0,
       "type": "tap"
     },
     {
-      "id": 450,
-      "time": 129.56372,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 451,
-      "time": 129.717566,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 452,
-      "time": 129.871412,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 453,
-      "time": 130.025258,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 454,
-      "time": 130.179104,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 455,
-      "time": 130.33295,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
       "id": 456,
-      "time": 130.486796,
+      "time": 129.256028,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 457,
-      "time": 130.640642,
+      "time": 129.409874,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 458,
-      "time": 130.794488,
-      "lane": 0,
+      "time": 129.56372,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 459,
-      "time": 130.948334,
-      "lane": 0,
+      "time": 129.717566,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 460,
-      "time": 131.10218,
-      "lane": 0,
+      "time": 129.871412,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 461,
-      "time": 131.256026,
-      "lane": 0,
+      "time": 130.025258,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 462,
-      "time": 131.409872,
-      "lane": 0,
+      "time": 130.179104,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 463,
-      "time": 131.563718,
-      "lane": 0,
+      "time": 130.33295,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 464,
-      "time": 131.717564,
+      "time": 130.486796,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 465,
-      "time": 131.87141,
+      "time": 130.640642,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 466,
-      "time": 132.025256,
-      "lane": 4,
+      "time": 130.794488,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 467,
-      "time": 132.179102,
-      "lane": 4,
+      "time": 130.948334,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 468,
-      "time": 132.332948,
-      "lane": 4,
+      "time": 131.10218,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 469,
-      "time": 132.486794,
-      "lane": 4,
+      "time": 131.256026,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 470,
-      "time": 132.64064,
-      "lane": 4,
+      "time": 131.409872,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 471,
-      "time": 132.794486,
-      "lane": 4,
+      "time": 131.563718,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 472,
-      "time": 132.948332,
+      "time": 131.717564,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 473,
-      "time": 133.102178,
+      "time": 131.87141,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 474,
-      "time": 133.256024,
-      "lane": 1,
+      "time": 132.025256,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 475,
-      "time": 133.40987,
-      "lane": 1,
+      "time": 132.179102,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 476,
-      "time": 133.563716,
-      "lane": 1,
+      "time": 132.332948,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 477,
-      "time": 133.717562,
-      "lane": 1,
+      "time": 132.486794,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 478,
-      "time": 133.871408,
-      "lane": 1,
+      "time": 132.64064,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 479,
-      "time": 134.025254,
-      "lane": 1,
+      "time": 132.794486,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 480,
-      "time": 134.1791,
+      "time": 132.948332,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 481,
-      "time": 134.332946,
+      "time": 133.102178,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 482,
-      "time": 134.486792,
-      "lane": 2,
+      "time": 133.256024,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 483,
-      "time": 134.640638,
-      "lane": 2,
+      "time": 133.40987,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 484,
-      "time": 134.794484,
-      "lane": 2,
+      "time": 133.563716,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 485,
-      "time": 134.94833,
-      "lane": 2,
+      "time": 133.717562,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 486,
-      "time": 135.102176,
-      "lane": 2,
+      "time": 133.871408,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 487,
-      "time": 135.256022,
-      "lane": 2,
+      "time": 134.025254,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 488,
-      "time": 135.409868,
+      "time": 134.1791,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 489,
-      "time": 135.563714,
+      "time": 134.332946,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 490,
-      "time": 135.71756,
-      "lane": 3,
+      "time": 134.486792,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 491,
-      "time": 135.871406,
-      "lane": 3,
+      "time": 134.640638,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 492,
-      "time": 136.025252,
-      "lane": 3,
+      "time": 134.794484,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 493,
-      "time": 136.179098,
-      "lane": 3,
+      "time": 134.94833,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 494,
-      "time": 136.332944,
-      "lane": 3,
+      "time": 135.102176,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 495,
-      "time": 136.48679,
-      "lane": 3,
+      "time": 135.256022,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 496,
-      "time": 136.640636,
+      "time": 135.409868,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 497,
-      "time": 136.794482,
+      "time": 135.563714,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 498,
-      "time": 136.948328,
-      "lane": 1,
+      "time": 135.71756,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 499,
-      "time": 137.563712,
-      "lane": 4,
+      "time": 135.871406,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 500,
-      "time": 138.179096,
-      "lane": 2,
+      "time": 136.025252,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 501,
-      "time": 138.179096,
+      "time": 136.179098,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 502,
-      "time": 138.486788,
-      "lane": 1,
+      "time": 136.332944,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 503,
-      "time": 138.486788,
-      "lane": 4,
+      "time": 136.48679,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 504,
-      "time": 138.79448,
-      "lane": 0,
+      "time": 136.640636,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 505,
-      "time": 138.79448,
-      "lane": 5,
+      "time": 137.25602,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 506,
-      "time": 139.409864,
-      "lane": 4,
+      "time": 137.871404,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 507,
-      "time": 139.56371,
-      "lane": 4,
+      "time": 137.871404,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 508,
-      "time": 139.717556,
-      "lane": 4,
+      "time": 138.179096,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 509,
-      "time": 139.871402,
+      "time": 138.179096,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 510,
-      "time": 140.025248,
-      "lane": 4,
+      "time": 138.486788,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 511,
-      "time": 140.179094,
-      "lane": 4,
+      "time": 138.486788,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 512,
-      "time": 140.33294,
+      "time": 139.102172,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 513,
-      "time": 140.486786,
+      "time": 139.256018,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 514,
-      "time": 140.640632,
-      "lane": 1,
+      "time": 139.409864,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 515,
-      "time": 140.794478,
-      "lane": 1,
+      "time": 139.56371,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 516,
-      "time": 140.948324,
-      "lane": 1,
+      "time": 139.717556,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 517,
-      "time": 141.10217,
-      "lane": 1,
+      "time": 139.871402,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 518,
-      "time": 141.256016,
-      "lane": 1,
+      "time": 140.025248,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 519,
-      "time": 141.409862,
-      "lane": 1,
+      "time": 140.179094,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 520,
-      "time": 141.563708,
+      "time": 140.33294,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 521,
-      "time": 141.717554,
+      "time": 140.486786,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 522,
-      "time": 141.8714,
-      "lane": 5,
+      "time": 140.640632,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 523,
-      "time": 142.025246,
-      "lane": 5,
+      "time": 140.794478,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 524,
-      "time": 142.179092,
-      "lane": 5,
+      "time": 140.948324,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 525,
-      "time": 142.332938,
-      "lane": 5,
+      "time": 141.10217,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 526,
-      "time": 142.486784,
-      "lane": 5,
+      "time": 141.256016,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 527,
-      "time": 142.64063,
-      "lane": 5,
+      "time": 141.409862,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 528,
-      "time": 142.794476,
+      "time": 141.563708,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 529,
-      "time": 142.948322,
+      "time": 141.717554,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 530,
-      "time": 143.102168,
-      "lane": 2,
+      "time": 141.8714,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 531,
-      "time": 143.256014,
-      "lane": 2,
+      "time": 142.025246,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 532,
-      "time": 143.40986,
-      "lane": 2,
+      "time": 142.179092,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 533,
-      "time": 143.563706,
-      "lane": 2,
+      "time": 142.332938,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 534,
-      "time": 143.717552,
-      "lane": 2,
+      "time": 142.486784,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 535,
-      "time": 143.871398,
-      "lane": 2,
+      "time": 142.64063,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 536,
-      "time": 144.025244,
+      "time": 142.794476,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 537,
-      "time": 144.17909,
+      "time": 142.948322,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 538,
-      "time": 144.332936,
-      "lane": 3,
+      "time": 143.102168,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 539,
-      "time": 144.486782,
-      "lane": 3,
+      "time": 143.256014,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 540,
-      "time": 144.640628,
-      "lane": 3,
+      "time": 143.40986,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 541,
-      "time": 144.794474,
-      "lane": 3,
+      "time": 143.563706,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 542,
-      "time": 144.94832,
-      "lane": 3,
+      "time": 143.717552,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 543,
-      "time": 145.102166,
-      "lane": 3,
+      "time": 143.871398,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 544,
-      "time": 145.256012,
+      "time": 144.025244,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 545,
-      "time": 145.409858,
+      "time": 144.17909,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 546,
-      "time": 145.563704,
-      "lane": 0,
+      "time": 144.332936,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 547,
-      "time": 145.71755,
-      "lane": 0,
+      "time": 144.486782,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 548,
-      "time": 145.871396,
-      "lane": 0,
+      "time": 144.640628,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 549,
-      "time": 146.025242,
-      "lane": 0,
+      "time": 144.794474,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 550,
-      "time": 146.179088,
-      "lane": 0,
+      "time": 144.94832,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 551,
-      "time": 146.332934,
-      "lane": 0,
+      "time": 145.102166,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 552,
-      "time": 146.48678,
+      "time": 145.256012,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 553,
-      "time": 146.640626,
+      "time": 145.409858,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 554,
-      "time": 146.794472,
-      "lane": 4,
+      "time": 145.563704,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 555,
-      "time": 147.409856,
-      "lane": 1,
+      "time": 145.71755,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 556,
-      "time": 148.02524,
-      "lane": 3,
+      "time": 145.871396,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 557,
-      "time": 148.332932,
-      "lane": 2,
+      "time": 146.025242,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 558,
-      "time": 148.640624,
-      "lane": 4,
+      "time": 146.179088,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 559,
-      "time": 149.256008,
+      "time": 146.332934,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 560,
-      "time": 149.871392,
-      "lane": 5,
+      "time": 146.48678,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 561,
-      "time": 150.486776,
+      "time": 147.102164,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 562,
-      "time": 150.794468,
+      "time": 147.717548,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 563,
-      "time": 151.10216,
+      "time": 148.02524,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 564,
-      "time": 152.025236,
-      "lane": 1,
+      "time": 148.332932,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 565,
-      "time": 152.025236,
-      "lane": 4,
+      "time": 148.948316,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 566,
-      "time": 152.64062,
-      "lane": 1,
+      "time": 149.5637,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 567,
-      "time": 152.64062,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 568,
-      "time": 153.256004,
+      "time": 150.179084,
       "lane": 1,
       "type": "tap"
     },
     {
+      "id": 568,
+      "time": 150.486776,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
       "id": 569,
-      "time": 153.256004,
-      "lane": 4,
+      "time": 150.794468,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 570,
-      "time": 153.563696,
+      "time": 151.717544,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 571,
-      "time": 153.563696,
+      "time": 151.717544,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 572,
-      "time": 153.717542,
+      "time": 152.332928,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 573,
-      "time": 153.717542,
+      "time": 152.332928,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 574,
-      "time": 153.871388,
+      "time": 152.948312,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 575,
-      "time": 153.871388,
+      "time": 152.948312,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 576,
-      "time": 154.17908,
-      "lane": 5,
-      "type": "hold",
-      "endTime": 156.640616
+      "time": 153.256004,
+      "lane": 1,
+      "type": "tap"
     },
     {
       "id": 577,
-      "time": 156.640616,
-      "lane": 0,
-      "type": "hold",
-      "endTime": 158.948306
+      "time": 153.256004,
+      "lane": 4,
+      "type": "tap"
     },
     {
       "id": 578,
-      "time": 159.102152,
+      "time": 153.40985,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 579,
-      "time": 159.409844,
-      "lane": 0,
+      "time": 153.40985,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 580,
-      "time": 159.717536,
+      "time": 153.563696,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 581,
-      "time": 160.025228,
-      "lane": 2,
+      "time": 153.563696,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 582,
-      "time": 160.33292,
-      "lane": 1,
-      "type": "tap"
+      "time": 153.871388,
+      "lane": 5,
+      "type": "hold",
+      "endTime": 156.332924
     },
     {
       "id": 583,
-      "time": 160.640612,
+      "time": 156.332924,
       "lane": 0,
-      "type": "tap"
+      "type": "hold",
+      "endTime": 158.640614
     },
     {
       "id": 584,
-      "time": 160.948304,
+      "time": 158.79446,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 585,
-      "time": 161.255996,
-      "lane": 2,
+      "time": 159.102152,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 586,
-      "time": 161.563688,
-      "lane": 5,
+      "time": 159.409844,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 587,
-      "time": 161.87138,
-      "lane": 3,
+      "time": 159.717536,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 588,
-      "time": 162.179072,
-      "lane": 5,
+      "time": 160.025228,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 589,
-      "time": 162.486764,
-      "lane": 3,
+      "time": 160.33292,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 590,
-      "time": 162.794456,
-      "lane": 5,
+      "time": 160.640612,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 591,
-      "time": 163.102148,
-      "lane": 3,
+      "time": 160.948304,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 592,
-      "time": 163.40984,
+      "time": 161.255996,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 593,
-      "time": 163.717532,
+      "time": 161.563688,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 594,
-      "time": 164.025224,
-      "lane": 1,
+      "time": 161.87138,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 595,
-      "time": 164.332916,
-      "lane": 2,
+      "time": 162.179072,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 596,
-      "time": 164.640608,
-      "lane": 1,
+      "time": 162.486764,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 597,
-      "time": 164.9483,
-      "lane": 0,
+      "time": 162.794456,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 598,
-      "time": 165.255992,
-      "lane": 1,
+      "time": 163.102148,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 599,
-      "time": 165.563684,
-      "lane": 2,
+      "time": 163.40984,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 600,
-      "time": 165.871376,
+      "time": 163.717532,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 601,
-      "time": 166.179068,
+      "time": 164.025224,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 602,
-      "time": 166.48676,
-      "lane": 3,
+      "time": 164.332916,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 603,
-      "time": 166.794452,
-      "lane": 5,
+      "time": 164.640608,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 604,
-      "time": 167.102144,
-      "lane": 3,
+      "time": 164.9483,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 605,
-      "time": 167.409836,
-      "lane": 5,
+      "time": 165.255992,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 606,
-      "time": 167.717528,
-      "lane": 3,
+      "time": 165.563684,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 607,
-      "time": 168.02522,
-      "lane": 5,
+      "time": 165.871376,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 608,
-      "time": 168.332912,
+      "time": 166.179068,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 609,
-      "time": 168.640604,
+      "time": 166.48676,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 610,
-      "time": 168.948296,
-      "lane": 1,
+      "time": 166.794452,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 611,
-      "time": 169.255988,
-      "lane": 4,
+      "time": 167.102144,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 612,
-      "time": 169.56368,
-      "lane": 1,
+      "time": 167.409836,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 613,
-      "time": 169.871372,
-      "lane": 4,
+      "time": 167.717528,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 614,
-      "time": 170.179064,
-      "lane": 1,
+      "time": 168.02522,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 615,
-      "time": 170.33291,
-      "lane": 1,
+      "time": 168.332912,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 616,
-      "time": 170.486756,
-      "lane": 4,
+      "time": 168.640604,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 617,
-      "time": 170.640602,
+      "time": 168.948296,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 618,
-      "time": 170.794448,
+      "time": 169.255988,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 619,
-      "time": 170.948294,
-      "lane": 1,
+      "time": 169.56368,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 620,
-      "time": 171.10214,
-      "lane": 4,
+      "time": 169.871372,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 621,
-      "time": 171.255986,
-      "lane": 4,
+      "time": 170.025218,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 622,
-      "time": 171.409832,
-      "lane": 2,
-      "type": "hold",
-      "endTime": 172.025216
+      "time": 170.179064,
+      "lane": 4,
+      "type": "tap"
     },
     {
       "id": 623,
-      "time": 172.025216,
-      "lane": 3,
-      "type": "hold",
-      "endTime": 172.6406
+      "time": 170.33291,
+      "lane": 4,
+      "type": "tap"
     },
     {
       "id": 624,
-      "time": 172.794446,
-      "lane": 2,
+      "time": 170.486756,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 625,
-      "time": 173.102138,
-      "lane": 2,
+      "time": 170.640602,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 626,
-      "time": 173.255984,
-      "lane": 3,
+      "time": 170.794448,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 627,
-      "time": 173.871368,
+      "time": 170.948294,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 628,
-      "time": 174.17906,
+      "time": 171.10214,
+      "lane": 2,
+      "type": "hold",
+      "endTime": 171.717524
+    },
+    {
+      "id": 629,
+      "time": 171.717524,
+      "lane": 3,
+      "type": "hold",
+      "endTime": 172.332908
+    },
+    {
+      "id": 630,
+      "time": 172.486754,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 631,
+      "time": 172.794446,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 632,
+      "time": 172.948292,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 633,
+      "time": 173.563676,
       "lane": 4,
       "type": "tap"
     },
     {
-      "id": 629,
+      "id": 634,
+      "time": 173.871368,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 635,
+      "time": 174.17906,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 636,
       "time": 174.486752,
       "lane": 1,
       "type": "tap"
     },
     {
-      "id": 630,
-      "time": 174.794444,
+      "id": 637,
+      "time": 174.640598,
       "lane": 1,
       "type": "tap"
     },
     {
-      "id": 631,
-      "time": 174.94829,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 632,
-      "time": 175.71752,
+      "id": 638,
+      "time": 175.409828,
       "lane": 5,
       "type": "tap"
     },
     {
-      "id": 633,
-      "time": 176.332904,
+      "id": 639,
+      "time": 176.025212,
       "lane": 5,
       "type": "tap"
     },
     {
-      "id": 634,
-      "time": 176.948288,
+      "id": 640,
+      "time": 176.640596,
       "lane": 0,
       "type": "tap",
       "gimmick": "box",
       "boxId": 3
     },
     {
-      "id": 635,
-      "time": 176.948288,
+      "id": 641,
+      "time": 176.640596,
       "lane": 1,
       "type": "tap",
       "gimmick": "box",
       "boxId": 3
     },
     {
-      "id": 636,
-      "time": 176.948288,
+      "id": 642,
+      "time": 176.640596,
       "lane": 2,
       "type": "tap",
       "gimmick": "box",
       "boxId": 3
     },
     {
-      "id": 637,
-      "time": 176.948288,
+      "id": 643,
+      "time": 176.640596,
       "lane": 3,
       "type": "tap",
       "gimmick": "box",
       "boxId": 3
     },
     {
-      "id": 638,
-      "time": 176.948288,
+      "id": 644,
+      "time": 176.640596,
       "lane": 4,
       "type": "tap",
       "gimmick": "box",
       "boxId": 3
     },
     {
-      "id": 639,
-      "time": 176.948288,
+      "id": 645,
+      "time": 176.640596,
       "lane": 5,
       "type": "tap",
       "gimmick": "box",
       "boxId": 3
     },
     {
-      "id": 640,
-      "time": 177.563672,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 641,
-      "time": 177.717518,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 642,
-      "time": 177.871364,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 643,
-      "time": 178.02521,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 644,
-      "time": 178.179056,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 645,
-      "time": 178.332902,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
       "id": 646,
-      "time": 178.486748,
+      "time": 177.25598,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 647,
-      "time": 178.640594,
+      "time": 177.409826,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 648,
-      "time": 178.79444,
+      "time": 177.563672,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 649,
-      "time": 178.948286,
+      "time": 177.717518,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 650,
-      "time": 179.102132,
+      "time": 177.871364,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 651,
-      "time": 179.255978,
+      "time": 178.02521,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 652,
-      "time": 179.409824,
+      "time": 178.179056,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 653,
-      "time": 179.56367,
+      "time": 178.332902,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 654,
-      "time": 179.717516,
+      "time": 178.486748,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 655,
-      "time": 179.871362,
+      "time": 178.640594,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 656,
-      "time": 180.025208,
-      "lane": 1,
+      "time": 178.79444,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 657,
-      "time": 180.179054,
-      "lane": 4,
+      "time": 178.948286,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 658,
-      "time": 180.3329,
-      "lane": 1,
+      "time": 179.102132,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 659,
-      "time": 180.486746,
-      "lane": 4,
+      "time": 179.255978,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 660,
-      "time": 180.640592,
-      "lane": 1,
+      "time": 179.409824,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 661,
-      "time": 180.794438,
-      "lane": 4,
+      "time": 179.56367,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 662,
-      "time": 180.948284,
+      "time": 179.717516,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 663,
-      "time": 181.10213,
+      "time": 179.871362,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 664,
-      "time": 181.255976,
+      "time": 180.025208,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 665,
-      "time": 181.409822,
+      "time": 180.179054,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 666,
-      "time": 181.563668,
+      "time": 180.3329,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 667,
-      "time": 181.717514,
+      "time": 180.486746,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 668,
-      "time": 181.87136,
+      "time": 180.640592,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 669,
-      "time": 182.025206,
+      "time": 180.794438,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 670,
-      "time": 182.179052,
+      "time": 180.948284,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 671,
-      "time": 182.332898,
+      "time": 181.10213,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 672,
-      "time": 182.486744,
-      "lane": 0,
+      "time": 181.255976,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 673,
-      "time": 182.64059,
-      "lane": 5,
+      "time": 181.409822,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 674,
-      "time": 182.794436,
-      "lane": 0,
+      "time": 181.563668,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 675,
-      "time": 182.948282,
-      "lane": 5,
+      "time": 181.717514,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 676,
-      "time": 183.102128,
-      "lane": 0,
+      "time": 181.87136,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 677,
-      "time": 183.255974,
-      "lane": 5,
+      "time": 182.025206,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 678,
-      "time": 183.40982,
+      "time": 182.179052,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 679,
-      "time": 183.563666,
+      "time": 182.332898,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 680,
-      "time": 183.717512,
+      "time": 182.486744,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 681,
-      "time": 183.871358,
+      "time": 182.64059,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 682,
-      "time": 184.025204,
+      "time": 182.794436,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 683,
-      "time": 184.17905,
+      "time": 182.948282,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 684,
-      "time": 184.332896,
+      "time": 183.102128,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 685,
-      "time": 184.486742,
+      "time": 183.255974,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 686,
-      "time": 184.640588,
+      "time": 183.40982,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 687,
-      "time": 184.794434,
+      "time": 183.563666,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 688,
-      "time": 184.94828,
+      "time": 183.717512,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 689,
-      "time": 185.255972,
-      "lane": 4,
+      "time": 183.871358,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 690,
-      "time": 185.409818,
-      "lane": 4,
+      "time": 184.025204,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 691,
-      "time": 185.563664,
-      "lane": 1,
+      "time": 184.17905,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 692,
-      "time": 185.871356,
-      "lane": 3,
+      "time": 184.332896,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 693,
-      "time": 186.179048,
-      "lane": 2,
+      "time": 184.486742,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 694,
-      "time": 186.332894,
-      "lane": 3,
+      "time": 184.640588,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 695,
-      "time": 186.48674,
-      "lane": 1,
+      "time": 184.94828,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 696,
-      "time": 186.640586,
+      "time": 185.102126,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 697,
-      "time": 186.794432,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 698,
-      "time": 187.409816,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 699,
-      "time": 187.563662,
+      "time": 185.255972,
       "lane": 1,
       "type": "tap"
     },
     {
+      "id": 698,
+      "time": 185.563664,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 699,
+      "time": 185.871356,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
       "id": 700,
-      "time": 187.717508,
-      "lane": 4,
+      "time": 186.025202,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 701,
-      "time": 187.871354,
+      "time": 186.179048,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 702,
-      "time": 188.0252,
+      "time": 186.332894,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 703,
-      "time": 188.179046,
-      "lane": 1,
+      "time": 186.48674,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 704,
-      "time": 188.332892,
+      "time": 187.102124,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 705,
-      "time": 188.486738,
+      "time": 187.25597,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 706,
-      "time": 188.640584,
-      "lane": 5,
+      "time": 187.409816,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 707,
-      "time": 188.79443,
-      "lane": 0,
+      "time": 187.563662,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 708,
-      "time": 188.948276,
-      "lane": 5,
+      "time": 187.717508,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 709,
-      "time": 189.102122,
-      "lane": 0,
+      "time": 187.871354,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 710,
-      "time": 189.255968,
-      "lane": 5,
+      "time": 188.0252,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 711,
-      "time": 189.409814,
-      "lane": 0,
+      "time": 188.179046,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 712,
-      "time": 189.56366,
+      "time": 188.332892,
       "lane": 5,
       "type": "tap"
     },
     {
       "id": 713,
-      "time": 189.717506,
+      "time": 188.486738,
       "lane": 0,
       "type": "tap"
     },
     {
       "id": 714,
-      "time": 189.871352,
-      "lane": 4,
+      "time": 188.640584,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 715,
-      "time": 190.025198,
-      "lane": 1,
+      "time": 188.79443,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 716,
-      "time": 190.179044,
-      "lane": 4,
+      "time": 188.948276,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 717,
-      "time": 190.33289,
-      "lane": 1,
+      "time": 189.102122,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 718,
-      "time": 190.486736,
-      "lane": 4,
+      "time": 189.255968,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 719,
-      "time": 190.640582,
-      "lane": 1,
+      "time": 189.409814,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 720,
-      "time": 190.794428,
+      "time": 189.56366,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 721,
-      "time": 190.948274,
+      "time": 189.717506,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 722,
-      "time": 191.10212,
-      "lane": 3,
+      "time": 189.871352,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 723,
-      "time": 191.255966,
-      "lane": 2,
+      "time": 190.025198,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 724,
-      "time": 191.409812,
-      "lane": 3,
+      "time": 190.179044,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 725,
-      "time": 191.563658,
-      "lane": 2,
+      "time": 190.33289,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 726,
-      "time": 191.717504,
-      "lane": 3,
+      "time": 190.486736,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 727,
-      "time": 191.87135,
-      "lane": 2,
+      "time": 190.640582,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 728,
-      "time": 192.025196,
+      "time": 190.794428,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 729,
-      "time": 192.179042,
+      "time": 190.948274,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 730,
-      "time": 192.332888,
+      "time": 191.10212,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 731,
-      "time": 192.64058,
-      "lane": 1,
+      "time": 191.255966,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 732,
-      "time": 192.948272,
-      "lane": 4,
+      "time": 191.409812,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 733,
-      "time": 193.255964,
+      "time": 191.563658,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 734,
-      "time": 193.563656,
-      "lane": 1,
+      "time": 191.717504,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 735,
-      "time": 193.717502,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 736,
-      "time": 193.871348,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 737,
-      "time": 194.025194,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 738,
-      "time": 194.17904,
+      "time": 191.87135,
       "lane": 2,
       "type": "tap"
     },
     {
-      "id": 739,
-      "time": 194.794424,
+      "id": 736,
+      "time": 192.025196,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 737,
+      "time": 192.332888,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 738,
+      "time": 192.64058,
       "lane": 4,
       "type": "tap"
     },
     {
+      "id": 739,
+      "time": 192.948272,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
       "id": 740,
-      "time": 195.409808,
+      "time": 193.255964,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 741,
-      "time": 196.025192,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 742,
-      "time": 196.332884,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 743,
-      "time": 196.640576,
+      "time": 193.40981,
       "lane": 4,
       "type": "tap"
     },
     {
+      "id": 742,
+      "time": 193.563656,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
+      "id": 743,
+      "time": 193.717502,
+      "lane": 5,
+      "type": "tap"
+    },
+    {
       "id": 744,
-      "time": 197.25596,
+      "time": 193.871348,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 745,
-      "time": 197.25596,
-      "lane": 3,
+      "time": 194.486732,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 746,
-      "time": 197.871344,
+      "time": 195.102116,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 747,
-      "time": 197.871344,
-      "lane": 4,
+      "time": 195.7175,
+      "lane": 3,
       "type": "tap"
     },
     {
       "id": 748,
-      "time": 198.486728,
-      "lane": 0,
-      "type": "tap"
-    },
-    {
-      "id": 749,
-      "time": 198.486728,
-      "lane": 5,
-      "type": "tap"
-    },
-    {
-      "id": 750,
-      "time": 198.79442,
+      "time": 196.025192,
       "lane": 1,
       "type": "tap"
     },
     {
-      "id": 751,
-      "time": 198.79442,
+      "id": 749,
+      "time": 196.332884,
       "lane": 4,
       "type": "tap"
     },
     {
+      "id": 750,
+      "time": 196.948268,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 751,
+      "time": 196.948268,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
       "id": 752,
-      "time": 199.102112,
-      "lane": 0,
+      "time": 197.563652,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 753,
-      "time": 199.102112,
-      "lane": 5,
+      "time": 197.563652,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 754,
-      "time": 199.717496,
-      "lane": 2,
+      "time": 198.179036,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 755,
-      "time": 199.871342,
-      "lane": 2,
+      "time": 198.179036,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 756,
-      "time": 200.025188,
-      "lane": 2,
+      "time": 198.486728,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 757,
-      "time": 200.179034,
-      "lane": 3,
+      "time": 198.486728,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 758,
-      "time": 200.486726,
-      "lane": 2,
+      "time": 198.79442,
+      "lane": 0,
       "type": "tap"
     },
     {
       "id": 759,
-      "time": 200.640572,
-      "lane": 2,
+      "time": 198.79442,
+      "lane": 5,
       "type": "tap"
     },
     {
       "id": 760,
-      "time": 200.794418,
-      "lane": 3,
+      "time": 199.409804,
+      "lane": 2,
       "type": "tap"
     },
     {
       "id": 761,
-      "time": 201.10211,
+      "time": 199.56365,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 762,
-      "time": 201.255956,
+      "time": 199.717496,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 763,
-      "time": 201.409802,
+      "time": 199.871342,
       "lane": 3,
       "type": "tap"
     },
     {
       "id": 764,
-      "time": 201.563648,
+      "time": 200.179034,
       "lane": 2,
       "type": "tap"
     },
     {
       "id": 765,
+      "time": 200.33288,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 766,
+      "time": 200.486726,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 767,
+      "time": 200.794418,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 768,
+      "time": 200.948264,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 769,
+      "time": 201.10211,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 770,
+      "time": 201.255956,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 771,
+      "time": 201.409802,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 772,
+      "time": 201.563648,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 773,
       "time": 201.717494,
       "lane": 3,
       "type": "tap"
     },
     {
-      "id": 766,
-      "time": 201.87134,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 767,
-      "time": 202.025186,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 768,
-      "time": 202.179032,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 769,
-      "time": 202.332878,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 770,
-      "time": 202.486724,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 771,
-      "time": 202.64057,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 772,
-      "time": 202.948262,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 773,
-      "time": 203.102108,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
       "id": 774,
-      "time": 203.255954,
-      "lane": 4,
+      "time": 201.87134,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 775,
-      "time": 203.563646,
+      "time": 202.025186,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 776,
-      "time": 203.717492,
+      "time": 202.179032,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 777,
-      "time": 203.871338,
+      "time": 202.332878,
       "lane": 4,
       "type": "tap"
     },
     {
       "id": 778,
-      "time": 204.025184,
+      "time": 202.64057,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 779,
-      "time": 204.17903,
-      "lane": 4,
-      "type": "tap"
-    },
-    {
-      "id": 780,
-      "time": 204.332876,
+      "time": 202.794416,
       "lane": 1,
       "type": "tap"
     },
     {
+      "id": 780,
+      "time": 202.948262,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
       "id": 781,
-      "time": 204.486722,
+      "time": 203.255954,
       "lane": 1,
       "type": "tap"
     },
     {
       "id": 782,
-      "time": 204.640568,
-      "lane": 5,
+      "time": 203.4098,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 783,
-      "time": 204.94826,
-      "lane": 0,
+      "time": 203.563646,
+      "lane": 4,
       "type": "tap"
     },
     {
       "id": 784,
-      "time": 205.102106,
-      "lane": 4,
+      "time": 203.717492,
+      "lane": 1,
       "type": "tap"
     },
     {
       "id": 785,
-      "time": 205.409798,
-      "lane": 1,
-      "type": "tap"
-    },
-    {
-      "id": 786,
-      "time": 205.563644,
-      "lane": 3,
-      "type": "tap"
-    },
-    {
-      "id": 787,
-      "time": 205.871336,
-      "lane": 2,
-      "type": "tap"
-    },
-    {
-      "id": 788,
-      "time": 206.179028,
+      "time": 203.871338,
       "lane": 4,
       "type": "tap"
     },
     {
-      "id": 789,
-      "time": 206.48672,
+      "id": 786,
+      "time": 204.025184,
       "lane": 1,
       "type": "tap"
     },
     {
-      "id": 790,
-      "time": 206.794412,
+      "id": 787,
+      "time": 204.17903,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 788,
+      "time": 204.332876,
+      "lane": 5,
+      "type": "tap"
+    },
+    {
+      "id": 789,
+      "time": 204.640568,
       "lane": 0,
       "type": "tap"
     },
     {
+      "id": 790,
+      "time": 204.794414,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
       "id": 791,
-      "time": 206.794412,
+      "time": 205.102106,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 792,
+      "time": 205.255952,
+      "lane": 3,
+      "type": "tap"
+    },
+    {
+      "id": 793,
+      "time": 205.563644,
+      "lane": 2,
+      "type": "tap"
+    },
+    {
+      "id": 794,
+      "time": 205.871336,
+      "lane": 4,
+      "type": "tap"
+    },
+    {
+      "id": 795,
+      "time": 206.179028,
+      "lane": 1,
+      "type": "tap"
+    },
+    {
+      "id": 796,
+      "time": 206.48672,
+      "lane": 0,
+      "type": "tap"
+    },
+    {
+      "id": 797,
+      "time": 206.48672,
       "lane": 5,
       "type": "tap"
     }
