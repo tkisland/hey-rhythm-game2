@@ -390,7 +390,7 @@ function showError(message: string): void {
   sound.setPlaybackActive(false);
   sound.cancelPending();
   failed = true;
-  element('player-error').textContent = `${message} 楽曲の「詳細」にある「YouTube ↗」から公式動画を開けます。ゲームは停止しています。`;
+  element('player-error').textContent = `${message} 設定内の「再生情報」にある「YouTube ↗」から公式動画を開けます。ゲームは停止しています。`;
   element('player-error').hidden = false;
   status.textContent = '動画を再生できないため、ゲームを停止しています';
   element('status-dot').classList.remove('playing');
@@ -398,6 +398,7 @@ function showError(message: string): void {
   element<HTMLButtonElement>('play-start').disabled = true;
 }
 function updateChartInfo(): void {
+  element('chart-info').hidden = !__ADMIN__;
   element('chart-info').textContent = __ADMIN__ ? `${source === 'custom' ? 'EDITOR CHART' : source === 'bundled' ? 'BUNDLED CHART' : 'PRACTICE CHART'} · ${tempoLabel(engine.chart)} BPM · ${engine.chart.startTime.toFixed(source === 'bundled' ? 2 : 1)}秒〜 · ${engine.notes.length} NOTES` : `${tempoLabel(engine.chart)} BPM · ${engine.notes.length} NOTES`;
 }
 
@@ -624,7 +625,7 @@ function frame(now: number): void {
   } else {
     const hidden = sample.playing || resultShown;
     if (stageHint.hidden !== hidden) stageHint.hidden = hidden;
-    const hint = awaitingAudio ? '「ゲームスタート」を押してライブ開始！' : restartTarget !== null ? restartMessage() : clockStale ? '再生時刻の更新を待っています' : state === PLAYER_STATE.PAUSED ? '「ゲーム再開」を押してライブ再開！' : state === PLAYER_STATE.BUFFERING ? '動画を読み込み中…' : state === PLAYER_STATE.ENDED ? resultMessage(engine.baseScore) : '「ゲームスタート」を押してライブ開始！';
+    const hint = notice.textContent === soundWarning ? soundWarning : state === -2 ? 'YouTubeプレーヤーを読み込み中…' : awaitingAudio ? '「ゲームスタート」を押してライブ開始！' : restartTarget !== null ? restartMessage() : clockStale ? '再生時刻の更新を待っています' : state === PLAYER_STATE.PAUSED ? '「ゲーム再開」を押してライブ再開！' : state === PLAYER_STATE.BUFFERING ? '動画を読み込み中…' : state === PLAYER_STATE.ENDED ? resultMessage(engine.baseScore) : '「ゲームスタート」を押してライブ開始！';
     if (hintTitle.textContent !== hint) hintTitle.textContent = hint;
     if (hintDescription.textContent) hintDescription.textContent = '';
     if (!hintDescription.hidden) hintDescription.hidden = true;

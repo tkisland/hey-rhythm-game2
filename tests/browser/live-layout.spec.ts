@@ -31,12 +31,11 @@ test('video status, external link and settings can be opened without pushing the
   const before=await page.locator('#game-canvas').boundingBox();
   await page.evaluate(()=>(window as any).testVideo.setState(0));
   await expect(page.locator('.playback-info')).not.toBeVisible();
-  await page.locator('.playback-details summary').click();
+  await page.locator('#settings-toggle').click();
   await expect(page.locator('#player-status')).toHaveText('動画の再生が終了しました');
   await expect(page.locator('.playback-info a')).toBeVisible();
   expect(await page.locator('#game-canvas').boundingBox()).toEqual(before);
-  await page.locator('.playback-details summary').click();
-  await page.locator('#settings-toggle').click();await expect(page.locator('#flow-calibrate')).toBeVisible();
+  await expect(page.locator('#flow-calibrate')).toBeVisible();
   expect(await page.locator('#game-canvas').boundingBox()).toEqual(before);
   await page.locator('#settings-close').click();
   expect(await page.locator('#game-canvas').boundingBox()).toEqual(before);
@@ -58,7 +57,7 @@ test('closing and reopening results preserves playback and the field position',a
   await seekPlay(page,219);await expect(page.locator('#result')).toBeVisible();
   await page.locator('#result-close').click();await expect(page.locator('#result')).not.toBeVisible();
   expect(await page.locator('#game-canvas').boundingBox()).toEqual(before);
-  await page.locator('.playback-details summary').click();await page.locator('#show-result').click();
+  await page.locator('#show-result').click();
   await expect(page.locator('#result')).toBeVisible();
   expect(await page.evaluate(()=>(window as any).testVideo.getPlayerState())).toBe(1);
 });

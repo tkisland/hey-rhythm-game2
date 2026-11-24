@@ -28,13 +28,14 @@ test('built concert keeps the complete monitor exposed and thumb pads clear on p
   }
 });
 
-test('opening details and hitting the penlights leaves the monitor and runway fixed',async({page})=>{
+test('opening settings and hitting the penlights leaves the monitor and runway fixed',async({page})=>{
+  await expect(page.locator('.playback-details')).toHaveCount(0);
   const video=await page.locator('iframe').boundingBox(),field=await page.locator('#game-canvas').boundingBox();
-  await page.locator('.playback-details summary').click();
+  await page.locator('#settings-toggle').click();
   await expect(page.locator('.playback-info a')).toBeVisible();
   expect(await page.locator('iframe').boundingBox()).toEqual(video);
   expect(await page.locator('#game-canvas').boundingBox()).toEqual(field);
-  await page.locator('.playback-details summary').click();
+  await page.locator('#settings-close').click();
   await seekPlay(page,12);
   for (const lane of [2,3,0,5]) await page.locator('.lane-button').nth(lane).click();
   expect(await page.locator('iframe').boundingBox()).toEqual(video);

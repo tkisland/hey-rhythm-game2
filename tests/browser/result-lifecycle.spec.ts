@@ -37,7 +37,7 @@ test('results wait for the afterglow and stay through video end and seek until e
   await page.clock.runFor(1000);await expect(page.locator('#result-score')).toHaveText('1,000,000');
   await expect(page.locator('#result')).toBeVisible();
   await page.locator('#result-close').click();await page.clock.runFor(2000);await expect(page.locator('#result')).not.toBeVisible();
-  await page.locator('.playback-details summary').click();await page.locator('#show-result').click();
+  await page.locator('#show-result').click();
   await expect(page.locator('#result')).toBeVisible();
   await page.locator('#result-replay').click();await page.clock.runFor(32);
   await expect(page.locator('#result')).not.toBeVisible();await expect(page.locator('#score')).toHaveText('0');
