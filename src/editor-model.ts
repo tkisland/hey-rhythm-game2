@@ -51,14 +51,41 @@ export class EditorModel {
     return true;
   }
   replace(chart: Chart): boolean { return this.commit(copyChart(chart)); }
+  /** Move the whole chart, including its beat grid and original quantize times. */
+  alignStart(origin: number): boolean {
+    if (!finite(origin, 0, MAX_TIME)) throw new Error('譜面開始位置は0〜7200秒で指定してください。');
+    const delta = origin - (this.chart.midiOrigin ?? this.chart.beatOrigin ?? this.chart.startTime);
+    if (Math.abs(delta) < 1e-9) return false;
+    const shift = (time: number): number => {
+      const moved = Number((time + delta).toFixed(9));
+      if (!finite(moved, 0, MAX_TIME)) throw new Error('ノーツ・元の入力時刻・テンポ変更が0〜7200秒に収まる開始位置にしてください。');
+      return moved;
+    };
+    const chart = copyChart(this.chart);
+    chart.midiOrigin = origin;
+    chart.beatOrigin = shift(chart.beatOrigin ?? chart.startTime);
+    chart.startTime = chart.notes.length ? shift(chart.startTime) : 0;
+    chart.tempoChanges = chart.tempoChanges?.map(change => ({...change, time:shift(change.time)}));
+    chart.notes = chart.notes.map(note => {
+      note.time = shift(note.time);
+      if (note.sourceTime !== undefined) note.sourceTime = shift(note.sourceTime);
+      if (note.type === 'hold') {
+        note.endTime = shift(note.endTime);
+        if (note.sourceEndTime !== undefined) note.sourceEndTime = shift(note.sourceEndTime);
+        if (note.path) note.path = note.path.map(point => ({...point, time:shift(point.time)}));
+      }
+      return note;
+    });
+    return this.commit(chart);
+  }
   metadata(bpm: number, origin: number): boolean {
     if (!finite(bpm, 40, 300) || !finite(origin, 0, MAX_TIME)) throw new Error('BPMは40〜300、拍の基準は0〜7200秒で指定してください。');
     if (this.chart.tempoChanges?.some(change => change.time <= origin)) throw new Error('拍の基準は最初のテンポ変更より前にしてください。');
-    return this.commit({ ...copyChart(this.chart), bpm, beatOrigin: origin });
+    return this.commit({ ...copyChart(this.chart), bpm, beatOrigin: origin, midiOrigin:this.chart.midiOrigin ?? this.chart.beatOrigin ?? this.chart.startTime });
   }
   /** A tempo edit changes the grid only. Note/source times move only on explicit quantize. */
   tempoMap(bpm: number, origin: number, changes: readonly {time:number;bpm:number}[]): boolean {
-    const chart = parseChart(JSON.stringify({...this.chart, bpm, beatOrigin:origin, tempoChanges:changes}), false, {...DEFAULT_SONG,videoId:this.chart.videoId});
+    const chart = parseChart(JSON.stringify({...this.chart, midiOrigin:this.chart.midiOrigin ?? this.chart.beatOrigin ?? this.chart.startTime, bpm, beatOrigin:origin, tempoChanges:changes}), false, {...DEFAULT_SONG,videoId:this.chart.videoId});
     return this.commit(chart);
   }
   add(time: number, lane: number, recorded = false, endTime?: number): number {
