@@ -85,3 +85,16 @@ test('selects POJI POJI GO with the supplied video and 782-note normal chart',as
   expect(await page.evaluate(()=>(window as any).testVideo.options.videoId)).toBe('F0bagOeDMFc');
   await expect(page.locator('#song-difficulty')).toHaveText('ふつう');await expect(page.locator('#chart-info')).toContainText('782 NOTES');
 });
+
+test('selects Yozora With You with the supplied video and 499-note normal chart',async({page})=>{
+  await page.goto('/');await expect(page.locator('#song-count')).toHaveText(`${SONGS.length}曲 / 全${SONGS.length}曲`);
+  await page.locator('#song-search').fill('夜空ウィズユー');const card=page.locator('[data-song="yozora-with-you"]');
+  await expect(page.locator('.song-card')).toHaveCount(1);
+  await expect(card.locator('.song-meta')).toHaveText('6 LANES · 200 BPM · 499 NOTES');
+  await expect(card.locator('.song-demo')).toHaveAttribute('href','./game.html?song=yozora-with-you&mode=demo');
+  await card.locator('.song-play').click();await expect(page.locator('#restart')).toBeEnabled();
+  await expect(page).toHaveURL(/game.html\?song=yozora-with-you$/);
+  await expect(page.locator('#song-title')).toHaveText('夜空ウィズユー');
+  expect(await page.evaluate(()=>(window as any).testVideo.options.videoId)).toBe('5Z6C4Zhbkl0');
+  await expect(page.locator('#song-difficulty')).toHaveText('ふつう');await expect(page.locator('#chart-info')).toContainText('499 NOTES');
+});

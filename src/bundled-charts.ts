@@ -1,3 +1,4 @@
+import yozora001 from './charts/yozora001.json';
 import poji001 from './charts/poji001.json';
 import hgr001 from './charts/hgr001.json';
 import playful001 from './charts/playful001.json';
@@ -8,12 +9,13 @@ import bscHard from './charts/bsc002-hard.json';
 import bsc002 from './charts/bsc002.json';
 import smg005 from './charts/smg005.json';
 import { copyChart, parseChart } from './chart-data';
-import { BISCUIT_CASE, DEFAULT_SONG, PLAYFUL_ROMANTIC, HAPPY_GO_ROUND, POJI_POJI_GO } from './songs';
+import { BISCUIT_CASE, DEFAULT_SONG, PLAYFUL_ROMANTIC, HAPPY_GO_ROUND, POJI_POJI_GO, YOZORA_WITH_YOU } from './songs';
 import type { Song } from './songs';
 import { DEFAULT_DIFFICULTY } from './difficulties';
 import type { Difficulty } from './difficulties';
 
 const charts = new Map([
+  ['yozora001', parseChart(JSON.stringify(yozora001), true, YOZORA_WITH_YOU)],
   ['poji001', parseChart(JSON.stringify(poji001), true, POJI_POJI_GO)],
   ['hgr001', parseChart(JSON.stringify(hgr001), true, HAPPY_GO_ROUND)],
   ['playful001', parseChart(JSON.stringify(playful001), true, PLAYFUL_ROMANTIC)],
