@@ -50,7 +50,7 @@ test('sharing is user-activated and opens the finalized public result without ch
   await popup.waitForLoadState();expect(popup.url()).toBe(finalLink.href);expect(await popup.evaluate(()=>window.opener)).toBeNull();
   expect(requests).toHaveLength(1);await expect(page.locator('#result-score')).toHaveText('1,968');await expect(page.locator('#result')).toBeVisible();
   await popup.close();await page.locator('#result-close').click();
-  await page.locator('.playback-details summary').click();await page.locator('#show-result').click();
+  await page.locator('#show-result').click();
   await expect(share).toHaveAttribute('href',finalLink.href);
   await replay(page);
   await expect(share).not.toBeVisible();await expect(share).not.toHaveAttribute('href',/.+/);
