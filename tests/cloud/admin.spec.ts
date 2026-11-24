@@ -88,6 +88,7 @@ test('saves drafts privately, publishes explicitly, and serves the new chart to 
   await player.goto('http://127.0.0.1:4184/game.html');await expect(player.locator('#chart-info')).toContainText('508 NOTES');
   page.once('dialog',dialog=>dialog.accept());await page.locator('#cloud-publish').click();await expect(page.locator('#cloud-status')).toContainText('公開しました');
   await player.reload();await expect(player.locator('#chart-info')).toContainText('3 NOTES');
+  await expect(player.locator('#restart')).toBeEnabled();
   await seekPlay(player,12);await player.keyboard.down('s');await player.keyboard.down('l');await expect(player.locator('#combo')).toHaveText('2');
   await player.keyboard.up('s');await player.keyboard.up('l');
   await importChart(page,{...chart,notes:[...chart.notes,{id:4,lane:3,type:'tap',time:15}]});
@@ -104,13 +105,16 @@ test('saves drafts privately, publishes explicitly, and serves the new chart to 
   await page.locator('#cloud-save').click();await expect(page.locator('#cloud-status')).toContainText('版 3');
   await page.reload();await expect(page.locator('#alignment-origin')).toHaveValue('12.100');
   await player.reload();await expect(player.locator('#chart-info')).toContainText('3 NOTES');
+  await expect(player.locator('#restart')).toBeEnabled();
   await seekPlay(player,12);await player.keyboard.down('s');await player.keyboard.down('l');await expect(player.locator('#combo')).toHaveText('2');await player.keyboard.up('s');await player.keyboard.up('l');
   await page.locator('#try-game').click();await expect(page).toHaveURL(/preview=1/);
   await expect(page.locator('#chart-info')).toContainText('4 NOTES');
+  await expect(page.locator('#restart')).toBeEnabled();
   await seekPlay(page,12.1);await page.keyboard.down('s');await page.keyboard.down('l');await expect(page.locator('#combo')).toHaveText('2');await page.keyboard.up('s');await page.keyboard.up('l');
   await page.getByRole('link',{name:'管理画面へ戻る'}).click();await expect(page.locator('#alignment-origin')).toHaveValue('12.100');
   page.once('dialog',dialog=>dialog.accept());await page.locator('#cloud-publish').click();await expect(page.locator('#cloud-status')).toContainText('公開しました');
   await player.reload();await expect(player.locator('#chart-info')).toContainText('4 NOTES');
+  await expect(player.locator('#restart')).toBeEnabled();
   await seekPlay(player,12.1);await player.keyboard.down('s');await player.keyboard.down('l');await expect(player.locator('#combo')).toHaveText('2');await player.keyboard.up('s');await player.keyboard.up('l');
   expect(errors).toEqual([]);await playerContext.close();
 });
