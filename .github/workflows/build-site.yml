@@ -48,6 +48,8 @@ jobs:
         run: npm run test:headers
       - name: Check score breakdown, replay and slide releases
         run: npm run test:e2e -- tests/browser/scoring.spec.ts tests/browser/smg-slide-tail.spec.ts tests/browser/live-layout.spec.ts tests/browser/thumb-layout.spec.ts tests/browser/box-audio.spec.ts tests/browser/box-swipe.spec.ts
+      - name: Check editor start alignment and reference playback
+        run: npm run test:e2e -- tests/browser/editor-alignment.spec.ts tests/browser/editor-preview.spec.ts tests/browser/editor-tempo.spec.ts
       - name: Test ranking with isolated PHP and MySQL
         run: npm run test:ranking
       - name: Upload browser failure details

@@ -4,31 +4,34 @@
       <div class="song-heading"><div><p id="editor-song-title" class="eyebrow">CHART EDITOR</p><h1>ノーツ・タイミングエディター</h1></div></div>
       <p class="field-help admin-notice">管理者専用のローカル編集画面です。下書きはこのブラウザに保存されます。公開するにはJSONを書き出し、リポジトリの収録譜面を更新してください。</p>
       <p class="field-help">① MVに合わせて打ち込む → ② 拍にそろえる → ③ ノーツを微調整 → ④ 譜面の再生確認・ゲームで試す</p>
+      <div class="editor-review">
       <div class="editor-top">
         <section aria-label="公式MV"><div class="video-frame"><div id="youtube-player"></div></div><div class="playback-info"><p id="player-status" role="status">YouTubeプレーヤーを読み込み中…</p><a href="https://www.youtube.com/watch?v=pJDfWpZ7CI4" target="_blank" rel="noopener">YouTube ↗</a></div><div id="player-error" class="error-box" role="alert" hidden></div>
           <label class="editor-rate">エディターの再生速度<select id="editor-playback-rate" disabled><option value="0.5">0.5倍</option><option value="0.75">0.75倍</option><option value="1" selected>1倍（通常）</option></select></label>
           <p id="rate-status" class="field-help" role="status">低速で打ち込み・再生確認できます。譜面は原曲の時刻で保存し、ゲームは1倍で再生します。</p>
         </section>
-        <section class="panel" aria-label="拍とクオンタイズ">
-          <h2>拍の設定</h2>
-          <div class="editor-fields"><label>BPM<input id="editor-bpm" type="number" min="40" max="300" step="0.01" value="140" /></label><label>拍の基準（動画の秒数）<input id="beat-origin" type="number" min="0" max="7200" step="0.001" value="12" /></label></div>
-          <button id="set-origin" class="edit-button" disabled>現在位置を拍の基準にする</button>
-          <p id="tempo-info" class="field-help">開始時点のBPMと拍の基準を合わせてください。</p>
-          <details id="tempo-map" class="tempo-map">
-            <summary>途中のBPM変更</summary>
-            <p class="field-help">動画の秒数から新しいBPMへ切り替わります。拍グリッド・スナップ・クオンタイズに共通で反映し、変更時にノーツは動かしません。</p>
-            <p id="song-tempo-help" class="field-help" hidden></p>
-            <button id="apply-song-tempo" class="edit-button" type="button" hidden>曲のテンポを適用</button>
-            <div id="tempo-rows" class="tempo-rows"></div>
-            <button id="add-tempo-change" class="edit-button" type="button">現在位置にBPM変更を追加</button>
-            <p class="field-help">数値の変更は入力欄を離れると反映されます。開始BPMと拍の基準は上の欄で変更できます。「元に戻す」で取り消せます。</p>
-          </details>
-          <div class="editor-fields"><label>クオンタイズ<select id="division"><option value="1">4分音符</option><option value="2">8分音符</option><option value="4" selected>16分音符</option></select></label><label>対象<select id="quantize-target"><option value="all">すべてのノーツ</option><option value="selected">選択したノーツ</option></select></label></div>
-          <label class="editor-check"><input id="from-source" type="checkbox" checked /> 元の入力時刻からそろえる</label>
-          <button id="quantize" class="edit-button primary">拍にそろえる</button>
-          <p class="field-help">元の時刻は残ります。微調整を基準にそろえる場合はチェックを外します。</p>
-        </section>
+
+      <section class="panel alignment-panel" aria-labelledby="alignment-heading">
+        <h2 id="alignment-heading">譜面全体の開始位置を調整</h2>
+        <p class="field-help">MIDIの0秒に対応する動画の時刻です。＋でノーツ全体を遅く、−で早くします。</p>
+        <div class="editor-fields"><label>動画上の譜面開始位置（秒）<input id="alignment-origin" type="number" min="0" max="7200" step="0.001" /></label><p id="alignment-first" class="field-help"></p></div>
+        <div class="editor-actions" aria-label="譜面全体を早く・遅くする">
+          <span>← ノーツを早く</span>
+          <button id="alignment-minus-100" class="edit-button">−100ms</button><button id="alignment-minus-10" class="edit-button">−10ms</button>
+          <button id="alignment-plus-10" class="edit-button">＋10ms</button><button id="alignment-plus-100" class="edit-button">＋100ms</button>
+          <span>ノーツを遅く →</span>
+        </div>
+        <p id="alignment-status" class="field-help" role="status"></p>
+        <div class="editor-actions">
+          <button id="alignment-preview" class="edit-button primary" disabled>冒頭を再生して確認</button>
+          <button id="alignment-pause" class="edit-button" disabled>一時停止</button>
+          <button id="alignment-reset" class="edit-button" disabled>調整前に戻す</button>
+        </div>
+        <p class="field-help">冒頭約10秒分を動画・ノーツ音で確認します。端末ごとのタイミング補正は適用しません。</p>
+        <p class="field-help">選択中の曲・難易度だけを変更します。オンライン編集では「公開する」までプレーヤーには反映されません。</p>
+      </section>
       </div>
+
       <section class="panel preview-panel" aria-label="譜面の再生確認">
         <h2>譜面の再生確認</h2>
         <p class="field-help">MVに合わせてノーツを自動再生します。長オシは帯とHOLD、同時オシは連結線で確認できます。</p>
@@ -51,6 +54,26 @@
         </div>
         <p class="field-help">再生中は打ち込みを止めます。編集するとプレビューを停止します。選択ノーツからの再生には、先にタイムラインでノーツを選んでください。</p>
       </section>
+      </div>
+        <section class="panel" aria-label="拍とクオンタイズ">
+          <h2>拍の設定</h2>
+          <div class="editor-fields"><label>BPM<input id="editor-bpm" type="number" min="40" max="300" step="0.01" value="140" /></label><label>拍の基準（動画の秒数）<input id="beat-origin" type="number" min="0" max="7200" step="0.001" value="12" /></label></div>
+          <button id="set-origin" class="edit-button" disabled>現在位置を拍の基準にする</button>
+          <p id="tempo-info" class="field-help">開始時点のBPMと拍の基準を合わせてください。ここではノーツは動きません。譜面全体を動かす場合は「譜面全体の開始位置を調整」を使います。</p>
+          <details id="tempo-map" class="tempo-map">
+            <summary>途中のBPM変更</summary>
+            <p class="field-help">動画の秒数から新しいBPMへ切り替わります。拍グリッド・スナップ・クオンタイズに共通で反映し、変更時にノーツは動かしません。</p>
+            <p id="song-tempo-help" class="field-help" hidden></p>
+            <button id="apply-song-tempo" class="edit-button" type="button" hidden>曲のテンポを適用</button>
+            <div id="tempo-rows" class="tempo-rows"></div>
+            <button id="add-tempo-change" class="edit-button" type="button">現在位置にBPM変更を追加</button>
+            <p class="field-help">数値の変更は入力欄を離れると反映されます。開始BPMと拍の基準は上の欄で変更できます。「元に戻す」で取り消せます。</p>
+          </details>
+          <div class="editor-fields"><label>クオンタイズ<select id="division"><option value="1">4分音符</option><option value="2">8分音符</option><option value="4" selected>16分音符</option></select></label><label>対象<select id="quantize-target"><option value="all">すべてのノーツ</option><option value="selected">選択したノーツ</option></select></label></div>
+          <label class="editor-check"><input id="from-source" type="checkbox" checked /> 元の入力時刻からそろえる</label>
+          <button id="quantize" class="edit-button primary">拍にそろえる</button>
+          <p class="field-help">元の時刻は残ります。微調整を基準にそろえる場合はチェックを外します。</p>
+        </section>
       <section class="panel recording-panel" aria-label="リアルタイム入力">
         <div class="editor-actions"><button id="record-toggle" class="edit-button primary" aria-pressed="false" disabled>● 打ち込み開始</button><output id="playhead">0.000 s</output><strong id="note-count">0 NOTES</strong><label class="editor-check"><input id="editor-sound" type="checkbox" checked /> 入力音</label><label class="editor-check"><input id="audition" type="checkbox" /> 譜面の試聴音</label></div>
         <div class="editor-fields"><label>打ち込みの種類<select id="record-type"><option value="tap">単オシ</option><option value="hold">長オシ（離すまで記録）</option></select></label></div>

@@ -39,6 +39,8 @@ export interface Chart {
   startTime: number;
   /** Video timestamp of a reference quarter-note beat, independent of the first note. */
   beatOrigin?: number;
+  /** Video timestamp corresponding to MIDI zero, retained when the beat grid is edited. */
+  midiOrigin?: number;
   /** Absolute video timestamps; note times already incorporate the MIDI tempo map. */
   tempoChanges?: TempoChange[];
   notes: ChartNote[];

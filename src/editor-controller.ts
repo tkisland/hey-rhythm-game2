@@ -73,6 +73,7 @@ previewSound.volume = settings.soundVolume; // Reference chart sounds have no in
 input('preview-volume').value = String(settings.soundVolume);
 el('preview-volume-value').textContent = `${settings.soundVolume}%`;
 let previewing = false, previewEndMessage = '';
+let alignmentBefore: number | null = null, alignmentEnd: number | null = null;
 let previewTarget: { time: number; includeExact: boolean } | null = null;
 const previewLanes = [...el('preview-lanes').querySelectorAll<HTMLElement>('[data-lane]')];
 const unbindPreviewTargets = bindTargets(el<HTMLCanvasElement>('preview-canvas'), previewLanes);
@@ -84,15 +85,16 @@ function clearPreviewEffects(): void {
 }
 function refreshPreviewControls(): void {
   const available = player !== null && !failed && model.chart.notes.length > 0;
-  for (const id of ['preview-play', 'preview-first']) el<HTMLButtonElement>(id).disabled = !available;
+  for (const id of ['preview-play', 'preview-first', 'alignment-preview']) el<HTMLButtonElement>(id).disabled = !available;
   el<HTMLButtonElement>('preview-selected').disabled = !available || !model.selectedNote;
   el<HTMLButtonElement>('preview-pause').disabled = !previewing || !playing;
+  el<HTMLButtonElement>('alignment-pause').disabled = !previewing || !playing;
   el<HTMLButtonElement>('preview-stop').disabled = !previewing;
 }
 function stopPreview(pause = true): void {
   previewSound.setPlaybackActive(false);
   const active = previewing;
-  previewing = false; previewEndMessage = '';
+  previewing = false; previewEndMessage = ''; alignmentEnd = null;
   if (previewTarget) seekTarget = null;
   previewTarget = null; previewSound.cancelPending(); preview.seek(time); clearPreviewEffects();
   if (active && pause && player && !failed) {
@@ -243,9 +245,16 @@ function refreshTempo(): void {
 }
 function refresh(): void {
   refreshTempo();
+  const origin = model.chart.midiOrigin ?? model.chart.beatOrigin ?? model.chart.startTime;
+  input('alignment-origin').value = origin.toFixed(3);
+  input('midi-offset').value = String(origin);
+  el('alignment-first').textContent = model.chart.notes.length ? `最初のノーツ：${model.chart.startTime.toFixed(3)}秒（冒頭の休符も含みます）` : 'ノーツはまだありません。';
+  const delta = alignmentBefore === null ? 0 : Math.round((origin - alignmentBefore) * 1000);
+  el('alignment-status').textContent = delta ? `調整前から${delta > 0 ? '＋' : '−'}${Math.abs(delta)}ms：ノーツ全体を${delta > 0 ? '遅く' : '早く'}しました。` : '開始位置を変更して、冒頭を再生して確認できます。「元に戻す」にも対応しています。';
+  el<HTMLButtonElement>('alignment-reset').disabled = alignmentBefore === null || Math.abs(origin - alignmentBefore) < 1e-9;
   input('editor-bpm').value = String(model.chart.bpm); input('beat-origin').value = String(model.chart.beatOrigin ?? model.chart.startTime);
   const estimated = song.tempoEstimated && model.chart.bpm === song.bpm && model.chart.beatOrigin === song.startTime && JSON.stringify(model.chart.tempoChanges) === JSON.stringify(song.tempoChanges);
-  el('tempo-info').textContent = model.chart.tempoChanges?.length ? `${tempoLabel(model.chart)} BPM · ${model.chart.tempoChanges.length}箇所のテンポ変更を拍グリッド・スナップ・クオンタイズに反映します。BPM欄は開始時点の値です。${estimated ? ' 音源解析の推定値です。動画との頭合わせ・切り替え位置を確認してください。' : ''}` : '開始時点のBPMと拍の基準を合わせてください。';
+  el('tempo-info').textContent = model.chart.tempoChanges?.length ? `${tempoLabel(model.chart)} BPM · ${model.chart.tempoChanges.length}箇所のテンポ変更を拍グリッド・スナップ・クオンタイズに反映します。BPM欄は開始時点の値です。${estimated ? ' 音源解析の推定値です。動画との頭合わせ・切り替え位置を確認してください。' : ''}` : 'ここでは拍グリッドだけを変更し、ノーツは動かしません。譜面全体の頭合わせには「譜面全体の開始位置を調整」を使います。';
   el('note-count').textContent = `${playableNotes(model.chart.notes).length} NOTES`;
   el<HTMLButtonElement>('undo').disabled = !model.canUndo; el<HTMLButtonElement>('redo').disabled = !model.canRedo;
   el<HTMLButtonElement>('quantize').disabled = !model.chart.notes.length;
@@ -394,7 +403,7 @@ el('record-toggle').addEventListener('click', () => { setArmed(!armed); el('reco
 const on = (id: string, callback: () => void) => el(id).addEventListener('click', callback, { signal });
 el('load-bundled-chart').hidden = !bundled;
 on('load-bundled-chart', () => {
-  if (bundled) edit(() => { model.replace(bundled); setView(Math.max(0, bundled.startTime - 1)); message('収録譜面を読み込みました。「元に戻す」で前の編集内容に戻せます。'); });
+  if (bundled) edit(() => { alignmentBefore = null; model.replace(bundled); setView(Math.max(0, bundled.startTime - 1)); message('収録譜面を読み込みました。「元に戻す」で前の編集内容に戻せます。'); });
 });
 on('box-range', () => { if (!selectedRange) { message('先に6色の単オシ6個を含む範囲を選択してください。'); return; } edit(() => model.boxRange(selectedRange!)); });
 on('select-range', () => chooseRange({ start: input('range-start').valueAsNumber, end: input('range-end').valueAsNumber }));
@@ -402,9 +411,30 @@ on('select-view-range', () => chooseRange({ start: viewStart, end: Math.min(MAX_
 on('clear-range', () => chooseRange(null)); on('copy-range', copyRange); on('delete-range', deleteRange); on('paste-range', pasteRange);
 on('paste-now', () => { readTime(); input('paste-time').value = time.toFixed(3); });
 select('timeline-mode').addEventListener('change', () => { if (select('timeline-mode').value === 'notes') chooseRange(null); else el<HTMLDetailsElement>('range-panel').open = true; }, { signal });
-on('preview-play', () => playPreview());
-on('preview-first', () => playPreview(previewStart(undefined, preview.first, settings.travel)));
-on('preview-selected', () => { if (model.selectedNote) playPreview(previewStart(model.selectedNote, preview.first, settings.travel)); });
+function alignStart(origin: number): void {
+  edit(() => {
+    const before = model.chart.midiOrigin ?? model.chart.beatOrigin ?? model.chart.startTime;
+    if (model.alignStart(origin)) {
+      alignmentBefore ??= before;
+      selectedRange = null;
+      setView(Math.max(0, model.chart.startTime - 1));
+      message('譜面全体の開始位置を変更しました。冒頭を再生して確認してください。');
+    }
+  });
+}
+input('alignment-origin').addEventListener('change', () => alignStart(input('alignment-origin').valueAsNumber), {signal});
+for (const [id, delta] of [['minus-100',-.1],['minus-10',-.01],['plus-10',.01],['plus-100',.1]] as const) {
+  on(`alignment-${id}`, () => alignStart(Number(((model.chart.midiOrigin ?? model.chart.beatOrigin ?? model.chart.startTime) + delta).toFixed(9))));
+}
+on('alignment-reset', () => { if (alignmentBefore !== null) alignStart(alignmentBefore); });
+on('alignment-preview', () => {
+  playPreview(previewStart(undefined, preview.first, settings.travel));
+  if (previewing) alignmentEnd = Math.min(preview.end + .35, preview.first + 10);
+});
+on('alignment-pause', () => el('preview-pause').click());
+on('preview-play', () => { alignmentEnd = null; playPreview(); });
+on('preview-first', () => { alignmentEnd = null; playPreview(previewStart(undefined, preview.first, settings.travel)); });
+on('preview-selected', () => { alignmentEnd = null; if (model.selectedNote) playPreview(previewStart(model.selectedNote, preview.first, settings.travel)); });
 on('preview-pause', () => {
   if (!player || failed) return;
   previewSound.cancelPending();
@@ -475,11 +505,11 @@ input('import-chart').addEventListener('change', async () => {
     const text = await file.text();
     if (disposed) return;
     const chart = parseChart(text, false, song);
-    model.replace(chart); setView(Math.max(0, chart.startTime - 1)); changed(); message('JSONを読み込みました。「元に戻す」で前の譜面に戻せます。');
+    alignmentBefore = null; model.replace(chart); setView(Math.max(0, chart.startTime - 1)); changed(); message('JSONを読み込みました。「元に戻す」で前の譜面に戻せます。');
   } catch (error) { message(error instanceof Error ? error.message : 'JSONを読み込めませんでした。'); }
   if (!disposed) input('import-chart').value = '';
 }, { signal });
-input('midi-offset').value = String((model.chart.notes.length ? model.chart.beatOrigin : bundled?.beatOrigin) ?? song.startTime);
+input('midi-offset').value = String((model.chart.notes.length ? model.chart.midiOrigin ?? model.chart.beatOrigin : bundled?.beatOrigin) ?? song.startTime);
 input('import-midi').addEventListener('change', async () => {
   const file = input('import-midi').files?.[0]; if (!file) return;
   stopPreview(); setArmed(false);
@@ -488,8 +518,8 @@ input('import-midi').addEventListener('change', async () => {
     if (file.size > 1024 * 1024) throw new Error('MIDIは1MB以内にしてください。');
     const bytes = new Uint8Array(await file.arrayBuffer()); if (disposed) return;
     const converted = convertMidi(bytes, {videoId:song.videoId, title:model.chart.title, offsetSeconds, lanes:MIDI_LANES});
-    const chart = parseChart(JSON.stringify(converted), true, song);
-    model.replace(chart); setView(Math.max(0, chart.startTime - 1)); changed(); message('MIDIを読み込みました。テンポ変更・ギミックも反映しています。「元に戻す」で前の譜面に戻せます。');
+    const chart = parseChart(JSON.stringify({...converted,midiOrigin:offsetSeconds}), true, song);
+    alignmentBefore = null; model.replace(chart); setView(Math.max(0, chart.startTime - 1)); changed(); message('MIDIを読み込みました。テンポ変更・ギミックも反映しています。「元に戻す」で前の譜面に戻せます。');
   } catch (error) { if (!disposed) message(error instanceof Error ? error.message : 'MIDIを読み込めませんでした。'); }
   if (!disposed) input('import-midi').value = '';
 }, { signal });
@@ -589,8 +619,9 @@ function frame(now: number): void {
     lane.dataset.state = holding ? 'holding' : recent ? 'pulse' : 'idle';
     lane.querySelector('output')!.textContent = holding ? 'HOLD' : recent ? previewLabels[i] : '—';
   });
-  if (previewing && playing && seekTarget === null && time >= preview.end + 0.35) {
-    stopPreview(); previewEndMessage = 'プレビュー完了 · 譜面の最後まで再生しました。';
+  if (previewing && playing && seekTarget === null && time >= (alignmentEnd ?? preview.end + 0.35)) {
+    const alignment = alignmentEnd !== null;
+    stopPreview(); previewEndMessage = alignment ? '冒頭の確認が完了しました。開始位置を調整して、繰り返し確認できます。' : 'プレビュー完了 · 譜面の最後まで再生しました。';
   }
   timeline.draw({ chart: model.chart, noteSize: settings.noteSize, selected: model.selected, range: selectedRange, rangeMode: select('timeline-mode').value === 'range', start: viewStart, span: viewSpan, division: division(), snap: input('drag-snap').checked, time });
   if (now - lastUi > 100) {

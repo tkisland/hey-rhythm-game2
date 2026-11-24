@@ -22,6 +22,7 @@ export function parseChart(text: string, requireNotes = false, song: Song = DEFA
   if (!object(value) || value.videoId !== song.videoId) throw new Error(`選択中の「${song.title}」と動画IDが一致する譜面を読み込んでください。`);
   if (typeof value.title !== 'string' || value.title.length > 200 || !finite(value.bpm, 40, 300) || !finite(value.startTime, 0, MAX_TIME)) throw new Error('タイトル・BPM（40〜300）・開始時刻を確認してください。');
   if (value.beatOrigin !== undefined && !finite(value.beatOrigin, 0, MAX_TIME)) throw new Error('拍の基準時刻を確認してください。');
+  if (value.midiOrigin !== undefined && !finite(value.midiOrigin, 0, MAX_TIME)) throw new Error('譜面開始位置を確認してください。');
   const tempoChanges: { time: number; bpm: number }[] = [];
   if (value.tempoChanges !== undefined) {
     if (!Array.isArray(value.tempoChanges) || value.tempoChanges.length > 128) throw new Error('テンポ変更は時刻順に128件以内で指定してください。');
@@ -61,5 +62,5 @@ export function parseChart(text: string, requireNotes = false, song: Song = DEFA
   const boxes = new Map<number, ChartNote[]>();
   for (const note of notes) if (note.gimmick === 'box') { const group = boxes.get(note.boxId!) ?? []; group.push(note); boxes.set(note.boxId!, group); }
   for (const group of boxes.values()) if (group.length !== 6 || new Set(group.map(note => note.lane)).size !== 6) throw new Error('箱オシは6色を1回ずつ、同じboxIdで指定してください。');
-  return { videoId: song.videoId, title: value.title, bpm: value.bpm, startTime: notes[0]?.time ?? value.startTime, beatOrigin: value.beatOrigin ?? value.startTime, ...(value.tempoChanges === undefined ? {} : { tempoChanges }), notes };
+  return { videoId: song.videoId, title: value.title, bpm: value.bpm, startTime: notes[0]?.time ?? value.startTime, beatOrigin: value.beatOrigin ?? value.startTime, ...(value.midiOrigin === undefined ? {} : {midiOrigin:value.midiOrigin}), ...(value.tempoChanges === undefined ? {} : { tempoChanges }), notes };
 }
