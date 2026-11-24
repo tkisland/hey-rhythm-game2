@@ -45,7 +45,7 @@ export const HAPPY_GO_ROUND: Song = {
 };
 export const POJI_POJI_GO: Song = {
   id: 'poji-poji-go', title: 'POJI POJI GO', artist: 'Hey!Mommy!',
-  videoId: 'F0bagOeDMFc', bpm: 195.000195, startTime: 3.3, chartId: 'poji001', publicDifficulties: ['normal'],
+  videoId: 'F0bagOeDMFc', bpm: 195.000195, startTime: 3.410, chartId: 'poji001', publicDifficulties: ['normal'],
 };
 /** Register additional songs here; routing and storage use the stable ID. */
 export const SONGS: readonly Song[] = [DEFAULT_SONG, BISCUIT_CASE, PLAYFUL_ROMANTIC, HAPPY_GO_ROUND, POJI_POJI_GO];
