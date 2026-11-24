@@ -47,8 +47,12 @@ export const POJI_POJI_GO: Song = {
   id: 'poji-poji-go', title: 'POJI POJI GO', artist: 'Hey!Mommy!',
   videoId: 'F0bagOeDMFc', bpm: 195.000195, startTime: 3.410, chartId: 'poji001', publicDifficulties: ['normal'],
 };
+export const YOZORA_WITH_YOU: Song = {
+  id: 'yozora-with-you', title: '夜空ウィズユー', artist: 'Hey!Mommy!',
+  videoId: '5Z6C4Zhbkl0', bpm: 200, startTime: 3.5, chartId: 'yozora001', publicDifficulties: ['normal'],
+};
 /** Register additional songs here; routing and storage use the stable ID. */
-export const SONGS: readonly Song[] = [DEFAULT_SONG, BISCUIT_CASE, PLAYFUL_ROMANTIC, HAPPY_GO_ROUND, POJI_POJI_GO];
+export const SONGS: readonly Song[] = [DEFAULT_SONG, BISCUIT_CASE, PLAYFUL_ROMANTIC, HAPPY_GO_ROUND, POJI_POJI_GO, YOZORA_WITH_YOU];
 export function findSong(id: string | null): Song | undefined {
   return id === null ? DEFAULT_SONG : SONGS.find(song => song.id === id);
 }
