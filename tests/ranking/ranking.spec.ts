@@ -32,24 +32,63 @@ async function finish(page:Page,hit=true){
   await begin(page);await page.clock.runFor(7634);
   if(hit)await page.keyboard.press('l');
   await page.clock.fastForward(210000);await page.clock.runFor(1700);
-  await expect(page.locator('#result')).toBeVisible();await expect(page.locator('#ranking-form')).toBeVisible();
+  await expect(page.locator('#result')).toBeVisible();await expect(page.locator('#ranking-name-open')).toBeVisible();
 }
 test('registers each play without login, preserves duplicate names and opens the correct board from the menu',async({page})=>{
   const during:string[]=[];page.on('request',request=>{if(request.url().includes('/api/'))during.push(request.url());});
   await begin(page);expect(during.some(url=>url.includes('action=start'))).toBe(true);during.length=0;
   await page.clock.runFor(7634);await page.keyboard.press('l');
   expect(during).toEqual([]);await page.clock.fastForward(210000);await page.clock.runFor(1700);
-  await expect(page.locator('#ranking-form')).toBeVisible();await expect(page.locator('#result-score')).toHaveText('1,968');
-  await page.locator('#ranking-name').fill('あいうえお');await page.locator('#ranking-submit').click();
-  await expect(page.locator('#ranking-status')).toContainText('半角英数字3〜6文字');
-  await page.locator('#ranking-name').fill('abc');await page.locator('#ranking-submit').click();
+  await expect(page.locator('#ranking-name-open')).toBeVisible();await expect(page.locator('#result-score')).toHaveText('1,968');
+  const panel=page.getByRole('dialog',{name:'ランキング名を入力'});
+  const open=page.getByRole('button',{name:'名前を入力'});
+  const keys=page.locator('#ranking-keys button');
+  const name=page.locator('#ranking-name');
+  const submit=page.locator('#ranking-submit');
+  await expect(panel).toBeHidden();
+  await open.click();
+  await expect(keys).toHaveText(Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'));
+  await expect(name.locator('span')).toHaveCount(6);
+  await expect(panel.locator('input, textarea, [contenteditable]')).toHaveCount(0);
+  await panel.getByRole('button',{name:'A',exact:true}).click();
+  await page.keyboard.press('b');
+  await panel.dispatchEvent('keydown',{key:' ',bubbles:true});
+  await page.keyboard.press('Shift+Digit1');
+  await panel.dispatchEvent('keydown',{key:'あ',bubbles:true});
+  await expect(name).toHaveText('AB');
+  await expect(submit).toBeDisabled();
+  await page.keyboard.type('c12345');
+  await expect(name).toHaveText('ABC123');
+  await panel.getByRole('button',{name:'Z',exact:true}).click();
+  await expect(name).toHaveText('ABC123');
+  await panel.getByRole('button',{name:'1文字削除'}).click();
+  await page.keyboard.press('Backspace');
+  await expect(name).toHaveText('ABC1');
+  await panel.getByRole('button',{name:'クリア'}).click();
+  await expect(name).toHaveText('');
+  await expect(submit).toBeDisabled();
+  await page.keyboard.press('Escape');
+  await expect(panel).toBeHidden();
+  await expect(open).toBeFocused();
+  await open.click();
+  for(const character of 'ABC'){
+    const key=panel.getByRole('button',{name:character,exact:true});
+    if(test.info().project.name==='mobile-touch')await key.tap();
+    else await key.click();
+  }
+  await submit.click();
+  await expect(panel).toBeHidden();
   await expect(page.locator('#ranking-status')).toContainText('ABC で登録しました！ 1位');
-  await expect(page.locator('#ranking-entries')).toContainText('1,968 / COMBO 1');await expect(page.locator('#ranking-submit')).toBeDisabled();
+  await expect(page.locator('#ranking-entries')).toContainText('1,968 / COMBO 1');await expect(open).toBeDisabled();
   const next=page.waitForResponse(response=>response.url().includes('action=start'));
   await page.locator('#result-replay').click();await page.clock.runFor(32);await next;
   await page.clock.fastForward(220000);await page.clock.runFor(1700);
-  await expect(page.locator('#ranking-name')).toHaveValue('');await expect(page.locator('#ranking-form')).toBeVisible();
-  await page.locator('#ranking-name').fill('ABC');await page.locator('#ranking-submit').click();
+  await expect(panel).toBeHidden();
+  await open.click();
+  await expect(name).toHaveText('');
+  await expect(submit).toBeDisabled();
+  await page.keyboard.type('ABC');
+  await submit.click();
   await expect(page.locator('#ranking-status')).toContainText('2位');await expect(page.locator('#ranking-entries li')).toHaveCount(2);
   if(test.info().project.name==='mobile-touch')await page.screenshot({path:test.info().outputPath('result-ranking.png')});
   await page.goto('./');await page.getByRole('link',{name:'ランキング',exact:true}).click();
@@ -69,11 +108,19 @@ test('registration stays visible without scrolling on 360x640 and 390x844 phones
     await expect(page.locator('#ranking-title')).toHaveText('ランキング登録');
     expect(await page.locator('.ranking-board').getAttribute('open')).toBeNull();
     const fit=await page.evaluate(()=>{
-      const panel=document.getElementById('result')!,form=document.getElementById('ranking-form')!,button=document.getElementById('ranking-submit')!;
-      const bounds=button.getBoundingClientRect(),field=form.getBoundingClientRect();
-      return {scroll:panel.scrollTop,overflow:panel.scrollHeight-panel.clientHeight,visible:bounds.bottom<=innerHeight&&field.top>=0,reachable:document.elementFromPoint(bounds.x+bounds.width/2,bounds.y+bounds.height/2)===button};
+      const panel=document.getElementById('result')!,button=document.getElementById('ranking-name-open')!;
+      const bounds=button.getBoundingClientRect();
+      return {scroll:panel.scrollTop,overflow:panel.scrollHeight-panel.clientHeight,visible:bounds.bottom<=innerHeight&&bounds.top>=0,reachable:document.elementFromPoint(bounds.x+bounds.width/2,bounds.y+bounds.height/2)===button};
     });
     expect(fit.scroll).toBe(0);expect(fit.overflow).toBeLessThanOrEqual(1);expect(fit.visible).toBe(true);expect(fit.reachable).toBe(true);
+    await page.locator('#ranking-name-open').click();
+    const dialog=page.locator('#ranking-name-panel');
+    const bounds=await dialog.boundingBox();
+    expect(bounds!.y).toBeGreaterThanOrEqual(0);
+    expect(bounds!.y+bounds!.height).toBeLessThanOrEqual(viewport.height);
+    expect(await dialog.evaluate(element=>element.scrollHeight-element.clientHeight)).toBeLessThanOrEqual(1);
+    await page.getByRole('button',{name:'キャンセル'}).click();
+    await expect(dialog).toBeHidden();
   }
 });
 test('a lost registration response can be retried without creating another record',async({page})=>{
@@ -81,8 +128,12 @@ test('a lost registration response can be retried without creating another recor
   await page.route('**/api/ranking.php?action=submit',async route=>{
     if(first){first=false;await route.fetch();await route.abort('failed');}else await route.continue();
   });
-  await page.locator('#ranking-name').fill('RETRY1');await page.locator('#ranking-submit').click();
-  await expect(page.locator('#ranking-status')).toContainText('接続できません');await expect(page.locator('#ranking-submit')).toBeEnabled();
+  await page.locator('#ranking-name-open').click();await page.keyboard.type('RETRY1');await page.locator('#ranking-submit').click();
+  await expect(page.locator('#ranking-panel-status')).toContainText('接続できません');
+  await page.getByRole('button',{name:'キャンセル'}).click();
+  await page.locator('#ranking-name-open').click();
+  await expect(page.locator('#ranking-name')).toHaveText('RETRY1');
+  await expect(page.locator('#ranking-submit')).toBeEnabled();
   await page.locator('#ranking-submit').click();await expect(page.locator('#ranking-status')).toContainText('1位');
   await expect(page.locator('#ranking-entries li')).toHaveCount(1);
 });
@@ -91,14 +142,14 @@ test('seeks and speed changes keep the result playable but ineligible for regist
   await page.evaluate(()=>(window as any).testVideo.seekTo(100));await page.clock.runFor(32);
   await page.clock.fastForward(130000);await page.clock.runFor(1700);
   await expect(page.locator('#ranking-status')).toContainText('シークしたプレイは登録できません');
-  await expect(page.locator('#ranking-form')).not.toBeVisible();await expect(page.locator('#result-replay')).toBeEnabled();
+  await expect(page.locator('#ranking-name-open')).not.toBeVisible();await expect(page.locator('#result-replay')).toBeEnabled();
   const next=page.waitForResponse(response=>response.url().includes('action=start'));
   await page.locator('#result-replay').click();await page.clock.runFor(32);await next;
   await page.evaluate(()=>(window as any).testVideo.setPlaybackRate(.5));await page.clock.runFor(32);
   await page.evaluate(()=>(window as any).testVideo.setPlaybackRate(1));await page.clock.runFor(32);
   await page.clock.fastForward(220000);await page.clock.runFor(1700);
   await expect(page.locator('#ranking-status')).toContainText('再生速度を変更したプレイは登録できません');
-  await expect(page.locator('#ranking-form')).not.toBeVisible();
+  await expect(page.locator('#ranking-name-open')).not.toBeVisible();
 });
 test('a delayed response from the previous play cannot fill or lock the next registration form',async({page})=>{
   await finish(page);
@@ -107,14 +158,18 @@ test('a delayed response from the previous play cannot fill or lock the next reg
   await page.route('**/api/ranking.php?action=submit',async route=>{
     const response=await route.fetch();committed();await waiting;await route.fulfill({response});
   });
-  await page.locator('#ranking-name').fill('OLDER1');await page.locator('#ranking-submit').click();await saved;
+  await page.locator('#ranking-name-open').click();await page.keyboard.type('OLDER1');
+  await page.locator('#ranking-submit').click();await saved;
+  await expect(page.locator('#ranking-panel-status')).toHaveText('登録しています…');
+  await expect(page.locator('#ranking-submit')).toBeDisabled();
+  await page.locator('#ranking-name-panel').getByRole('button',{name:'閉じる'}).click();
   const start=page.waitForResponse(response=>response.url().includes('action=start'));
   await page.locator('#result-replay').click();await page.clock.runFor(32);await start;
   const oldResponse=page.waitForResponse(response=>response.url().includes('action=submit'));release();await oldResponse;
-  await page.clock.runFor(32);await expect(page.locator('#ranking-name')).toHaveValue('');
+  await page.clock.runFor(32);await expect(page.locator('#ranking-name')).toHaveText('');
   await page.clock.fastForward(220000);await page.clock.runFor(1700);
-  await expect(page.locator('#ranking-form')).toBeVisible();await expect(page.locator('#ranking-name')).toHaveValue('');
-  await expect(page.locator('#ranking-submit')).toBeEnabled();await expect(page.locator('#ranking-status')).not.toContainText('登録しました');
+  await expect(page.locator('#ranking-name-open')).toBeVisible();await expect(page.locator('#ranking-name')).toHaveText('');
+  await expect(page.locator('#ranking-name-open')).toBeEnabled();await expect(page.locator('#ranking-status')).not.toContainText('登録しました');
   await expect(page.locator('#ranking-entries')).toContainText('OLDER1');
 });
 

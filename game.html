@@ -153,10 +153,22 @@
           <div id="result-counts" class="result-counts"></div>
           <section id="result-ranking" class="ranking-section" aria-labelledby="ranking-title" hidden>
             <h3 id="ranking-title">ランキング登録</h3>
-            <form id="ranking-form" class="ranking-form" novalidate>
-              <label for="ranking-name">登録名（半角英数字3〜6文字）<input id="ranking-name" name="name" type="text" minlength="3" maxlength="6" autocomplete="off" autocapitalize="characters" spellcheck="false" /></label>
-              <button id="ranking-submit" class="restart-button" type="submit">登録する</button>
-            </form>
+            <button id="ranking-name-open" class="restart-button" type="button" aria-haspopup="dialog" aria-controls="ranking-name-panel" hidden>名前を入力</button>
+            <dialog id="ranking-name-panel" class="ranking-name-panel" aria-labelledby="ranking-name-title" aria-describedby="ranking-name-help">
+              <form id="ranking-form" class="ranking-form">
+                <h3 id="ranking-name-title">ランキング名を入力</h3>
+                <p id="ranking-name-help">半角英数字3〜6文字</p>
+                <output id="ranking-name" aria-label="入力した名前"></output>
+                <div id="ranking-keys" class="ranking-keys" role="group" aria-label="英数字キー"></div>
+                <div class="ranking-name-actions">
+                  <button id="ranking-delete" type="button" disabled>1文字削除</button>
+                  <button id="ranking-clear" type="button" disabled>クリア</button>
+                  <button id="ranking-cancel" type="button" autofocus>キャンセル</button>
+                  <button id="ranking-submit" type="submit" disabled>登録する</button>
+                </div>
+                <p id="ranking-panel-status" class="ranking-status" role="status"></p>
+              </form>
+            </dialog>
             <p id="ranking-status" class="ranking-status" role="status"></p>
             <details class="ranking-board"><summary>上位20件を見る</summary>
               <ol id="ranking-entries" class="ranking-entries" aria-label="この譜面のランキング"></ol>
