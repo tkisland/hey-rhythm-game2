@@ -1,5 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {SONGS} from '../../src/songs';
+import {api} from '../browser/mock-video';
 const thumbnail='<svg xmlns="http://www.w3.org/2000/svg" width="320" height="180"><rect width="320" height="180" fill="#682f87"/></svg>';
 test.beforeEach(async({page})=>{
  await page.route('https://fonts.googleapis.com/**',r=>r.fulfill({body:''}));
@@ -76,4 +77,30 @@ test('invalid or unavailable preference storage keeps the default usable and doe
  await page.goto('/');await expect(page.locator('#song-sort')).toHaveValue('title');
  await page.locator('#song-sort').selectOption('release-desc');await expect(page.locator('.song-name').first()).toHaveText('Happy Go Round');
  await page.reload();await expect(page.locator('#song-sort')).toHaveValue('title');await expect(page.locator('.song-name').first()).toHaveText('SUPER MOMMY GIRLS');
+});
+
+test('play buttons match difficulty heights and share the game start appearance without clipping its label',async({page})=>{
+ await page.route('https://www.youtube.com/iframe_api',r=>r.fulfill({body:api}));
+ await page.goto('/');
+ for(const width of [320,390,1280]){
+  await page.setViewportSize({width,height:900});
+  for(const card of await page.locator('.song-card').all()){
+   const play=(await card.locator('.song-play').boundingBox())!,level=(await card.locator('.song-difficulty').boundingBox())!;
+   expect(play.height).toBe(level.height);expect(play.height).toBeGreaterThanOrEqual(48);
+  }
+ }
+ const appearance=await page.locator('.song-play').first().evaluate(node=>{
+  const s=getComputedStyle(node);return [s.backgroundImage,s.color,s.borderRadius,s.borderBottomColor,s.borderBottomWidth,s.boxShadow];
+ });
+ await page.goto('/game.html');await expect(page.locator('#restart')).toBeEnabled();
+ const start=page.locator('#play-start');
+ await expect.poll(()=>start.evaluate(node=>{const s=getComputedStyle(node);return [s.backgroundImage,s.color,s.borderRadius,s.borderBottomColor,s.borderBottomWidth,s.boxShadow];})).toEqual(appearance);
+ for(const width of [320,390,1280]){
+  await page.setViewportSize({width,height:900});await expect(start).toBeVisible();
+  expect((await start.boundingBox())!.height).toBeGreaterThanOrEqual(48);
+  expect(await start.evaluate(node=>node.scrollHeight<=node.clientHeight && node.scrollWidth<=node.clientWidth)).toBe(true);
+ }
+ await start.click();await expect(start).toHaveAttribute('aria-label','ノーツ音を有効にする');
+ await page.evaluate(()=>(window as any).testVideo.pauseVideo());
+ await expect(start).toHaveText('ゲーム再開');await expect(start.locator('span')).toHaveText(['ゲーム','再開']);
 });
