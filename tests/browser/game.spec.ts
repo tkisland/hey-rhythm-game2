@@ -89,7 +89,7 @@ test('result preserves normal video playback and skipped notes never inflate sco
   await seekPlay(page, 45);
   await expect(page.locator('#result')).toBeVisible();
   await expect(page.locator('#score')).toHaveText('0');
-  await expect(page.locator('#result-accuracy')).toContainText('スキップ');
+  await expect(page.locator('#result-base-score')).toHaveText('0');
   expect(await page.evaluate(() => (window as any).testVideo.getPlayerState())).toBe(1);
 });
 

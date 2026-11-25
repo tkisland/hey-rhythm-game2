@@ -266,7 +266,6 @@ function showResults(): void {
     label.textContent = name; value.textContent = String(count);
     item.append(label, value); counts.append(item);
   }
-  element('result-accuracy').textContent = `基本スコア得点率 ${engine.accuracy.toFixed(1)}%（判定済みノーツのみ） · 判定済み ${Object.values(engine.counts).reduce((sum,n)=>sum+n,0)} · シークでスキップ ${engine.skipped} / 全 ${engine.notes.length} ノーツ`;
   const finishedResult={score:engine.score,maxCombo:engine.maxCombo,results:engine.rankingJudgements()};
   const eligible=engine.skipped===0 && videoRate===1;
   void ranking?.show(finishedResult,eligible);

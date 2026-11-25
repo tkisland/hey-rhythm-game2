@@ -41,7 +41,6 @@ for(const rightFirst of [false,true])test(`two fingers open outward, ${rightFirs
   expect(await page.evaluate(()=>(window as any).swipeDefaults.every(Boolean))).toBe(true);expect(page.url()).toBe(url);
   expect(await page.evaluate(()=>getComputedStyle(document.documentElement).overscrollBehaviorX)).toBe('none');
   await page.clock.runFor(1600);
-  await expect(page.locator('#result-accuracy')).toContainText('全 1 ノーツ');
   await expect(page.locator('#result-counts div').filter({hasText:'GOOD'}).locator('strong')).toHaveText('1');
   await page.keyboard.press('s');await page.keyboard.press('l');await expect(page.locator('#score')).toHaveText('600,900');await touch.detach();
 });
