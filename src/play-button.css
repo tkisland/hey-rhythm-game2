@@ -5,17 +5,17 @@
   align-items:center;
   justify-content:center;
   min-height:48px;
-  border:1px solid #ffd2e2;
-  border-bottom:3px solid #b43c6a;
-  border-radius:10px;
-  background:linear-gradient(180deg,#ffc4da 0%,#ff89b5 48%,#f35b96 100%);
-  color:#300e20;
-  font-weight:800;
+  border:1px solid #d45490;
+  border-radius:6px;
+  background:#9c285b;
+  color:#fff6fb;
+  font-weight:600;
+  letter-spacing:.04em;
   text-align:center;
   text-decoration:none;
-  text-shadow:0 1px 0 #ffffff55;
-  box-shadow:0 3px 0 #802647,0 6px 10px -5px #ef548e26,inset 0 1px 0 #ffffff88;
-  transition:transform .12s ease,filter .12s ease,box-shadow .12s ease;
+  text-shadow:none;
+  box-shadow:none;
+  transition:background-color .15s ease,border-color .15s ease,color .15s ease;
 }
 .game-page .media-controls .primary-play { flex-direction:column; font-size:clamp(9px,2.6vw,11px); }
 .game-page .media-controls .primary-play > span { white-space:nowrap; }
@@ -25,18 +25,18 @@
 @media (hover:hover) {
   .song-actions .primary-play:hover,
   .game-page .media-controls .primary-play:hover:not(:disabled) {
-    filter:brightness(1.06);
-    transform:translateY(-1px);
+    background:#b3326b;
+    border-color:#f294bd;
   }
 }
 .song-actions .primary-play:active,
 .game-page .media-controls .primary-play:active:not(:disabled) {
-  transform:translateY(2px);
-  box-shadow:0 1px 0 #802647,inset 0 2px 5px #a9255926;
+  background:#7e204b;
+  border-color:#ba4e81;
 }
 .song-actions .primary-play:focus-visible,
-.game-page .media-controls .primary-play:focus-visible { outline:2px solid #ffe482; outline-offset:4px; }
-.game-page .media-controls .primary-play:disabled { filter:saturate(.3); box-shadow:0 2px 0 #582b40; transform:none; }
+.game-page .media-controls .primary-play:focus-visible { outline:2px solid #ffd4e7; outline-offset:3px; }
+.game-page .media-controls .primary-play:disabled { background:#342333; border-color:#665066; color:#b7a6b7; opacity:.7; }
 @media (prefers-reduced-motion:reduce) {
   .song-actions .primary-play,.game-page .media-controls .primary-play { transition:none; }
 }
