@@ -1,6 +1,5 @@
 import './style.css';
 import './menu.css';
-import { LANE_COLORS } from './colors';
 import { CUSTOM_CHART_KEY, EDITOR_KEY, loadChart, storeChart } from './editor-model';
 import { findSong, isPublicDifficulty, SONGS, songStorageKey, songUrl } from './songs';
 import type { Song } from './songs';
@@ -18,6 +17,8 @@ import type {Difficulty} from './difficulties';
 
 const list = document.getElementById('song-list')!;
 const search = document.getElementById('song-search') as HTMLInputElement;
+const searchToggle = document.getElementById('song-search-toggle') as HTMLButtonElement;
+const searchPanel = document.getElementById('song-search-panel')!;
 const notice = document.getElementById('menu-notice')!;
 const listeners = new AbortController();
 const menuSettings = mountMenuSettings();
@@ -49,12 +50,15 @@ function render(): void {
     const difficulty=selected.get(song.id) ?? DEFAULT_DIFFICULTY;
     const saved = __ADMIN__ ? savedChart(song,difficulty) : null, bundled = (__ADMIN__ || isPublicDifficulty(song,difficulty)) ? online.get(chartKey(song,difficulty)) ?? bundledChart(song,difficulty) : null, card = node('article', 'song-card'); card.dataset.song = song.id;
     const artwork = node('div', 'song-art'); artwork.setAttribute('aria-hidden', 'true');
-    artwork.append(node('span', 'cover-number', String(SONGS.indexOf(song) + 1).padStart(2, '0')));
-    const lanes = node('div', 'cover-lanes');
-    for (const color of LANE_COLORS) { const lane = node('i', ''); lane.style.setProperty('--color', color); lanes.append(lane); }
-    artwork.append(lanes);
+    artwork.append(node('span', 'cover-fallback', '♪'));
+    const thumbnail = node('img', 'song-thumbnail');
+    thumbnail.alt = ''; thumbnail.width = 320; thumbnail.height = 180;
+    thumbnail.loading = 'lazy'; thumbnail.decoding = 'async';
+    thumbnail.addEventListener('error', () => { thumbnail.hidden = true; }, {once:true});
+    thumbnail.src = `https://i.ytimg.com/vi/${song.videoId}/mqdefault.jpg`;
+    artwork.append(thumbnail);
     const body = node('div', 'song-card-body');
-    body.append(node('p', 'song-artist', song.artist), node('h2', 'song-name', song.title), node('p', 'song-meta', bundled ? `6 LANES · ${__ADMIN__ ? `${(song.charts?.[difficulty] ?? song.chartId)?.toUpperCase()} · ` : ''}${tempoLabel(bundled)} BPM · ${playableNotes(bundled.notes).length} NOTES` : __ADMIN__ ? `6 LANES · 練習譜面 ${song.bpm} BPM` : '譜面の準備中'));
+    body.append(node('p', 'song-artist', song.artist), node('h2', 'song-name', song.title), node('p', 'song-meta', bundled ? `${__ADMIN__ ? `${(song.charts?.[difficulty] ?? song.chartId)?.toUpperCase()} · ` : ''}${tempoLabel(bundled)} BPM · ${playableNotes(bundled.notes).length} NOTES` : __ADMIN__ ? `練習譜面 ${song.bpm} BPM` : '譜面の準備中'));
     const levelLabel=node('label','difficulty-choice'), level=node('select','song-difficulty');level.id=`difficulty-${song.id}`;
     level.setAttribute('aria-label',`${song.title}の難易度`);
     for(const item of DIFFICULTIES){
@@ -89,7 +93,7 @@ function render(): void {
       actions.append(custom, edit);
       if (bundled) { const practice = node('a', 'song-practice', '練習譜面で遊ぶ'); practice.href = songUrl(song, 'game', 'test',difficulty); actions.append(practice); }
     }
-    body.append(actions); card.append(artwork, body); list.append(card);
+    card.append(artwork, body, actions); list.append(card);
   });
   if(focused)document.getElementById(focused)?.focus({preventScroll:true});
 }
@@ -103,6 +107,17 @@ if (legacy === 'custom' || legacy === 'test' || legacy === 'bundled') {
   if (song && difficulty) location.replace(__ADMIN__ ? songUrl(song, 'game', legacy === 'custom' ? true : legacy,difficulty) : songUrl(song, 'game',false,difficulty));
   else showNotice('指定された曲が見つかりませんでした。楽曲一覧から選び直してください。');
 }
+function setSearchOpen(open: boolean): void {
+  searchPanel.hidden = !open;
+  searchToggle.setAttribute('aria-expanded', String(open));
+  searchToggle.setAttribute('aria-label', open ? '検索を閉じる' : '曲を検索');
+  if (open) search.focus();
+  else { search.value = ''; render(); searchToggle.focus(); }
+}
+searchToggle.addEventListener('click', () => setSearchOpen(searchPanel.hidden), {signal:listeners.signal});
+search.addEventListener('keydown', event => {
+  if (event.key === 'Escape') { event.preventDefault(); setSearchOpen(false); }
+}, {signal:listeners.signal});
 search.addEventListener('input', render, { signal: listeners.signal });
 window.addEventListener('pageshow', render, { signal: listeners.signal });
 render();

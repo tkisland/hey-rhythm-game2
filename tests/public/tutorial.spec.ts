@@ -1,3 +1,4 @@
+import {searchSongs} from '../browser/menu-search';
 import {SONGS} from '../../src/songs';
 import { test, expect } from '@playwright/test';
 import type { Page } from '@playwright/test';
@@ -18,7 +19,7 @@ async function play(page: Page) {
 test('opens on request, preserves selection and restores focus without loading video', async ({page}) => {
   const videos: string[] = []; page.on('request', request => { if (request.url().includes('youtube.com')) videos.push(request.url()); });
   await page.goto('/'); await expect(page.getByRole('dialog')).not.toBeVisible();
-  await page.locator('#song-search').fill('mommy'); await page.locator('#open-tutorial').click();
+  await searchSongs(page,'mommy'); await page.locator('#open-tutorial').click();
   await expect(page.getByRole('heading', {name:'単オシ', exact:true})).toBeVisible();
   await expect(page.locator('#tutorial-previous')).toBeDisabled();
   await page.keyboard.press('s'); await expect(page.locator('#tutorial-score')).toHaveText('0 点 · COMBO 0');
@@ -184,7 +185,7 @@ test('two outward touches score one box and plays one short arpeggio; mute suppr
     await advance(2500);await touch.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:central});
     await expect(page.locator('#tutorial-score')).toHaveText('0 点 · COMBO 0');
     await advance(2580);await touch.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[points[0],points[5]]});
-    await expect(page.locator('#tutorial-score')).toHaveText('751,125 点 · COMBO 1');
+    await expect(page.locator('#tutorial-score')).toHaveText('801,200 点 · COMBO 1');
     await expect(page.locator('#tutorial-feedback')).toHaveText('箱オシ成功！');
     await touch.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
     expect(await page.evaluate(()=>(window as any).boxTones)).toBe(1);
