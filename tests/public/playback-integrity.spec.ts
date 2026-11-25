@@ -20,10 +20,7 @@ test('a full SMG005 play with repeated one-second rendering gaps retains the hit
   for(let second=0;second<211;second++)await page.clock.fastForward(1000);
   await expect(page.locator('#result')).toBeVisible();
   await expect(page.locator('#result-score')).toHaveText('1,968');
-  await expect(page.locator('#result-counts div').filter({hasText:'PERFECT'}).locator('strong')).toHaveText('1');
-  await expect(page.locator('#result-counts div').filter({hasText:'MISS'}).locator('strong')).toHaveText('507');
-  await expect(page.locator('#result-accuracy')).toContainText('判定済み 508');
-  await expect(page.locator('#result-accuracy')).toContainText('スキップ 0 / 全 508');
+  await expect(page.locator('#result-counts strong')).toHaveText(['1','0','0','507']);
   await page.evaluate(()=>(window as any).testVideo.setState(0));
   await page.getByRole('button',{name:'もういちど遊ぶ',exact:true}).click();
   await page.clock.runFor(32);

@@ -31,8 +31,7 @@ test('replay preserves fresh notes while seek and PLAYING arrive asynchronously 
     await page.keyboard.press('l');await expect(page.locator('#score')).toHaveText('1,968');
     await page.evaluate(()=>{const video=(window as any).testVideo;video.time=220;video.anchor=performance.now();video.setState(0);});
     await page.clock.runFor(1700);await expect(page.locator('#result')).toBeVisible();
-    await expect(page.locator('#result-accuracy')).toContainText('判定済み 508');
-    await expect(page.locator('#result-accuracy')).toContainText('スキップ 0 / 全 508');
+    await expect(page.locator('#result-counts strong')).toHaveText(['1','0','0','507']);
   }
 });
 

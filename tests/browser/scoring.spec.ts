@@ -31,7 +31,7 @@ test('the result displays base, both bonuses and their total, and replay clears 
   await expect(page.locator('#result-combo-bonus')).toHaveText('＋10,909');
   await expect(page.locator('#result-special-bonus')).toHaveText('＋1,050');
   await expect(page.locator('#result-score')).toHaveText('1,011,959');
-  await expect(page.locator('#result-accuracy')).toContainText('100.0%');
+  await expect(page.locator('#result-accuracy')).toHaveCount(0);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   if(test.info().project.name==='mobile-touch')await page.screenshot({path:test.info().outputPath('score-breakdown.png')});
   await page.locator('.score-help summary').click();await expect(page.locator('.score-help')).toContainText('100コンボ以上は15％');
