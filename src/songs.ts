@@ -4,6 +4,10 @@ export interface Song {
   id: string;
   title: string;
   artist: string;
+  /** Japanese reading used for title sorting; the displayed title stays unchanged. */
+  reading?: string;
+  /** First digital release date, YYYY-MM-DD. */
+  releaseDate?: string;
   videoId: string;
   bpm: number;
   startTime: number;
@@ -16,10 +20,12 @@ export interface Song {
 }
 export const DEFAULT_SONG: Song = {
   id: 'super-mommy-girls', title: 'SUPER MOMMY GIRLS', artist: 'Hey!Mommy!',
+  reading: 'すーぱーまみーがーるず', releaseDate: '2024-09-01',
   videoId: 'pJDfWpZ7CI4', bpm: 140, startTime: 12, chartId: 'smg005', charts:{easy:'smg005-easy',hard:'smg005-hard'}, publicDifficulties:['normal'],
 };
 export const BISCUIT_CASE: Song = {
   id: 'biscuit-case', title: 'ビスケットケース', artist: 'Hey!Mommy!',
+  reading: 'びすけっとけーす', releaseDate: '2022-07-08',
   // MIDI tick zero is placed at video 2.95s; editor defaults use the authored tempo map.
   videoId: 'JUsGoi24rug', bpm: 200, startTime: 2.95, chartId: 'bsc002', charts:{easy:'bsc002-easy',hard:'bsc002-hard'}, publicDifficulties:['normal'],
   tempoChanges: [
@@ -33,6 +39,7 @@ export const BISCUIT_CASE: Song = {
 };
 export const PLAYFUL_ROMANTIC: Song = {
   id: 'playful-romantic', title: 'PLAYFUL ROMANTIC', artist: 'Hey!Mommy!',
+  reading: 'ぷれいふるろまんてぃっく', releaseDate: '2025-12-12',
   videoId: '94DtjMOtbP4', bpm: 98.000143734, startTime: 1.18, chartId: 'playful001', publicDifficulties: ['normal'],
   tempoChanges: [
     {time:10.975904,bpm:195.000195},
@@ -41,14 +48,17 @@ export const PLAYFUL_ROMANTIC: Song = {
 };
 export const HAPPY_GO_ROUND: Song = {
   id: 'happy-go-round', title: 'Happy Go Round', artist: 'Hey!Mommy!',
+  reading: 'はっぴーごーらうんど', releaseDate: '2026-09-01',
   videoId: 'y5Qz8PcPhYs', bpm: 220.00022, startTime: 1.2, chartId: 'hgr001', publicDifficulties: ['normal'],
 };
 export const POJI_POJI_GO: Song = {
   id: 'poji-poji-go', title: 'POJI POJI GO', artist: 'Hey!Mommy!',
+  reading: 'ぽじぽじごー', releaseDate: '2025-07-29',
   videoId: 'F0bagOeDMFc', bpm: 195.000195, startTime: 3.410, chartId: 'poji001', publicDifficulties: ['normal'],
 };
 export const YOZORA_WITH_YOU: Song = {
   id: 'yozora-with-you', title: '夜空ウィズユー', artist: 'Hey!Mommy!',
+  reading: 'よぞらうぃずゆー', releaseDate: '2026-05-20',
   videoId: '5Z6C4Zhbkl0', bpm: 200, startTime: 3.5, chartId: 'yozora001', publicDifficulties: ['normal'],
 };
 /** Register additional songs here; routing and storage use the stable ID. */

@@ -1,5 +1,6 @@
 import './style.css';
 import './menu.css';
+import {isSongSort,loadSongSort,saveSongSort,sortSongs} from './song-sort';
 import { CUSTOM_CHART_KEY, EDITOR_KEY, loadChart, storeChart } from './editor-model';
 import { findSong, isPublicDifficulty, SONGS, songStorageKey, songUrl } from './songs';
 import type { Song } from './songs';
@@ -19,6 +20,9 @@ const list = document.getElementById('song-list')!;
 const search = document.getElementById('song-search') as HTMLInputElement;
 const searchToggle = document.getElementById('song-search-toggle') as HTMLButtonElement;
 const searchPanel = document.getElementById('song-search-panel')!;
+const sortSelect = document.getElementById('song-sort') as HTMLSelectElement;
+let sort = loadSongSort();
+sortSelect.value = sort;
 const notice = document.getElementById('menu-notice')!;
 const listeners = new AbortController();
 const menuSettings = mountMenuSettings();
@@ -42,7 +46,7 @@ function showNotice(text: string): void { notice.textContent = text; notice.hidd
 function render(): void {
   const focused = document.activeElement instanceof HTMLSelectElement ? document.activeElement.id : null;
   const query = search.value.trim().toLocaleLowerCase();
-  const songs = SONGS.filter(song => `${song.title} ${song.artist}`.toLocaleLowerCase().includes(query));
+  const songs = sortSongs(SONGS.filter(song => `${song.title} ${song.artist}`.toLocaleLowerCase().includes(query)),sort);
   list.replaceChildren();
   document.getElementById('song-count')!.textContent = `${songs.length}曲 / 全${SONGS.length}曲`;
   document.getElementById('song-empty')!.hidden = songs.length > 0;
@@ -117,6 +121,9 @@ function setSearchOpen(open: boolean): void {
 searchToggle.addEventListener('click', () => setSearchOpen(searchPanel.hidden), {signal:listeners.signal});
 search.addEventListener('keydown', event => {
   if (event.key === 'Escape') { event.preventDefault(); setSearchOpen(false); }
+}, {signal:listeners.signal});
+sortSelect.addEventListener('change', () => {
+  if (isSongSort(sortSelect.value)) { sort = sortSelect.value; saveSongSort(sort); render(); }
 }, {signal:listeners.signal});
 search.addEventListener('input', render, { signal: listeners.signal });
 window.addEventListener('pageshow', render, { signal: listeners.signal });
