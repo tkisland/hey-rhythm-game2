@@ -1,5 +1,6 @@
 import './style.css';
 import './menu.css';
+import './play-button.css';
 import {isSongSort,loadSongSort,saveSongSort,sortSongs} from './song-sort';
 import { CUSTOM_CHART_KEY, EDITOR_KEY, loadChart, storeChart } from './editor-model';
 import { findSong, isPublicDifficulty, SONGS, songStorageKey, songUrl } from './songs';
@@ -77,7 +78,7 @@ function render(): void {
     if(!__ADMIN__)actions.classList.add('player-difficulty-actions');
     actions.append(levelLabel);
     if (bundled || __ADMIN__) {
-      const play = node('a', 'song-play', __ADMIN__ ? bundled ? '収録譜面で遊ぶ' : '練習譜面で遊ぶ' : 'プレイ');
+      const play = node('a', 'song-play primary-play', __ADMIN__ ? bundled ? '収録譜面で遊ぶ' : '練習譜面で遊ぶ' : 'プレイ');
       play.href = __ADMIN__ ? songUrl(song, 'game', bundled ? 'bundled' : 'test',difficulty) : songUrl(song, 'game',false,difficulty);
       actions.append(play);
       if(!__ADMIN__){

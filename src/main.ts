@@ -5,6 +5,7 @@ import { playLane } from './engine';
 import './style.css';
 import './penlight.css';
 import './concert.css';
+import './play-button.css';
 import { LANE_COLORS } from './colors';
 import { bindDockLayout } from './layout';
 import { bindConcertVenue } from './concert-venue';
@@ -382,8 +383,15 @@ function setState(next: number): void {
   if (!failed) status.textContent = awaitingAudio ? 'ノーツ音の準備待ち ·「ゲームスタート」で開始' : clockStale ? '再生時刻の更新待ち · ノーツを停止中' : labels[next] ?? '「ゲームスタート」を押してライブ開始！';
   const playStart = element<HTMLButtonElement>('play-start');
   playStart.disabled = failed || next === -2;
-  playStart.textContent = awaitingAudio ? 'ゲームスタート' : next === PLAYER_STATE.PLAYING ? '♫ 音声' : next === PLAYER_STATE.PAUSED ? 'ゲーム再開' : 'ゲームスタート';
-  playStart.setAttribute('aria-label', next === PLAYER_STATE.PLAYING ? 'ノーツ音を有効にする' : playStart.textContent!);
+  const playLabel = awaitingAudio ? 'ゲームスタート' : next === PLAYER_STATE.PLAYING ? '♫ 音声' : next === PLAYER_STATE.PAUSED ? 'ゲーム再開' : 'ゲームスタート';
+  if (playStart.textContent !== playLabel) {
+    if (playLabel.startsWith('ゲーム')) {
+      const lead = document.createElement('span'), action = document.createElement('span');
+      lead.textContent = 'ゲーム'; action.textContent = playLabel.slice(3);
+      playStart.replaceChildren(lead, action);
+    } else playStart.textContent = playLabel;
+  }
+  playStart.setAttribute('aria-label', next === PLAYER_STATE.PLAYING ? 'ノーツ音を有効にする' : playLabel);
 }
 function showError(message: string): void {
   preparingPlayback = false; playRequest++;
