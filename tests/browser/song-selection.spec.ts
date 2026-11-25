@@ -1,3 +1,5 @@
+import {SONGS} from '../../src/songs';
+import {searchSongs} from './menu-search';
 import { test, expect } from '@playwright/test';
 import { api } from './mock-video';
 
@@ -14,7 +16,7 @@ test.beforeEach(async ({ page }) => {
 
 test('menu searches registered songs and loads no video before choosing a song', async ({ page }) => {
   const requests: string[] = []; page.on('request', request => { if (request.url().includes('youtube.com')) requests.push(request.url()); });
-  await page.goto('/'); await expect(page.locator('.song-card')).toHaveCount(3);
+  await page.goto('/'); await expect(page.locator('.song-card')).toHaveCount(SONGS.length+1);
   expect(requests).toEqual([]);
   for (const button of await page.locator('.song-saved').all()) await expect(button).toBeDisabled();
   const viewport = page.viewportSize()!;
@@ -26,10 +28,10 @@ test('menu searches registered songs and loads no video before choosing a song',
     for (const card of await page.locator('.song-card').all()) expect((await card.boundingBox())!.height).toBeLessThan(310);
   }
   await page.setViewportSize({ width: 320, height: 640 });
-  await page.locator('#song-search').fill('second'); await expect(page.locator('.song-card')).toHaveCount(1);
+  await searchSongs(page,'second'); await expect(page.locator('.song-card')).toHaveCount(1);
   await expect(page.locator('.song-name')).toHaveText(second.title);
-  await page.locator('#song-search').fill('no-match'); await expect(page.locator('#song-empty')).toBeVisible();
-  await page.locator('#song-search').fill('');
+  await searchSongs(page,'no-match'); await expect(page.locator('#song-empty')).toBeVisible();
+  await searchSongs(page,'');
   await page.locator('[data-song="second-song"] .song-play').click(); await expect(page.locator('#restart')).toBeEnabled();
   await expect(page.locator('#song-title')).toHaveText(second.title);
   expect(await page.evaluate(() => (window as any).testVideo.options.videoId)).toBe(second.videoId);
@@ -72,7 +74,7 @@ test('old custom links still work, while unknown song IDs return to selection wi
   await expect(page.locator('#chart-source')).toHaveValue('custom'); await expect(page.locator('#chart-info')).toContainText('1 NOTES');
   const requests: string[] = []; page.on('request', request => { if (request.url().includes('youtube.com')) requests.push(request.url()); });
   await page.goto('/game.html?song=missing'); await expect(page.locator('#menu-notice')).toContainText('見つかりません');
-  expect(requests).toEqual([]); await expect(page.locator('.song-card')).toHaveCount(3);
+  expect(requests).toEqual([]); await expect(page.locator('.song-card')).toHaveCount(SONGS.length+1);
   await page.goto('/editor.html?song=missing'); await expect(page.locator('#menu-notice')).toContainText('見つかりません'); expect(requests).toEqual([]);
 });
 

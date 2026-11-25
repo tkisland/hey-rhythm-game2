@@ -1,3 +1,4 @@
+import {searchSongs} from '../browser/menu-search';
 import {SONGS} from '../../src/songs';
 import {test,expect} from '@playwright/test';
 import {api} from '../browser/mock-video';
@@ -47,10 +48,10 @@ test('unpublished difficulty URLs cannot load YouTube or expose rankings',async(
 
 test('selects PLAYFUL ROMANTIC with the supplied video and 539-note normal chart',async({page})=>{
   await page.goto('/');await expect(page.locator('#song-count')).toHaveText(`${SONGS.length}曲 / 全${SONGS.length}曲`);
-  await page.locator('#song-search').fill('PLAYFUL ROMANTIC');
+  await searchSongs(page,'PLAYFUL ROMANTIC');
   const card=page.locator('[data-song="playful-romantic"]');
   await expect(page.locator('.song-card')).toHaveCount(1);
-  await expect(card.locator('.song-meta')).toHaveText('6 LANES · 98 → 195 → 196 BPM · 539 NOTES');
+  await expect(card.locator('.song-meta')).toHaveText('98 → 195 → 196 BPM · 539 NOTES');
   await expect(card.locator('.song-demo')).toHaveAttribute('href','./game.html?song=playful-romantic&mode=demo');
   await card.locator('.song-play').click();await expect(page.locator('#restart')).toBeEnabled();
   await expect(page).toHaveURL(/game.html\?song=playful-romantic$/);
@@ -62,9 +63,9 @@ test('selects PLAYFUL ROMANTIC with the supplied video and 539-note normal chart
 
 test('selects Happy Go Round with the supplied video and 677-note normal chart',async({page})=>{
   await page.goto('/');await expect(page.locator('#song-count')).toHaveText(`${SONGS.length}曲 / 全${SONGS.length}曲`);
-  await page.locator('#song-search').fill('Happy Go Round');const card=page.locator('[data-song="happy-go-round"]');
+  await searchSongs(page,'Happy Go Round');const card=page.locator('[data-song="happy-go-round"]');
   await expect(page.locator('.song-card')).toHaveCount(1);
-  await expect(card.locator('.song-meta')).toHaveText('6 LANES · 220 BPM · 677 NOTES');
+  await expect(card.locator('.song-meta')).toHaveText('220 BPM · 677 NOTES');
   await expect(card.locator('.song-demo')).toHaveAttribute('href','./game.html?song=happy-go-round&mode=demo');
   await card.locator('.song-play').click();await expect(page.locator('#restart')).toBeEnabled();
   await expect(page).toHaveURL(/game.html\?song=happy-go-round$/);
@@ -75,9 +76,9 @@ test('selects Happy Go Round with the supplied video and 677-note normal chart',
 
 test('selects POJI POJI GO with the supplied video and 782-note normal chart',async({page})=>{
   await page.goto('/');await expect(page.locator('#song-count')).toHaveText(`${SONGS.length}曲 / 全${SONGS.length}曲`);
-  await page.locator('#song-search').fill('POJI POJI GO');const card=page.locator('[data-song="poji-poji-go"]');
+  await searchSongs(page,'POJI POJI GO');const card=page.locator('[data-song="poji-poji-go"]');
   await expect(page.locator('.song-card')).toHaveCount(1);
-  await expect(card.locator('.song-meta')).toHaveText('6 LANES · 195 BPM · 782 NOTES');
+  await expect(card.locator('.song-meta')).toHaveText('195 BPM · 782 NOTES');
   await expect(card.locator('.song-demo')).toHaveAttribute('href','./game.html?song=poji-poji-go&mode=demo');
   await card.locator('.song-play').click();await expect(page.locator('#restart')).toBeEnabled();
   await expect(page).toHaveURL(/game.html\?song=poji-poji-go$/);
@@ -88,9 +89,9 @@ test('selects POJI POJI GO with the supplied video and 782-note normal chart',as
 
 test('selects Yozora With You with the supplied video and 499-note normal chart',async({page})=>{
   await page.goto('/');await expect(page.locator('#song-count')).toHaveText(`${SONGS.length}曲 / 全${SONGS.length}曲`);
-  await page.locator('#song-search').fill('夜空ウィズユー');const card=page.locator('[data-song="yozora-with-you"]');
+  await searchSongs(page,'夜空ウィズユー');const card=page.locator('[data-song="yozora-with-you"]');
   await expect(page.locator('.song-card')).toHaveCount(1);
-  await expect(card.locator('.song-meta')).toHaveText('6 LANES · 200 BPM · 499 NOTES');
+  await expect(card.locator('.song-meta')).toHaveText('200 BPM · 499 NOTES');
   await expect(card.locator('.song-demo')).toHaveAttribute('href','./game.html?song=yozora-with-you&mode=demo');
   await card.locator('.song-play').click();await expect(page.locator('#restart')).toBeEnabled();
   await expect(page).toHaveURL(/game.html\?song=yozora-with-you$/);
