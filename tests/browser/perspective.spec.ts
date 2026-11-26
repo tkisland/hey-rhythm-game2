@@ -65,7 +65,7 @@ test('outer held chord heads stay at the horizontal targets with a straight link
     let path: { x: number; y: number }[] = [], link: { x: number; y: number }[] = [];
     ctx.roundRect = function(...args) { heads.push({ x: args[0] + args[2] / 2, y: args[1] + args[3] / 2, width: args[2] }); return original.round(...args); };
     // Tail caps are solid lane-colored rectangles with the same size as note heads.
-    ctx.fillRect = function(...args) { if ((this.fillStyle === '#ff739c' || this.fillStyle === '#ffe779') && args[3] > 1 && args[2] > 5) tails.push({ y: args[1] + args[3] / 2, width: args[2] }); return original.fill(...args); };
+    ctx.fillRect = function(...args) { if ((this.fillStyle === '#ff98c7' || this.fillStyle === '#ffe38c') && args[3] > 1 && args[2] > 5) tails.push({ y: args[1] + args[3] / 2, width: args[2] }); return original.fill(...args); };
     ctx.moveTo = (x, y) => { path = [{ x, y }]; original.move(x, y); };
     ctx.lineTo = (x, y) => { path.push({ x, y }); original.line(x, y); };
     ctx.bezierCurveTo = (a, b, c, d, x, y) => { path.push({ x: a, y: b }, { x: c, y: d }, { x, y }); original.curve(a, b, c, d, x, y); };

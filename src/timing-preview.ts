@@ -1,7 +1,7 @@
 import { playbackSession } from './audio-session';
 import './timing-preview.css';
 import './penlight.css';
-import { LANE_COLORS } from './colors';
+import { LANE_COLORS, setLaneColors } from './colors';
 import type { Chart } from './chart';
 import { GameEngine, judge } from './engine';
 import { bindInput, KEYS } from './input';
@@ -57,8 +57,8 @@ export function createTimingPreview(callbacks: Callbacks) {
   const canvas = dialog.querySelector('canvas')!;
   const pads = dialog.querySelector('.timing-pads')!;
   const targets: HTMLElement[] = [], labels: HTMLOutputElement[] = [];
-  const buttons = LANE_COLORS.map((color, lane) => {
-    const target = document.createElement('div'); target.className = 'timing-target'; target.style.setProperty('--lane', color);
+  const buttons = LANE_COLORS.map((_, lane) => {
+    const target = document.createElement('div'); target.className = 'timing-target'; setLaneColors(target, lane);
     const receptor = document.createElement('i'); receptor.className = 'lane-receptor'; receptor.setAttribute('aria-hidden', 'true');
     const button = document.createElement('button'); button.type = 'button'; button.className = 'timing-pad'; button.textContent = KEYS[lane].slice(-1);
     button.setAttribute('aria-label', `練習レーン${lane + 1} ${KEYS[lane].slice(-1)}`); decoratePenlight(button);

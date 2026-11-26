@@ -1,3 +1,11 @@
+/* A song keeps its accent while sorting or switching to the play screen. */
+.song-card,.game-page { --song-accent:var(--pink); }
+:is(.song-card,.game-page)[data-song="happy-go-round"] { --song-accent:var(--lime); }
+:is(.song-card,.game-page)[data-song="biscuit-case"] { --song-accent:var(--white); }
+:is(.song-card,.game-page)[data-song="playful-romantic"] { --song-accent:var(--red); }
+:is(.song-card,.game-page)[data-song="poji-poji-go"] { --song-accent:var(--purple); }
+:is(.song-card,.game-page)[data-song="yozora-with-you"] { --song-accent:var(--yellow); }
+
 /* Shared primary action for selecting a song and starting its live performance. */
 .song-actions .primary-play,
 .game-page .media-controls .primary-play {
@@ -5,10 +13,10 @@
   align-items:center;
   justify-content:center;
   min-height:48px;
-  border:1px solid #d45490;
+  border:1px solid var(--song-accent);
   border-radius:6px;
-  background:#9c285b;
-  color:#fff6fb;
+  background:color-mix(in srgb,var(--song-accent) 23%,var(--surface-inset));
+  color:var(--song-accent);
   font-weight:600;
   letter-spacing:.04em;
   text-align:center;
@@ -25,18 +33,16 @@
 @media (hover:hover) {
   .song-actions .primary-play:hover,
   .game-page .media-controls .primary-play:hover:not(:disabled) {
-    background:#b3326b;
-    border-color:#f294bd;
+    background:color-mix(in srgb,var(--song-accent) 29%,var(--surface-inset));
   }
 }
 .song-actions .primary-play:active,
 .game-page .media-controls .primary-play:active:not(:disabled) {
-  background:#7e204b;
-  border-color:#ba4e81;
+  background:color-mix(in srgb,var(--song-accent) 17%,var(--surface-inset));
 }
 .song-actions .primary-play:focus-visible,
-.game-page .media-controls .primary-play:focus-visible { outline:2px solid #ffd4e7; outline-offset:3px; }
-.game-page .media-controls .primary-play:disabled { background:#342333; border-color:#665066; color:#b7a6b7; opacity:.7; }
+.game-page .media-controls .primary-play:focus-visible { outline:2px solid var(--yellow); outline-offset:3px; }
+.game-page .media-controls .primary-play:disabled { background:var(--surface-inset); border-color:var(--border); color:var(--muted); opacity:.7; }
 @media (prefers-reduced-motion:reduce) {
   .song-actions .primary-play,.game-page .media-controls .primary-play { transition:none; }
 }

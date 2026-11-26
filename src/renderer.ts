@@ -4,7 +4,7 @@ import { laneAt } from './chart';
 import { slideRoute } from './slide-route';
 import { responseMark } from './response-art';
 import { drawStage, drawVenue } from './stage-art';
-import { LANE_COLORS } from './colors';
+import { LANE_COLORS, LANE_FLASH_COLORS, LANE_SHADOW_COLORS } from './colors';
 import { chordCurve, chordGroups, playNoteThickness } from './note-display';
 import type { Chart, ChartNote } from './chart';
 import { beatsBetween } from './tempo';
@@ -136,8 +136,12 @@ export class Renderer {
       const edges = [project(field, lane, 0, -.49), project(field, lane, 0, +.49),
         project(field, lane, 1, +.49), project(field, lane, 1, -.49)];
       const age = now - (this.flashes.get(lane)?.time ?? -1000);
-      const alpha = this.pressed.has(lane) ? 0.10 : Math.max(0, 1 - age / 220) * 0.20;
-      if (alpha > 0) { ctx.globalAlpha = alpha; ctx.fillStyle = color; this.polygon(edges); ctx.globalAlpha = 1; }
+      const alpha = Math.max(0, 1 - age / 220) * 0.20;
+      if (this.pressed.has(lane) || alpha > 0) {
+        ctx.globalAlpha = Math.max(alpha, this.pressed.has(lane) ? 0.10 : 0);
+        ctx.fillStyle = alpha > 0 ? LANE_FLASH_COLORS[lane] : LANE_SHADOW_COLORS[lane];
+        this.polygon(edges); ctx.globalAlpha = 1;
+      }
       ctx.fillStyle = color+'80';
       for (const band of this.bands[lane]) {
         ctx.globalAlpha = band.kind === 'PERFECT' ? 0.12 : 0.08;
@@ -252,7 +256,7 @@ export class Renderer {
         const label = nextLane === undefined ? '終点で離す' : nextLane < lane ? 'オシ変 ←' : 'オシ変 →';
         ctx.font = '10px sans-serif'; ctx.textAlign = 'center'; ctx.fillStyle = '#fff'; ctx.fillText(label, head.x, head.y - Math.max(8, thickness)); ctx.textAlign = 'start';
       }
-      ctx.shadowBlur = 12; ctx.shadowColor = color; ctx.fillStyle = color;
+      ctx.shadowBlur = 12; ctx.shadowColor = LANE_SHADOW_COLORS[lane]; ctx.fillStyle = color;
       ctx.beginPath(); ctx.roundRect(head.x - head.width / 2, head.y - thickness / 2, head.width, thickness, thickness / 2); ctx.fill(); ctx.shadowBlur = 0;
       ctx.strokeStyle = '#ffffffe0'; ctx.lineWidth = 1.3; ctx.stroke(); ctx.lineWidth = 1;
       if (thickness >= 5) {
@@ -346,13 +350,13 @@ export class Renderer {
     ctx.save();
     for (let i = 0; i < this.boxTrail.length; i++) {
       const hit = this.boxTrail[i], target = field.targets[hit.lane];
-      const p = (now - hit.time) / duration, color = LANE_COLORS[hit.lane];
+      const p = (now - hit.time) / duration, color = LANE_FLASH_COLORS[hit.lane];
       ctx.globalAlpha = (1 - p) * .9; ctx.fillStyle = color; ctx.strokeStyle = color;
       const y = target.y - 18 - (reduced ? 0 : p * 16);
       if (!reduced && i > 1) {
         const previous = this.boxTrail[i - 2], from = field.targets[previous.lane];
         const gradient = ctx.createLinearGradient(from.x, y, target.x, y);
-        gradient.addColorStop(0, LANE_COLORS[previous.lane]); gradient.addColorStop(1, color);
+        gradient.addColorStop(0, LANE_FLASH_COLORS[previous.lane]); gradient.addColorStop(1, color);
         ctx.strokeStyle = gradient; ctx.lineWidth = 2;
         ctx.beginPath(); ctx.moveTo(from.x, y); ctx.quadraticCurveTo((from.x + target.x) / 2, y - 12, target.x, y); ctx.stroke();
       }
@@ -406,7 +410,7 @@ export class Renderer {
       const age = now - flash.time;
       if (age >= duration) { this.flashes.delete(lane); continue; }
       if (age < 0) continue;
-      const target = field.targets[lane], color = LANE_COLORS[lane];
+      const target = field.targets[lane], color = LANE_FLASH_COLORS[lane];
       const strength = flash.kind === 'PERFECT' ? 1 : flash.kind === 'GREAT' ? 0.8 : 0.6;
       const p = age / duration, fade = (1 - p) ** 2 * strength;
       const spread = reduced ? 0 : 1 - (1 - p) ** 3;

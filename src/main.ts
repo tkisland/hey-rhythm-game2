@@ -6,7 +6,7 @@ import './style.css';
 import './penlight.css';
 import './concert.css';
 import './play-button.css';
-import { LANE_COLORS } from './colors';
+import { setLaneColors } from './colors';
 import { bindDockLayout } from './layout';
 import { bindConcertVenue } from './concert-venue';
 import { bindTargets } from './field-geometry';
@@ -54,6 +54,7 @@ else void startGame(song,difficulty).catch(() => {
   element('stage-hint').querySelector('strong')!.textContent = '譜面を読み込めませんでした';
 });
 async function startGame(song: Song, difficulty:Difficulty): Promise<void> {
+document.body.dataset.song = song.id;
 let online: CloudChart | null = null, previewUid: string | null = null;
 if (!__ADMIN__) {
   element('player-status').textContent = '譜面を読み込んでいます…';
@@ -119,8 +120,8 @@ const controlStatus = element('control-status');
 const buttons = [...document.querySelectorAll<HTMLButtonElement>('.lane-button')];
 buttons.forEach((button, lane) => {
   decoratePenlight(button);
-  button.style.setProperty('--lane', LANE_COLORS[lane]);
-  button.parentElement!.style.setProperty('--lane', LANE_COLORS[lane]);
+  setLaneColors(button, lane);
+  setLaneColors(button.parentElement!, lane);
 });
 const unbindTargets = bindTargets(element<HTMLCanvasElement>('game-canvas'), buttons.map(button => button.parentElement!));
 const soundWarning = 'ノーツ音を有効にできません。「ゲームスタート」で再試行してください。';
@@ -262,6 +263,7 @@ function showResults(): void {
   counts.replaceChildren();
   for (const [name, count] of Object.entries(engine.counts)) {
     const item = document.createElement('div');
+    item.dataset.kind = name;
     const label = document.createElement('span'), value = document.createElement('strong');
     label.textContent = name; value.textContent = String(count);
     item.append(label, value); counts.append(item);
