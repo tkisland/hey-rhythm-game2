@@ -6,7 +6,7 @@
 .penlight-art::before {
   top:0; height:72%;
   border:1px solid color-mix(in srgb,var(--lane) 84%,white);
-  border-radius:5px 5px 0 0;
+  border-radius:3px 3px 0 0;
   background:linear-gradient(90deg,
     color-mix(in srgb,var(--lane) 82%,var(--lane-shadow)),
     color-mix(in srgb,var(--lane) 82%,white) 46%,
@@ -14,7 +14,13 @@
   box-shadow:0 0 4px var(--lane),0 0 9px color-mix(in srgb,var(--lane) 38%,transparent),
     inset 0 0 3px color-mix(in srgb,var(--lane) 78%,white);
 }
-.penlight-art::after { top:72%; height:28%; border:1px solid #c6c4df; border-top:2px solid var(--lane); border-radius:0 0 3px 3px; background:repeating-linear-gradient(0deg,#0000 0 4px,#b8b3cb80 4px 5px),linear-gradient(90deg,#e8e6f0,#fff,#e8e6f0); }
+.penlight-art::after { top:72%; height:28%; border:1px solid #c6c4df; border-radius:0 0 3px 3px; background:repeating-linear-gradient(0deg,#0000 0 4px,#b8b3cb80 4px 5px),linear-gradient(90deg,#e8e6f0,#fff,#e8e6f0); }
+.penlight-ring {
+  position:absolute; z-index:1; inset-inline:0; top:72%;
+  height:clamp(4px,10%,7px); transform:translateY(-50%);
+  border:1px solid #797d88; border-radius:2px;
+  background:linear-gradient(90deg,#9196a1,#eef0f5 42%,#a4a9b3 72%,#777d89);
+}
 .game .penlight-pad { justify-content:flex-end; padding-top:0; padding-bottom:4px; }
 .game .penlight-pad::after { display:none; }
 .game .penlight-pad .penlight-key,.tutorial-pad .penlight-key,.preview-lanes .penlight-key { position:static; font-size:10px; line-height:12px; color:var(--lane); }

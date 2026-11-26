@@ -8,5 +8,7 @@ export function decoratePenlight(pad: HTMLElement): void {
   }
   key.classList.add('penlight-key');
   const art = document.createElement('i'); art.className = 'penlight-art'; art.setAttribute('aria-hidden', 'true');
+  const ring = document.createElement('i'); ring.className = 'penlight-ring';
+  art.append(ring);
   pad.prepend(art); pad.classList.add('penlight-pad');
 }
