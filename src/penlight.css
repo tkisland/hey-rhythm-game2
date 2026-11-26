@@ -2,8 +2,9 @@
 .penlight-pad .penlight-key { font-size:10px; line-height:12px; }
 .penlight-art,.penlight-key { pointer-events:none; user-select:none; }
 .penlight-art { position:absolute; top:5px; left:50%; width:18px; height:clamp(30px,calc(100% - 24px),50px); transform:translateX(-50%); color:var(--lane); }
-.penlight-art::before { content:''; position:absolute; top:0; left:2px; width:14px; height:72%; border:1px solid #ffffffdf; border-radius:5px 5px 3px 3px; background:linear-gradient(90deg,var(--lane),#fffffff2 46%,var(--lane)); box-shadow:0 0 5px var(--lane),0 0 13px color-mix(in srgb,var(--lane) 65%,transparent),inset 0 0 4px #fff; }
-.penlight-art::after { content:''; position:absolute; top:72%; left:5px; width:8px; height:28%; border:1px solid #c6c4df; border-top:2px solid var(--lane); border-radius:0 0 3px 3px; background:repeating-linear-gradient(0deg,#0000 0 4px,#c6c4df80 4px 5px),linear-gradient(90deg,#111221,#69677f,#111221); }
+.penlight-art::before,.penlight-art::after { content:''; position:absolute; inset-inline:1px; }
+.penlight-art::before { top:0; height:72%; border:1px solid #ffffffdf; border-radius:5px 5px 0 0; background:linear-gradient(90deg,var(--lane),#fffffff2 46%,var(--lane)); box-shadow:0 0 5px var(--lane),0 0 13px color-mix(in srgb,var(--lane) 65%,transparent),inset 0 0 4px #fff; }
+.penlight-art::after { top:72%; height:28%; border:1px solid #c6c4df; border-top:2px solid var(--lane); border-radius:0 0 3px 3px; background:repeating-linear-gradient(0deg,#0000 0 4px,#b8b3cb80 4px 5px),linear-gradient(90deg,#e8e6f0,#fff,#e8e6f0); }
 .game .penlight-pad { justify-content:flex-end; padding-top:0; padding-bottom:4px; }
 .game .penlight-pad::after { display:none; }
 .game .penlight-pad .penlight-key,.tutorial-pad .penlight-key,.preview-lanes .penlight-key { position:static; font-size:10px; line-height:12px; color:var(--lane); }
