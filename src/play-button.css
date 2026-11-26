@@ -5,10 +5,10 @@
   align-items:center;
   justify-content:center;
   min-height:48px;
-  border:1px solid #d45490;
+  border:1px solid var(--accent);
   border-radius:6px;
-  background:#9c285b;
-  color:#fff6fb;
+  background:var(--action-bg);
+  color:var(--action-text);
   font-weight:600;
   letter-spacing:.04em;
   text-align:center;
@@ -25,18 +25,18 @@
 @media (hover:hover) {
   .song-actions .primary-play:hover,
   .game-page .media-controls .primary-play:hover:not(:disabled) {
-    background:#b3326b;
-    border-color:#f294bd;
+    background:var(--action-hover);
+    border-color:var(--warm-sand);
   }
 }
 .song-actions .primary-play:active,
 .game-page .media-controls .primary-play:active:not(:disabled) {
-  background:#7e204b;
-  border-color:#ba4e81;
+  background:var(--action-active);
+  border-color:var(--warm-sand);
 }
 .song-actions .primary-play:focus-visible,
-.game-page .media-controls .primary-play:focus-visible { outline:2px solid #ffd4e7; outline-offset:3px; }
-.game-page .media-controls .primary-play:disabled { background:#342333; border-color:#665066; color:#b7a6b7; opacity:.7; }
+.game-page .media-controls .primary-play:focus-visible { outline:2px solid var(--warm-sand); outline-offset:3px; }
+.game-page .media-controls .primary-play:disabled { background:var(--surface-inset); border-color:var(--border); color:var(--muted); opacity:.7; }
 @media (prefers-reduced-motion:reduce) {
   .song-actions .primary-play,.game-page .media-controls .primary-play { transition:none; }
 }
