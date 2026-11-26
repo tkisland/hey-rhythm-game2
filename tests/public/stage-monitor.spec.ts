@@ -32,7 +32,8 @@ test('opening settings and hitting the penlights leaves the monitor and runway f
   await expect(page.locator('.playback-details')).toHaveCount(0);
   const video=await page.locator('iframe').boundingBox(),field=await page.locator('#game-canvas').boundingBox();
   await page.locator('#settings-toggle').click();
-  await expect(page.locator('.playback-info a')).toBeVisible();
+  await expect(page.locator('#flow-calibrate')).toBeVisible();
+  await expect(page.locator('#settings-panel')).not.toContainText(/再生情報|このサイトについて/);
   expect(await page.locator('iframe').boundingBox()).toEqual(video);
   expect(await page.locator('#game-canvas').boundingBox()).toEqual(field);
   await page.locator('#settings-close').click();

@@ -36,7 +36,7 @@ test('menu searches registered songs and loads no video before choosing a song',
   await expect(page.locator('#song-title')).toHaveText(second.title);
   expect(await page.evaluate(() => (window as any).testVideo.options.videoId)).toBe(second.videoId);
   await expect(page.locator('#chart-info')).toContainText('120 BPM · 8.0秒');
-  await expect(page.locator('.playback-info a')).toHaveAttribute('href', `https://www.youtube.com/watch?v=${second.videoId}`);
+  await expect(page.locator('#player-video-link')).toHaveAttribute('href', `https://www.youtube.com/watch?v=${second.videoId}`);
   const logo = (await page.locator('.wordmark').boundingBox())!, actions = (await page.locator('.header-actions').boundingBox())!;
   expect(logo.x + logo.width).toBeLessThanOrEqual(actions.x);
   expect(logo.height).toBeLessThan(35); expect(actions.height).toBeLessThan(40);

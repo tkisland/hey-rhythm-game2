@@ -24,16 +24,16 @@ test('compact video keeps its native controls usable while the field starts high
       return video.width>=200&&video.height>=200&&center===iframe&&separate&&pads&&
         inMonitor&&field.top<=(video.bottom<=field.top?video.bottom+4.5:64)&&field.bottom<=innerHeight+.5&&document.documentElement.scrollWidth<=innerWidth;
     })).toBe(true);
-    await expect(page.locator('.playback-info')).not.toBeVisible();
+    await expect(page.locator('#player-error')).toBeHidden();
   }
 });
-test('video status, external link and settings can be opened without pushing the field down',async({page})=>{
+test('settings keep playback status and the external link outside the panel without moving the field',async({page})=>{
   const before=await page.locator('#game-canvas').boundingBox();
   await page.evaluate(()=>(window as any).testVideo.setState(0));
-  await expect(page.locator('.playback-info')).not.toBeVisible();
+  await expect(page.locator('#player-error')).toBeHidden();
   await page.locator('#settings-toggle').click();
   await expect(page.locator('#player-status')).toHaveText('動画の再生が終了しました');
-  await expect(page.locator('.playback-info a')).toBeVisible();
+  await expect(page.locator('#settings-panel #player-status,#settings-panel #player-video-link')).toHaveCount(0);
   expect(await page.locator('#game-canvas').boundingBox()).toEqual(before);
   await expect(page.locator('#flow-calibrate')).toBeVisible();
   expect(await page.locator('#game-canvas').boundingBox()).toEqual(before);

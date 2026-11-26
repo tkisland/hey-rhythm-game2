@@ -91,9 +91,9 @@
           </div></div>
         </section>
         </div>
-        <div id="player-error" class="error-box" role="alert" hidden></div>
+        <div id="player-error" class="error-box" role="alert" hidden><span id="player-error-message"></span> <a id="player-video-link" target="_blank" rel="noopener">YouTubeで公式動画を開く ↗</a></div>
         <section id="settings-panel" class="panel settings-panel" aria-label="ゲーム設定" hidden>
-          <div class="panel-heading"><h2>プレイ設定</h2><button id="settings-close" class="text-button">閉じる ×</button></div>
+          <div class="panel-heading"><h2>設定</h2><button id="settings-close" class="text-button" type="button">閉じる</button></div>
           <!-- admin:start --><label class="chart-choice">管理者用の試遊譜面<select id="chart-source"><option value="bundled">収録譜面</option><option value="test">動作確認用の仮譜面</option><option value="custom">管理者の下書き譜面</option></select></label><!-- admin:end -->
           <!-- admin:start -->
           <p class="field-help">通常のタップ・長オシの始点はノーツの中心で判定します。薄い帯がGOOD（±160ms）、中間がGREAT（±100ms）、濃い帯がPERFECT（±50ms）。</p>
@@ -105,11 +105,6 @@
           <button id="auto-calibrate" class="restart-button">基準音で自動調整</button>
           <p class="field-help">一定間隔の音に合わせてタップし、入力補正の目安を測定します。測定後に結果を確認して適用できます。</p>
           <!-- admin:end -->
-          <button id="song-calibrate" class="restart-button">① 動画とノーツを合わせる</button>
-          <p class="field-help">ノーツが曲より早い・遅い → 専用動画の光・音と番号付きノーツを合わせます。まずはこちら。</p>
-          <button id="flow-calibrate" class="restart-button">② タップ判定を調整</button>
-          <p class="field-help">曲とノーツは合うのに判定が早い・遅い → 10ノーツで入力補正を測定。ノーツ位置は変えません。</p>
-          <p class="field-help">基準音と練習ノーツに合わせて押すと、ずれを自動で補正します。ノーツの到達と判定にその場で反映し、「適用」で保存します。</p>
           <!-- admin:start -->
           <label for="input-offset">入力の遅れ補正 <output id="input-offset-value">0 ms</output></label>
           <input id="input-offset" type="range" min="-300" max="300" step="5" value="0" />
@@ -118,22 +113,6 @@
           <p id="chart-settings-help" class="field-help">BPM・開始時刻は次のリスタートから反映されます。</p>
           <label class="check-label"><input id="sound-toggle" type="checkbox" checked /> タップ音</label>
           <!-- admin:end -->
-          <label for="travel">ノーツの表示時間 <output id="travel-value">2.5秒</output></label>
-          <input id="travel" type="range" min="1" max="4" step="0.25" value="2.5" aria-describedby="travel-help" />
-          <p id="travel-help" class="field-help">出現から判定ラインまでの時間です。長いほどゆっくり流れます。曲とのタイミングや判定の補正は変わりません。</p>
-          <label for="sound-volume">ノーツ音の音量 <output id="sound-volume-value">70%</output></label>
-          <input id="sound-volume" type="range" min="0" max="100" step="5" value="70" />
-          <p id="sound-status" class="field-help">タップ時や長オシ中のノーツ音の音量です。0%で消音になります。</p>
-          <div class="tap-sound-settings">
-            <label for="tap-sound">タップ音</label>
-            <select id="tap-sound">
-              <option value="sparkle">キラッ</option>
-              <option value="click">クリック</option>
-              <option value="cymbal" selected>シンバル</option>
-              <option value="clap">ハンドクラップ</option>
-            </select>
-            <button id="sound-test" class="restart-button" type="button">タップ音を試す</button>
-          </div>
           <!-- admin:start -->
           <label for="sound-delay">タップ音の追加遅延 <output id="sound-delay-value">0 ms</output></label>
           <input id="sound-delay" type="range" min="0" max="300" step="5" value="0" />
@@ -141,16 +120,11 @@
           <div class="game-toolbar"><button id="timing-reset" class="text-button">入力補正・音の遅延を0に戻す</button></div>
           <label class="check-label"><input id="debug-toggle" type="checkbox" /> デバッグ表示</label>
           <!-- admin:end -->
-          <p id="storage-status" class="field-help">設定はこのブラウザに保存されます。</p>
-          <section class="playback-settings" aria-labelledby="playback-heading">
-            <h3 id="playback-heading">再生情報</h3>
-            <div class="playback-info"><span class="status-dot" id="status-dot"></span><p id="player-status" role="status">YouTubeプレーヤーを読み込み中…</p><a href="https://www.youtube.com/watch?v=pJDfWpZ7CI4" target="_blank" rel="noopener">YouTube ↗</a></div>
-            <p id="game-notice" class="game-notice" role="status"></p>
-            <p id="chart-info" hidden>譜面を読み込み中…</p>
-            <h3>このサイトについて</h3>
-            <p class="field-help">Hey!Mommy! 非公式ファンメイドのリズムゲームです。音声・映像はYouTube公式プレーヤーで再生します。</p>
-          </section>
+          <!-- player-settings:controls -->
         </section>
+        <p id="player-status" class="game-player-status" role="status">YouTubeプレーヤーを読み込み中…</p>
+        <p id="game-notice" class="game-notice" role="status"></p>
+        <p id="chart-info" hidden>譜面を読み込み中…</p>
         <section id="result" class="panel result" aria-label="プレイ結果" tabindex="-1" hidden>
           <div class="panel-heading"><div><p class="eyebrow">LIVE COMPLETE</p><h2 id="result-message">LIVE COMPLETE</h2></div><button id="result-close" class="text-button">閉じる ×</button></div>
           <p id="result-difficulty" class="difficulty-badge"></p><p id="result-demo-note" class="field-help" hidden>見本プレイの参考スコアです。ランキング登録・X共有はできません。</p>
