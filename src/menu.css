@@ -68,3 +68,19 @@
 #song-sort { min-height:44px; min-width:0; max-width:100%; border:1px solid var(--border); border-radius:8px; padding:8px 5px; background:var(--surface-inset); color:var(--text); font-size:11px; }
 #song-count,.search-toggle { flex-shrink:0; }
 @media(max-width:360px) { .song-sort-choice { flex-direction:column; align-items:flex-start; gap:3px; font-size:10px; } }
+
+.song-spotlight { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin:0 0 14px; }
+.spotlight-card {
+  min-width:0; min-height:62px; display:flex; align-items:center; gap:8px;
+  padding:8px 10px; border:1px solid var(--border); border-inline-start:3px solid var(--lime);
+  border-radius:9px; background:var(--surface); color:var(--text); text-align:start; text-decoration:none;
+}
+.spotlight-card:has(+ [hidden]),[hidden] + .spotlight-card { grid-column:1 / -1; }
+.spotlight-card:hover { border-color:var(--lime); background:var(--surface-raised); }
+.spotlight-card strong,.spotlight-card small { display:block; overflow-wrap:anywhere; }
+.spotlight-card strong { font-size:13px; line-height:1.35; }
+.spotlight-card small { color:var(--muted); font-size:10px; }
+.spotlight-card .daily-song-copy small { color:var(--lime); margin-bottom:3px; }
+.spotlight-arrow { flex:none; margin-inline-start:auto; color:var(--lime); font-size:18px; line-height:1; }
+.spotlight-card .song-art { flex:0 0 clamp(32px,10vw,64px); margin:0; }
+.spotlight-card .cover-fallback { font-size:17px; }
