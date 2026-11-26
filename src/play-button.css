@@ -5,7 +5,7 @@
   align-items:center;
   justify-content:center;
   min-height:48px;
-  border:1px solid var(--accent);
+  border:1px solid var(--pink);
   border-radius:6px;
   background:var(--action-bg);
   color:var(--action-text);
@@ -26,16 +26,16 @@
   .song-actions .primary-play:hover,
   .game-page .media-controls .primary-play:hover:not(:disabled) {
     background:var(--action-hover);
-    border-color:var(--warm-sand);
+    border-color:var(--pink);
   }
 }
 .song-actions .primary-play:active,
 .game-page .media-controls .primary-play:active:not(:disabled) {
   background:var(--action-active);
-  border-color:var(--warm-sand);
+  border-color:var(--pink);
 }
 .song-actions .primary-play:focus-visible,
-.game-page .media-controls .primary-play:focus-visible { outline:2px solid var(--warm-sand); outline-offset:3px; }
+.game-page .media-controls .primary-play:focus-visible { outline:2px solid var(--yellow); outline-offset:3px; }
 .game-page .media-controls .primary-play:disabled { background:var(--surface-inset); border-color:var(--border); color:var(--muted); opacity:.7; }
 @media (prefers-reduced-motion:reduce) {
   .song-actions .primary-play,.game-page .media-controls .primary-play { transition:none; }

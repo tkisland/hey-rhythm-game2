@@ -30,7 +30,7 @@
 }
 .ranking-form #ranking-submit { background:var(--action-bg); color:var(--action-text); }
 .ranking-form button:disabled { opacity:.5; cursor:default; }
-.ranking-form button:focus-visible { outline:2px solid var(--warm-sand); outline-offset:-3px; }
+.ranking-form button:focus-visible { outline:2px solid var(--yellow); outline-offset:-3px; }
 #ranking-panel-status { margin:0; }
 #ranking-panel-status:empty { display:none; }
 .ranking-status,.ranking-note { font-size:11px; line-height:1.8; color:var(--muted); overflow-wrap:anywhere; }

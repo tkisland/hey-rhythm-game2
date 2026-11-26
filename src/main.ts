@@ -262,6 +262,7 @@ function showResults(): void {
   counts.replaceChildren();
   for (const [name, count] of Object.entries(engine.counts)) {
     const item = document.createElement('div');
+    item.dataset.kind = name;
     const label = document.createElement('span'), value = document.createElement('strong');
     label.textContent = name; value.textContent = String(count);
     item.append(label, value); counts.append(item);

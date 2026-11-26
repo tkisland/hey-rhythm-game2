@@ -4,7 +4,7 @@
 .calibration-dialog p { line-height: 1.65; }
 .calibration-dialog button { border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; color: inherit; background: var(--surface-raised); cursor: pointer; font: inherit; }
 .calibration-dialog button:disabled { opacity: .45; cursor: default; }
-.calibration-dialog button:focus-visible { outline: 3px solid var(--warm-sand); outline-offset: 3px; }
+.calibration-dialog button:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
 .calibration-dialog .calibration-tap { display: block; width: 100%; min-height: 90px; margin: 16px 0; background: var(--surface-inset); border-color: var(--accent); touch-action: none; user-select: none; -webkit-user-select: none; }
 .calibration-dialog .calibration-tap:active { background: var(--surface-raised); }
 .calibration-volume { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
