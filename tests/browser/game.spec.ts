@@ -103,7 +103,7 @@ test('IFrame errors stop the game and retain the official video link', async ({ 
   await expect(page.locator('#restart')).toBeDisabled();
   await page.keyboard.press('s');
   await expect(page.locator('#score')).toHaveText('0');
-  await expect(page.locator('.playback-info a')).toHaveAttribute('href', 'https://www.youtube.com/watch?v=pJDfWpZ7CI4');
+  await expect(page.locator('#player-video-link')).toHaveAttribute('href', 'https://www.youtube.com/watch?v=pJDfWpZ7CI4');
 });
 
 test('video time moves the canvas, overdue notes MISS once, and pause retains judgement', async ({ page }) => {

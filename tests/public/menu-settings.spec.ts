@@ -10,7 +10,7 @@ test('menu volume is shared with the tutorial and game, including mute and reloa
   await page.goto('/');await page.locator('#settings-toggle').click();
   const settings=page.locator('#settings-panel');await expect(settings).toBeVisible();
   await expect(settings.locator('input')).toHaveCount(2);
-  await expect(settings.locator('button:not(#settings-close)')).toHaveCount(2);
+  await expect(settings.locator('button:not(#settings-close)')).toHaveCount(3);
   await settings.getByLabel('ノーツ音の音量').fill('35');
   await expect(page.locator('#sound-volume-value')).toHaveText('35%');
   await page.locator('#settings-close').click();await expect(page.locator('#settings-toggle')).toBeFocused();
@@ -82,4 +82,31 @@ test('travel time persists between menu and game without changing calibration or
   await page.keyboard.press('l');await expect(page.locator('#judgement-5 .judgement-label')).toHaveText('PERFECT');
   await expect(page.locator('#score')).toHaveText('1,968');
   await page.goto('/');await page.locator('#settings-toggle').click();await expect(page.locator('#travel')).toHaveValue('1.25');
+});
+
+test('menu and game show the same settings and preview the saved tap sound', async ({page}) => {
+  await page.addInitScript(()=>{
+    const samples:number[]=[];
+    Object.assign(window,{previewSamples:samples});
+    const start=AudioBufferSourceNode.prototype.start;
+    AudioBufferSourceNode.prototype.start=function(...args){
+      if(this.buffer)samples.push(this.buffer.length);
+      return start.apply(this,args);
+    };
+  });
+  await page.goto('/');
+  await page.locator('#settings-toggle').click();
+  const panel=page.locator('#settings-panel');
+  const controls=()=>panel.locator('button, input, select').evaluateAll(nodes=>nodes.map(node=>node.id));
+  const menuControls=await controls();
+  await expect(panel).not.toContainText(/再生情報|このサイトについて/);
+  await page.getByLabel('タップ音',{exact:true}).selectOption('click');
+  await page.getByRole('button',{name:'タップ音を試す'}).click();
+  await expect.poll(()=>page.evaluate(()=>(window as Window & {previewSamples?:number[]}).previewSamples)).toEqual([2640]);
+  await page.goto('/game.html');
+  await expect(page.locator('#restart')).toBeEnabled();
+  await page.locator('#settings-toggle').click();
+  expect(await controls()).toEqual(menuControls);
+  await expect(panel).not.toContainText(/再生情報|このサイトについて/);
+  await expect(page.getByLabel('タップ音',{exact:true})).toHaveValue('click');
 });

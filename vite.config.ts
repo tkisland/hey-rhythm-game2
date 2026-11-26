@@ -10,6 +10,7 @@ export default defineConfig(({ mode }) => {
   const cloudTest = mode === 'cloud-test';
   const cloud = parseCloudConfig(cloudTest ? {apiKey:'demo-key', authDomain:'demo-hey-rtm.firebaseapp.com', projectId:'demo-hey-rtm', appId:'1:123:web:demo'} : env.VITE_FIREBASE_CONFIG);
   const template = readFileSync('src/editor-template.html', 'utf8');
+  const playerSettings = readFileSync('src/player-settings-controls.html', 'utf8');
   return {
     base: './',
     appType: 'mpa',
@@ -18,7 +19,7 @@ export default defineConfig(({ mode }) => {
     plugins: [{
       name: 'separate-player-and-admin',
       transformIndexHtml(html) {
-        html = html.replace('<!-- editor:template -->', template);
+        html = html.replace('<!-- editor:template -->', template).replace('<!-- player-settings:controls -->', playerSettings);
         if (pages) {
           html = html.replace('<div id="admin-session"', '<p id="pages-admin-warning" style="padding:10px 14px;background:#392c1c;color:#fff0cd;font-size:13px;line-height:1.8">本番と同じFirebaseを使う場合、下書きと公開譜面は共通です。「公開する」は本番のオンライン譜面にも反映されます。</p><div id="admin-session"');
           html = html.replace('href="./moderation.html">ランキング管理', 'href="https://hey.jpn.org/rhythm/moderation.html">本番のランキング管理');

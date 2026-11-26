@@ -49,11 +49,12 @@ if (!song) location.replace('./?missing-song=1');
 else if (!difficulty) location.replace('./?missing-difficulty=1');
 else void startGame(song,difficulty).catch(() => {
   element('player-error').hidden = false;
-  element('player-error').textContent = '譜面を読み込めませんでした。接続を確認し、ページを再読み込みしてください。';
+  element('player-error-message').textContent = '譜面を読み込めませんでした。接続を確認し、ページを再読み込みしてください。';
   element('player-status').textContent = '譜面の読み込みに失敗しました';
   element('stage-hint').querySelector('strong')!.textContent = '譜面を読み込めませんでした';
 });
 async function startGame(song: Song, difficulty:Difficulty): Promise<void> {
+element<HTMLAnchorElement>('player-video-link').href = songVideoUrl(song);
 let online: CloudChart | null = null, previewUid: string | null = null;
 if (!__ADMIN__) {
   element('player-status').textContent = '譜面を読み込んでいます…';
@@ -79,7 +80,6 @@ element('song-difficulty').textContent = difficultyLabel(difficulty);
 element('result-difficulty').textContent = difficultyLabel(difficulty);
 element('song-artist').textContent = `${song.artist} / OFFICIAL MV`;
 if (__ADMIN__) element<HTMLAnchorElement>('open-editor').href = songUrl(song, 'editor',false,difficulty);
-document.querySelector<HTMLAnchorElement>('.playback-info a')!.href = songVideoUrl(song);
 const normalizeGameSettings = __ADMIN__ ? normalizeSettings : normalizePlayerSettings;
 let settings = normalizeGameSettings(loadSettings(song));
 const customChart = __ADMIN__ ? loadChart(songStorageKey(CUSTOM_CHART_KEY, song, difficulty), true, song) : null;
@@ -371,7 +371,6 @@ function setState(next: number): void {
   if (next !== state && next !== PLAYER_STATE.PLAYING) sound.cancelPending();
   if(next===PLAYER_STATE.ENDED)videoEnded=true;
   state = next;
-  element('status-dot').classList.toggle('playing', next === PLAYER_STATE.PLAYING && !failed && !clockStale);
   const labels: Record<number, string> = {
     [-2]: 'YouTubeプレーヤーを読み込み中…',
     [-1]: '「ゲームスタート」を押してライブ開始！',
@@ -399,10 +398,9 @@ function showError(message: string): void {
   sound.setPlaybackActive(false);
   sound.cancelPending();
   failed = true;
-  element('player-error').textContent = `${message} 設定内の「再生情報」にある「YouTube ↗」から公式動画を開けます。ゲームは停止しています。`;
+  element('player-error-message').textContent = `${message} ゲームは停止しています。`;
   element('player-error').hidden = false;
   status.textContent = '動画を再生できないため、ゲームを停止しています';
-  element('status-dot').classList.remove('playing');
   restart.disabled = true;
   element<HTMLButtonElement>('play-start').disabled = true;
 }

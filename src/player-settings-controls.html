@@ -1,0 +1,22 @@
+  <button id="song-calibrate" class="restart-button" type="button">① 動画とノーツを合わせる</button>
+  <p class="field-help">ノーツが曲より早い・遅い → 専用動画の光・音と番号付きノーツを合わせます。まずはこちら。</p>
+  <button id="flow-calibrate" class="restart-button" type="button">② タップ判定を調整</button>
+  <p class="field-help">曲とノーツは合うのに判定が早い・遅い → 10ノーツで入力補正を測定。ノーツ位置は変えません。</p>
+  <p class="field-help">基準音と練習ノーツに合わせて押すと、ずれを自動で補正します。ノーツの到達と判定にその場で反映し、「適用」で保存します。</p>
+  <label for="travel">ノーツの表示時間 <output id="travel-value">2.5秒</output></label>
+  <input id="travel" type="range" min="1" max="4" step="0.25" value="2.5" aria-describedby="travel-help" />
+  <p id="travel-help" class="field-help">出現から判定ラインまでの時間です。長いほどゆっくり流れます。曲とのタイミングや判定の補正は変わりません。</p>
+  <label for="sound-volume">ノーツ音の音量 <output id="sound-volume-value">70%</output></label>
+  <input id="sound-volume" type="range" min="0" max="100" step="5" value="70" />
+  <p id="sound-status" class="field-help">タップ時や長オシ中のノーツ音の音量です。0%で消音になります。</p>
+  <div class="tap-sound-settings">
+    <label for="tap-sound">タップ音</label>
+    <select id="tap-sound">
+      <option value="sparkle">キラッ</option>
+      <option value="click">クリック</option>
+      <option value="cymbal" selected>シンバル</option>
+      <option value="clap">ハンドクラップ</option>
+    </select>
+    <button id="sound-test" class="restart-button" type="button">タップ音を試す</button>
+  </div>
+  <p id="storage-status" class="field-help" role="status">設定はこのブラウザに保存されます。</p>
