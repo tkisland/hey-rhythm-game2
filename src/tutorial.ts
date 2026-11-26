@@ -1,7 +1,7 @@
 import { decoratePenlight } from './penlight';
 import './tutorial.css';
 import './penlight.css';
-import { LANE_COLORS } from './colors';
+import { LANE_COLORS, setLaneColors } from './colors';
 import { bindInput, KEYS } from './input';
 import { BOX_SWEEP_SECONDS, BOX_WINDOWS, GameEngine, WINDOWS, playLane } from './engine';
 import type { Hit } from './engine';
@@ -32,8 +32,8 @@ export function mountTutorial(options: {onComplete?():void;onContinue?():void;co
   const volume = el<HTMLInputElement>('tutorial-volume'), audioStatus = el('tutorial-audio-status');
   const colors = ['ピンク','黄緑','白','赤','紫','黄色'];
   const labels: HTMLOutputElement[] = [], targets: HTMLDivElement[] = [];
-  const buttons = LANE_COLORS.map((color, lane) => {
-    const target = document.createElement('div'); target.className = 'tutorial-target'; target.style.setProperty('--lane', color);
+  const buttons = LANE_COLORS.map((_, lane) => {
+    const target = document.createElement('div'); target.className = 'tutorial-target'; setLaneColors(target, lane);
     const button = document.createElement('button'); button.type = 'button'; button.className = 'tutorial-pad'; button.textContent = KEYS[lane].slice(-1);
     decoratePenlight(button);
     button.setAttribute('aria-label', `${colors[lane]}のボタン（${KEYS[lane].slice(-1)}キー）`);

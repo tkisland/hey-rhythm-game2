@@ -126,7 +126,7 @@ test('horizontal controls share the requested lane colors and feedback appears a
   const boxes = await Promise.all(Array.from({ length: 6 }, (_, lane) => page.locator(`.lane-button[data-lane="${lane}"]`).boundingBox()));
   boxes.forEach(box => expect(box!.y).toBeCloseTo(boxes[0]!.y, 1));
   const colors = await page.locator('.lane-button').evaluateAll(buttons => buttons.map(button => (button as HTMLElement).style.getPropertyValue('--lane')));
-  expect(colors).toEqual(['#ff739c', '#b9f56c', '#f5f5ff', '#ff5b66', '#bd9bff', '#ffe779']);
+  expect(colors).toEqual(['#ff98c7', '#89e268', '#f4f4ff', '#f76562', '#b59aff', '#ffe38c']);
   await seekPlay(page, 12);
   await page.keyboard.press('s');
   await expect(page.locator('#judgement-0 .judgement-label')).toHaveText(/PERFECT|GREAT/);
