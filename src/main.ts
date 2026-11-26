@@ -54,7 +54,6 @@ else void startGame(song,difficulty).catch(() => {
   element('stage-hint').querySelector('strong')!.textContent = '譜面を読み込めませんでした';
 });
 async function startGame(song: Song, difficulty:Difficulty): Promise<void> {
-document.body.dataset.song = song.id;
 let online: CloudChart | null = null, previewUid: string | null = null;
 if (!__ADMIN__) {
   element('player-status').textContent = '譜面を読み込んでいます…';
