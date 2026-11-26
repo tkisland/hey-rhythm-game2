@@ -38,6 +38,16 @@
       <div class="library-toolbar"><p id="song-count" role="status"></p><label class="song-sort-choice" for="song-sort">並び順<select id="song-sort"><option value="title">曲名順</option><option value="release-desc">配信が新しい順</option><option value="release-asc">配信が古い順</option></select></label><button id="song-search-toggle" class="search-toggle" type="button" aria-label="曲を検索" aria-controls="song-search-panel" aria-expanded="false"><svg class="search-open-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><svg class="search-close-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
       <div id="song-search-panel" class="song-search-panel" hidden><label for="song-search">曲名で検索</label><input id="song-search" type="search" placeholder="曲名を入力" autocomplete="off" /></div>
       <p class="audio-guide"><strong>本体スピーカー・有線イヤホン推奨。</strong>Bluetoothなどの無線イヤホンは、タップ音が遅れて聞こえることがあるため非推奨です。</p>
+      <section id="song-spotlight" class="song-spotlight" aria-label="曲を選ぶショートカット" hidden>
+        <button id="random-song" class="spotlight-card" type="button" hidden>
+          <span><strong>ランダム</strong><small>全曲からおまかせ</small></span>
+          <span class="spotlight-arrow" aria-hidden="true">›</span>
+        </button>
+        <a id="daily-song" class="spotlight-card" hidden>
+          <span class="daily-song-copy"><small>今日の1曲</small><strong id="daily-song-title"></strong></span>
+          <span class="spotlight-arrow" aria-hidden="true">›</span>
+        </a>
+      </section>
       <section id="song-list" class="song-list" aria-label="楽曲一覧"></section>
       <p id="song-empty" class="empty-library" hidden>一致する曲がありません。検索する言葉を変えてみてください。</p>
       <footer><span>FANMADE · UNOFFICIAL<br /><a href="./admin.html">管理者ログイン</a></span><p>Hey!Mommy! 非公式ファンメイド<br />音声・映像はプレイ開始後にYouTube公式プレーヤーで再生します。</p></footer>

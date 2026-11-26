@@ -104,3 +104,34 @@ test('play buttons match difficulty heights and share the game start appearance 
  await page.evaluate(()=>(window as any).testVideo.pauseVideo());
  await expect(start).toHaveText('ゲーム再開');await expect(start.locator('span')).toHaveText(['ゲーム','再開']);
 });
+
+test('daily song changes at JST midnight while the menu stays open', async ({page}) => {
+  await page.clock.install({time:new Date('2026-11-26T23:59:57+09:00')});
+  await page.clock.pauseAt(new Date('2026-11-26T23:59:58+09:00'));
+  await page.goto('/');
+  const daily=page.locator('#daily-song');
+  await expect(daily).toHaveAttribute('href','./game.html?song=super-mommy-girls');
+  await expect(daily).toContainText('SUPER MOMMY GIRLS');
+  await expect(daily.locator('img')).toHaveAttribute('src',/pJDfWpZ7CI4/);
+  await page.locator('#song-sort').selectOption('release-asc');
+  await expect(daily).toHaveAttribute('href','./game.html?song=super-mommy-girls');
+  await page.clock.runFor(2100);
+  await expect(daily).toHaveAttribute('href','./game.html?song=biscuit-case');
+  await expect(daily).toContainText('ビスケットケース');
+});
+
+test('random play uses the public library beyond search and avoids the previous pick', async ({page}) => {
+  await page.route('https://www.youtube.com/iframe_api',route=>route.fulfill({body:api}));
+  await page.addInitScript(()=>{ if(!location.pathname.endsWith('game.html'))Math.random=()=>0; });
+  await page.goto('/');
+  await page.getByRole('button',{name:'曲を検索'}).click();
+  await page.getByRole('searchbox',{name:'曲名で検索'}).fill('見つからない曲');
+  await expect(page.locator('.song-card')).toHaveCount(0);
+  await page.getByRole('button',{name:/ランダム/}).click();
+  await expect(page).toHaveURL(/game\.html\?song=super-mommy-girls$/);
+  await expect(page.locator('#play-start')).toBeEnabled();
+  await expect.poll(()=>page.evaluate(()=>(window as any).testVideo.getPlayerState())).not.toBe(1);
+  await page.goto('/');
+  await page.getByRole('button',{name:/ランダム/}).click();
+  await expect(page).toHaveURL(/game\.html\?song=biscuit-case$/);
+});
