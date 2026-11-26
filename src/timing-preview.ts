@@ -9,6 +9,7 @@ import { bindTargets } from './field-geometry';
 import { decoratePenlight } from './penlight';
 import { Renderer } from './renderer';
 import { INPUT_OFFSET_LIMIT_MS, NOTE_TRAVEL_SECONDS } from './settings';
+import type { TapSoundPreset } from './settings';
 import { compensateInput } from './timing';
 import { NoteTimingCalibration } from './calibration';
 import { TapSound } from './sound';
@@ -16,7 +17,7 @@ import { TapSound } from './sound';
 const INTERVAL = .9, WARMUP = 4, NOTES = 10;
 type Callbacks = {
   pause(): void;
-  settings(): { inputOffset: number; travel?: number };
+  settings(): { inputOffset: number; travel?: number; tapSound?: TapSoundPreset };
   apply(offset: number): void;
 };
 
@@ -172,6 +173,7 @@ export function createTimingPreview(callbacks: Callbacks) {
       session.acquire();
       const context = new AudioContext({ latencyHint: 'interactive' }); audio = context;
       cymbal = new TapSound(() => report('ノーツ音を再生できません。音量を確認し、開始ボタンで再試行してください。'), context);
+      cymbal.tapSound = callbacks.settings().tapSound ?? 'cymbal';
       cymbal.volume = Number(volume.value); cymbal.enabled = cymbalToggle.checked;
       cymbal.setPlaybackActive(true);
       // Activate both paths in the same user gesture, sharing one audio clock/output.

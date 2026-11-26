@@ -64,6 +64,7 @@ export function mountTutorial(options: {onComplete?():void;onContinue?():void;co
   function prepareSound(): TapSound {
     // Keep one output across reference beats, taps and retries, until the dialog closes.
     sound ??= new TapSound(unavailable);
+    sound.tapSound = settings.tapSound;
     sound.volume = Number(volume.value); sound.delay = settings.soundDelay; sound.enabled = audioToggle.checked;
     return sound;
   }

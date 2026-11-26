@@ -1,10 +1,16 @@
 import { DEFAULT_SONG, songStorageKey } from './songs';
 import type { Song } from './songs';
 
+const TAP_SOUNDS = ['sparkle', 'click', 'cymbal', 'clap'] as const;
+export type TapSoundPreset = typeof TAP_SOUNDS[number];
+export function normalizeTapSound(value: unknown): TapSoundPreset {
+  return TAP_SOUNDS.find(preset => preset === value) ?? 'cymbal';
+}
+
 /** noteSize is retained only for the administrator's editing timeline. */
-export interface Settings { travel: number; offset: number; bpm: number; startTime: number; debug: boolean; sound: boolean; soundVolume: number; noteSize: number; noteOffset: number; inputOffset: number; soundDelay: number }
+export interface Settings { travel: number; offset: number; bpm: number; startTime: number; debug: boolean; sound: boolean; soundVolume: number; tapSound: TapSoundPreset; noteSize: number; noteOffset: number; inputOffset: number; soundDelay: number }
 export const NOTE_TRAVEL_SECONDS = 2.5;
-export const DEFAULT_SETTINGS: Settings = { travel: NOTE_TRAVEL_SECONDS, offset: 0, bpm: 140, startTime: 12, debug: false, sound: true, soundVolume: 70, noteSize: 100, noteOffset: 0, inputOffset: 0, soundDelay: 0 };
+export const DEFAULT_SETTINGS: Settings = { travel: NOTE_TRAVEL_SECONDS, offset: 0, bpm: 140, startTime: 12, debug: false, sound: true, soundVolume: 70, tapSound: 'cymbal', noteSize: 100, noteOffset: 0, inputOffset: 0, soundDelay: 0 };
 export const INPUT_OFFSET_LIMIT_MS = 300;
 const STORAGE_KEY = 'hey-rhythm-settings-v1';
 function numeric(value: unknown, fallback: number, min: number, max: number, step: number): number {
@@ -20,6 +26,7 @@ export function normalizeSettings(value: Partial<Settings>): Settings {
     debug: value.debug === true,
     sound: value.sound !== false,
     soundVolume: numeric(value.soundVolume, 70, 0, 100, 5),
+    tapSound: normalizeTapSound(value.tapSound),
     noteSize: numeric(value.noteSize, 100, 50, 150, 10),
     // Migrate the old combined correction without changing note arrival or judgement.
     noteOffset: numeric(value.noteOffset, numeric(value.inputOffset, 0, -300, 300, 5), -300, 300, 5),

@@ -2,8 +2,9 @@ import './calibration.css';
 import { CALIBRATION, CalibrationMeasurement } from './calibration';
 import type { CalibrationResult } from './calibration';
 import { createTimingPreview } from './timing-preview';
+import type { TapSoundPreset } from './settings';
 
-export function createCalibrationDialog(callbacks: { pause(): void; settings(): { inputOffset: number; travel?: number }; apply(offset: number): void }): {
+export function createCalibrationDialog(callbacks: { pause(): void; settings(): { inputOffset: number; travel?: number; tapSound?: TapSoundPreset }; apply(offset: number): void }): {
   readonly active: boolean; open(): void; openPreview(): void; destroy(): void;
 } {
   const preview = createTimingPreview(callbacks);
