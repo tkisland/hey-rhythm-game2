@@ -86,7 +86,6 @@
 .game-page .media-controls button { background-color:var(--surface-inset); border:1px solid var(--border); border-radius:8px; }
 .game-page .game .penlight-pad { border:1px solid color-mix(in srgb,var(--lane) 25%,transparent); background:linear-gradient(transparent,color-mix(in srgb,var(--lane-shadow) 32%,#100b1b)); box-shadow:0 0 12px color-mix(in srgb,var(--lane) 12%,transparent); }
 .game-page .game .penlight-art { top:8px; width:22px; height:calc(100% - 24px); max-height:84px; }
-.game-page .game .penlight-art::before { border-radius:8px 8px 0 0; }
 .game-page .game { position:relative; z-index:1; grid-column:1; grid-row:2; border-radius:0; }
 .game-page .game .stage,.game-page .game #game-canvas { border-radius:0; }
 .game-page .surface-field::before { border-top:0; border-radius:0 0 20px 20px; }
