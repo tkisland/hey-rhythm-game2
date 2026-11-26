@@ -3,7 +3,17 @@
 .penlight-art,.penlight-key { pointer-events:none; user-select:none; }
 .penlight-art { position:absolute; top:5px; left:50%; width:18px; height:clamp(30px,calc(100% - 24px),50px); transform:translateX(-50%); color:var(--lane); }
 .penlight-art::before,.penlight-art::after { content:''; position:absolute; inset-inline:1px; }
-.penlight-art::before { top:0; height:72%; border:1px solid #ffffffdf; border-radius:5px 5px 0 0; background:linear-gradient(90deg,var(--lane),#fffffff2 46%,var(--lane)); box-shadow:0 0 5px var(--lane),0 0 13px color-mix(in srgb,var(--lane) 65%,transparent),inset 0 0 4px #fff; }
+.penlight-art::before {
+  top:0; height:72%;
+  border:1px solid color-mix(in srgb,var(--lane) 84%,white);
+  border-radius:5px 5px 0 0;
+  background:linear-gradient(90deg,
+    color-mix(in srgb,var(--lane) 82%,var(--lane-shadow)),
+    color-mix(in srgb,var(--lane) 82%,white) 46%,
+    color-mix(in srgb,var(--lane) 82%,var(--lane-shadow)));
+  box-shadow:0 0 4px var(--lane),0 0 9px color-mix(in srgb,var(--lane) 38%,transparent),
+    inset 0 0 3px color-mix(in srgb,var(--lane) 78%,white);
+}
 .penlight-art::after { top:72%; height:28%; border:1px solid #c6c4df; border-top:2px solid var(--lane); border-radius:0 0 3px 3px; background:repeating-linear-gradient(0deg,#0000 0 4px,#b8b3cb80 4px 5px),linear-gradient(90deg,#e8e6f0,#fff,#e8e6f0); }
 .game .penlight-pad { justify-content:flex-end; padding-top:0; padding-bottom:4px; }
 .game .penlight-pad::after { display:none; }
