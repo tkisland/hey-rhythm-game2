@@ -38,7 +38,7 @@ test('public play ignores old drafts and chart settings while retaining device p
   await expect(page.locator('#chart-info')).toHaveText('166 → 192 BPM · 508 NOTES');
   await page.locator('#settings-toggle').click();
   await expect(page.locator('#travel')).toHaveValue('3.25');
-  await expect(page.locator('#sound-toggle,#offset,#input-offset,#sound-delay,#auto-calibrate,#timing-reset,#sound-test')).toHaveCount(0);
+  await expect(page.locator('#sound-toggle,#offset,#input-offset,#sound-delay,#auto-calibrate,#timing-reset')).toHaveCount(0);
   await expect(page.locator('#sound-volume')).toHaveValue('0');
   expect(await page.locator('#settings-panel').innerText()).not.toMatch(/編集|エディター|下書き|仮BPM|譜面開始|使用する譜面/);
   await page.locator('#sound-volume').fill('0'); await page.locator('#sound-volume').dispatchEvent('input');

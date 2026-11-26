@@ -48,7 +48,7 @@ const model = new EditorModel(options.initialChart ?? (options.online ? emptyCha
 const bundled = bundledChart(song,difficulty);
 const clock = new VideoClock();
 const sound = new TapSound(() => message('確認音を再生できません。端末の音量・ブラウザの音声設定をご確認ください。'));
-let settings = loadSettings(); sound.volume = settings.soundVolume; sound.delay = settings.soundDelay;
+let settings = loadSettings(); sound.tapSound = settings.tapSound; sound.volume = settings.soundVolume; sound.delay = settings.soundDelay;
 input('editor-sound').checked = settings.sound;
 const listeners = new AbortController(), signal = listeners.signal;
 input('editor-sound').addEventListener('change', () => {
@@ -69,6 +69,7 @@ const message = (text: string) => { if (!disposed) el('editor-notice').textConte
 const preview = new EditorPreview(); preview.sync(model.chart);
 const previewRenderer = new Renderer(el<HTMLCanvasElement>('preview-canvas'));
 const previewSound = new TapSound(() => { el('preview-audio-status').textContent = 'ノーツ音を再生できません。端末の音量・ブラウザの音声設定をご確認ください。映像のプレビューは続けられます。'; });
+previewSound.tapSound = settings.tapSound;
 previewSound.volume = settings.soundVolume; // Reference chart sounds have no input compensation or added tap delay.
 input('preview-volume').value = String(settings.soundVolume);
 el('preview-volume-value').textContent = `${settings.soundVolume}%`;

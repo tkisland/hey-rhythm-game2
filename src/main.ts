@@ -21,7 +21,7 @@ import { GameEngine } from './engine';
 import type { Hit, InputGesture } from './engine';
 import { bindInput } from './input';
 import { Renderer } from './renderer';
-import { loadSettings, normalizePlayerSettings, normalizeSettings, saveSettings } from './settings';
+import { loadSettings, normalizePlayerSettings, normalizeSettings, normalizeTapSound, saveSettings } from './settings';
 import { PLAYER_STATE, VideoClock, stateName } from './sync';
 import { createYouTubePlayer, readYouTubeMetadata } from './youtube';
 import type { YouTubePlayer, YouTubeMetadata } from './youtube';
@@ -134,6 +134,7 @@ const sound = new TapSound(() => {
 }, Boolean(diagnostics));
 sound.enabled = settings.sound;
 sound.volume = settings.soundVolume;
+sound.tapSound = settings.tapSound;
 sound.delay = settings.soundDelay;
 const unbindLayout = bindDockLayout(document.querySelector('.stage')!, document.querySelector('.controls-dock')!);
 const unbindVenue = bindConcertVenue(element<HTMLCanvasElement>('game-canvas'), document.querySelector('.media-panel')!, document.querySelector('.live-layout')!);
@@ -507,6 +508,8 @@ const offset = __ADMIN__ ? element<HTMLInputElement>('offset') : null;
 const soundToggle = __ADMIN__ ? element<HTMLInputElement>('sound-toggle') : null;
 const travel = element<HTMLInputElement>('travel');
 const soundVolume = element<HTMLInputElement>('sound-volume');
+const tapSound = element<HTMLSelectElement>('tap-sound');
+const soundTest = element<HTMLButtonElement>('sound-test');
 const inputOffset = __ADMIN__ ? element<HTMLInputElement>('input-offset') : null;
 const soundDelay = __ADMIN__ ? element<HTMLInputElement>('sound-delay') : null;
 const bpm = __ADMIN__ ? element<HTMLInputElement>('bpm') : null;
@@ -520,13 +523,15 @@ function reflectSettings(): void {
     offset!.value = String(settings.offset);
     element('offset-value').textContent = `${settings.offset > 0 ? '+' : ''}${settings.offset} ms`;
     soundToggle!.checked = settings.sound;
-    element<HTMLButtonElement>('sound-test').disabled = !settings.sound || settings.soundVolume === 0;
   }
   if (bpm) bpm.value = String(settings.bpm);
   if (startTime) startTime.value = String(settings.startTime);
   if (debug) debug.checked = settings.debug;
   sound.enabled = settings.sound;
   sound.volume = settings.soundVolume;
+  sound.tapSound = settings.tapSound;
+  tapSound.value = settings.tapSound;
+  soundTest.disabled = !settings.sound || settings.soundVolume === 0;
   sound.delay = settings.soundDelay;
   travel.value = String(settings.travel);
   element('travel-value').textContent = `${settings.travel}秒`;
@@ -535,7 +540,7 @@ function reflectSettings(): void {
   if (__ADMIN__) element('debug-panel').hidden = !settings.debug;
 }
 function changeSettings(): boolean {
-  settings = normalizeGameSettings({ ...settings, travel: travel.valueAsNumber, offset: offset?.valueAsNumber ?? settings.offset, bpm: bpm?.valueAsNumber ?? settings.bpm, startTime: startTime?.valueAsNumber ?? settings.startTime, debug: debug?.checked ?? settings.debug, sound: soundToggle?.checked ?? true, soundVolume: soundVolume.valueAsNumber, inputOffset: inputOffset?.valueAsNumber ?? settings.inputOffset, soundDelay: soundDelay?.valueAsNumber ?? settings.soundDelay });
+  settings = normalizeGameSettings({ ...settings, travel: travel.valueAsNumber, offset: offset?.valueAsNumber ?? settings.offset, bpm: bpm?.valueAsNumber ?? settings.bpm, startTime: startTime?.valueAsNumber ?? settings.startTime, debug: debug?.checked ?? settings.debug, sound: soundToggle?.checked ?? true, soundVolume: soundVolume.valueAsNumber, tapSound: normalizeTapSound(tapSound.value), inputOffset: inputOffset?.valueAsNumber ?? settings.inputOffset, soundDelay: soundDelay?.valueAsNumber ?? settings.soundDelay });
   reflectSettings();
   if (settings.sound && settings.soundVolume > 0 && state === PLAYER_STATE.PLAYING) void sound.unlock();
   const saved = saveSettings(settings, song);
@@ -550,6 +555,8 @@ debug?.addEventListener('change', changeSettings, { signal });
 soundToggle?.addEventListener('change', changeSettings, { signal });
 travel.addEventListener('input', changeSettings, { signal });
 soundVolume.addEventListener('input', changeSettings, { signal });
+tapSound.addEventListener('change', changeSettings, { signal });
+soundTest.addEventListener('click', () => sound.play(0), { signal });
 inputOffset?.addEventListener('input', changeSettings, { signal });
 soundDelay?.addEventListener('input', changeSettings, { signal });
 const songTiming = createSongTimingPreview({
@@ -578,7 +585,6 @@ element('flow-calibrate').addEventListener('click', () => calibration.openPrevie
 if (__ADMIN__) {
   element('auto-calibrate').addEventListener('click', () => calibration.open(), { signal });
   element('timing-reset').addEventListener('click', () => { inputOffset!.value = '0'; soundDelay!.value = '0'; changeSettings(); }, { signal });
-  element('sound-test').addEventListener('click', () => sound.play(0), { signal });
 }
 reflectSettings(); updateChartInfo(); updateScore();
 if (__ADMIN__) {

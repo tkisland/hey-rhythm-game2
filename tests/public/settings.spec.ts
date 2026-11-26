@@ -11,11 +11,11 @@ test('offers travel time, song alignment, input calibration and note volume, mig
   });
   await page.goto('/game.html'); await expect(page.locator('#restart')).toBeEnabled();
   await page.locator('#settings-toggle').click(); const panel=page.locator('#settings-panel');
-  await expect(panel.locator('button:not(#settings-close)')).toHaveCount(2);
-  await expect(panel.locator('input')).toHaveCount(2); await expect(panel.locator('select')).toHaveCount(0);
+  await expect(panel.locator('button:not(#settings-close)')).toHaveCount(3);
+  await expect(panel.locator('input')).toHaveCount(2); await expect(panel.locator('select')).toHaveCount(1);
   await expect(panel.getByRole('button',{name:'② タップ判定を調整',exact:true})).toBeVisible();
   await expect(panel.getByLabel('ノーツ音の音量')).toHaveValue('0');
-  await expect(panel.locator('#offset,#input-offset,#sound-delay,#sound-toggle,#auto-calibrate,#timing-reset,#sound-test')).toHaveCount(0);
+  await expect(panel.locator('#offset,#input-offset,#sound-delay,#sound-toggle,#auto-calibrate,#timing-reset')).toHaveCount(0);
   await page.locator('#sound-volume').fill('50'); await page.locator('#sound-volume').dispatchEvent('input');
   expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('hey-rhythm-settings-v1')!))).toMatchObject({sound:true,soundVolume:50,soundDelay:0,offset:0,noteOffset:80,inputOffset:0});
   await page.locator('#settings-close').click(); await page.locator('#play-start').click();
@@ -34,4 +34,34 @@ test('offers travel time, song alignment, input calibration and note volume, mig
   await page.reload(); await expect(page.locator('#restart')).toBeEnabled(); await page.locator('#settings-toggle').click();
   await expect(page.locator('#sound-volume')).toHaveValue('0');
   await page.locator('#flow-calibrate').click(); await expect(page.locator('#timing-preview-value')).toHaveText('0 ms');
+});
+
+test('previews four distinct tap sounds and remembers the choice across songs', async ({page}) => {
+  await page.route('https://www.youtube.com/iframe_api',route=>route.fulfill({body:api}));
+  await page.addInitScript(()=>{
+    const started:number[]=[];
+    Object.assign(window,{tapSoundLengths:started});
+    const start=AudioBufferSourceNode.prototype.start;
+    AudioBufferSourceNode.prototype.start=function(...args){
+      if(this.buffer)started.push(this.buffer.length);
+      return start.apply(this,args);
+    };
+  });
+  await page.goto('/game.html');
+  await expect(page.locator('#restart')).toBeEnabled();
+  await page.locator('#settings-toggle').click();
+  const select=page.getByLabel('タップ音',{exact:true});
+  await expect(select).toHaveValue('cymbal');
+  await expect(select.locator('option')).toHaveText(['キラッ','クリック','シンバル','ハンドクラップ']);
+  for(const [index,preset] of ['sparkle','click','cymbal','clap'].entries()){
+    await select.selectOption(preset);
+    await page.getByRole('button',{name:'タップ音を試す'}).click();
+    await expect.poll(()=>page.evaluate(()=>(window as Window & {tapSoundLengths?:number[]}).tapSoundLengths?.length)).toBe(index+1);
+  }
+  const lengths=await page.evaluate(()=>(window as Window & {tapSoundLengths?:number[]}).tapSoundLengths);
+  expect(lengths).toEqual([7680,2640,11520,9120]);
+  await page.goto('/game.html?song=happy-go-round');
+  await expect(page.locator('#restart')).toBeEnabled();
+  await page.locator('#settings-toggle').click();
+  await expect(select).toHaveValue('clap');
 });

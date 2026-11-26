@@ -1,5 +1,6 @@
 import boxSweepUrl from './assets/box-sweep.wav?inline';
 import { playbackSession } from './audio-session';
+import type { TapSoundPreset } from './settings';
 export const TAP_DURATION = 0.24;
 export const MAX_LATE_TAP_MS = 80;
 export const BEAT_DURATION = .09;
@@ -20,17 +21,18 @@ export const BOX_DURATION = 0.38;
 const boxSamples: Float32Array<ArrayBuffer>[] = [];
 let beatSamples: Float32Array<ArrayBuffer> | null = null;
 const PARTIALS = [3420, 4781, 6127, 7919, 9343, 10867];
-const tapSamples: Float32Array<ArrayBuffer>[] = [], holdSamples: Float32Array<ArrayBuffer>[] = [];
-let warming = false;
+const tapSamples: Record<TapSoundPreset, Float32Array<ArrayBuffer>[]> = { sparkle: [], click: [], cymbal: [], clap: [] };
+const holdSamples: Float32Array<ArrayBuffer>[] = [];
+const warming = new Set<TapSoundPreset>();
 
 /** Synthesize one lane per idle task, before gameplay; no AudioContext or audible warm-up. */
-function warmSamples(): void {
-  if (warming) return;
-  warming = true;
+function warmSamples(preset: TapSoundPreset): void {
+  if (warming.has(preset)) return;
+  warming.add(preset);
   let lane = 0;
   const next = () => {
     beatSamples ??= createBeatSamples(SAMPLE_RATE);
-    tapSamples[lane] ??= createTapSamples(SAMPLE_RATE, lane);
+    tapSamples[preset][lane] ??= createTapSamples(SAMPLE_RATE, lane, preset);
     holdSamples[lane] ??= createHoldSamples(SAMPLE_RATE, lane);
     if (++lane < PITCHES.length) schedule();
   };
@@ -42,7 +44,8 @@ function warmSamples(): void {
 }
 
 /** A short cymbal: bright filtered noise and inharmonic metal partials, without a pitched beep. */
-export function createTapSamples(sampleRate: number, lane: number) {
+export function createTapSamples(sampleRate: number, lane: number, preset: TapSoundPreset = 'cymbal') {
+  if (preset !== 'cymbal') return createAlternateTapSamples(sampleRate, lane, preset);
   const samples = new Float32Array(Math.ceil(sampleRate * TAP_DURATION));
   const pitch = PITCHES[lane] ?? PITCHES[0];
   let seed = 12345 + lane * 7919, lowPass = 0, previousLowPass = 0, highPass = 0, peak = 0;
@@ -65,6 +68,39 @@ export function createTapSamples(sampleRate: number, lane: number) {
     peak = Math.max(peak, Math.abs(samples[i]));
   }
   if (peak) for (let i = 0; i < samples.length; i++) samples[i] *= 0.8 / peak;
+  return samples;
+}
+
+/** Each alternate starts immediately, with a short fade to avoid a hard cut. */
+function createAlternateTapSamples(sampleRate: number, lane: number, preset: Exclude<TapSoundPreset, 'cymbal'>) {
+  const duration = { sparkle: 0.16, click: 0.055, clap: 0.19 }[preset];
+  const samples = new Float32Array(Math.ceil(sampleRate * duration));
+  const pitch = PITCHES[lane] ?? PITCHES[0];
+  const filterRate = 1 - Math.exp(-2 * Math.PI * 1800 / sampleRate);
+  let seed = 4281 + lane * 7919, low = 0, peak = 0;
+  const burst = (time: number, decay: number) => time < 0 ? 0 : Math.min(1, time / 0.001) * Math.exp(-time / decay);
+  for (let i = 0; i < samples.length; i++) {
+    const time = i / sampleRate;
+    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+    const noise = seed / 0xffffffff * 2 - 1;
+    low += filterRate * (noise - low);
+    let value: number;
+    if (preset === 'sparkle') {
+      const phase = 2 * Math.PI * time * pitch;
+      value = (Math.sin(phase * 2680) + 0.43 * Math.sin(phase * 4310)) * Math.exp(-time / 0.028)
+        + 0.32 * noise * Math.exp(-time / 0.004);
+    } else if (preset === 'click') {
+      value = 0.75 * Math.sin(2 * Math.PI * 1120 * pitch * time) * Math.exp(-time / 0.006)
+        + 0.25 * noise * Math.exp(-time / 0.0025);
+    } else {
+      const cluster = burst(time, 0.008) + 0.72 * burst(time - 0.009, 0.008) + 0.54 * burst(time - 0.018, 0.021);
+      value = (0.46 * (noise - low) + 0.78 * low) * cluster;
+    }
+    const edges = Math.min(1, time / 0.0004, (samples.length - 1 - i) / (sampleRate * 0.01));
+    samples[i] = value * edges;
+    peak = Math.max(peak, Math.abs(samples[i]));
+  }
+  if (peak) for (let i = 0; i < samples.length; i++) samples[i] *= 0.76 / peak;
   return samples;
 }
 
@@ -149,6 +185,7 @@ export class TapSound {
   private context: AudioContext | null = null;
   private master: GainNode | null = null;
   private buffers: AudioBuffer[] = [];
+  private preset: TapSoundPreset = 'cymbal';
   private boxBuffers: AudioBuffer[] = [];
   private beatBuffers: AudioBuffer[] = [];
   private sweepBuffers: AudioBuffer[] = [];
@@ -203,13 +240,20 @@ export class TapSound {
   /** An optional context shares a reference clock; this instance closes it on destroy. */
   constructor(private onUnavailable: () => void, context?: AudioContext, private onReady?: () => void, private traceInputs = false) {
     this.context = context ?? null;
-    warmSamples();
+    warmSamples(this.preset);
     document.addEventListener('visibilitychange', this.visibilityChanged);
     document.addEventListener('pointerdown', this.activate, { capture: true, passive: true });
     document.addEventListener('keydown', this.activate, { capture: true });
     // Touch activation can be granted at release, after pointerdown has already run.
     document.addEventListener('pointerup', this.activate, { capture: true, passive: true });
     document.addEventListener('touchend', this.activate, { capture: true, passive: true });
+  }
+
+  set tapSound(preset: TapSoundPreset) {
+    if (this.preset === preset) return;
+    this.preset = preset;
+    this.buffers = [];
+    warmSamples(preset);
   }
 
   get enabled(): boolean { return this.active; }
@@ -420,7 +464,7 @@ export class TapSound {
     const buffers = kind === 'box' ? this.boxBuffers : kind === 'beat' ? this.beatBuffers : kind === 'sweep' ? this.sweepBuffers : this.buffers;
     if (!buffers[lane]) {
       const samples = kind === 'sweep' ? sweepSamples : kind === 'beat' ? (beatSamples ??= createBeatSamples(SAMPLE_RATE))
-        : kind === 'box' ? (boxSamples[lane] ??= createBoxSamples(SAMPLE_RATE, lane)) : (tapSamples[lane] ??= createTapSamples(SAMPLE_RATE, lane));
+        : kind === 'box' ? (boxSamples[lane] ??= createBoxSamples(SAMPLE_RATE, lane)) : (tapSamples[this.preset][lane] ??= createTapSamples(SAMPLE_RATE, lane, this.preset));
       const buffer = context.createBuffer(1, samples.length, SAMPLE_RATE);
       buffer.copyToChannel(samples, 0); buffers[lane] = buffer;
     }

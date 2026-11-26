@@ -106,6 +106,9 @@ input[type="range"] { width:100%; margin:14px 0 0; accent-color:var(--accent); }
 .settings-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
 .settings-grid label { font-size:12px; }
 input[type="number"] { display:block; width:100%; background:var(--surface-inset); color:#fff; border:1px solid var(--border); border-radius:5px; padding:9px; margin-top:8px; }
+.tap-sound-settings { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:12px; font-size:12px; }
+.tap-sound-settings select { min-height:44px; flex:1; padding:6px; border:1px solid var(--border); border-radius:6px; background:var(--surface-inset); color:var(--text); }
+.tap-sound-settings button { min-height:44px; }
 .settings-panel .check-label { justify-content:flex-start; gap:7px; }
 input[type="checkbox"] { accent-color:var(--accent); width:16px; height:16px; }
 .result { margin:14px 0 0; border-color:var(--border); background:var(--surface); }
