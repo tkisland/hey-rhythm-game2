@@ -24,8 +24,6 @@
   --backdrop:color-mix(in srgb,var(--page-bg) 86%,transparent);
   --action-bg:#8d2e55;
   --action-text:var(--white);
-  --action-hover:#a43764;
-  --action-active:#722343;
 
   background:var(--page-bg);
   color:var(--text);

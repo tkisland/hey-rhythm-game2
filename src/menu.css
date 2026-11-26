@@ -26,12 +26,7 @@
 .audio-guide { margin:0 0 16px; padding:10px 12px; border-left:2px solid var(--accent); background:var(--accent-tint); color:var(--muted); font-size:12px; line-height:1.8; overflow-wrap:anywhere; }
 .audio-guide strong { color:var(--text); }
 .song-list { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr)); gap:14px; }
-.song-card { --song-accent:var(--pink); min-width:0; display:grid; grid-template-columns:128px minmax(0,1fr); border:1px solid var(--border); border-inline-start:3px solid var(--song-accent); border-radius:12px; overflow:hidden; background:var(--surface); box-shadow:0 6px 20px #0002; }
-.song-card:nth-child(6n + 2) { --song-accent:var(--lime); }
-.song-card:nth-child(6n + 3) { --song-accent:var(--white); }
-.song-card:nth-child(6n + 4) { --song-accent:var(--red); }
-.song-card:nth-child(6n + 5) { --song-accent:var(--purple); }
-.song-card:nth-child(6n + 6) { --song-accent:var(--yellow); }
+.song-card { min-width:0; display:grid; grid-template-columns:128px minmax(0,1fr); border:1px solid var(--border); border-inline-start:3px solid var(--song-accent); border-radius:12px; overflow:hidden; background:var(--surface); box-shadow:0 6px 20px #0002; }
 .song-art { position:relative; align-self:center; aspect-ratio:16/9; margin:10px 0 10px 10px; overflow:hidden; border-radius:6px; background:var(--surface-inset); }
 .cover-fallback { position:absolute; inset:0; display:grid; place-items:center; font-size:28px; color:var(--song-accent); }
 .song-thumbnail { position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; }
@@ -44,7 +39,6 @@
 .song-actions { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; grid-column:1 / -1; margin:0 10px 10px; }
 .song-actions > * { min-width:0; min-height:44px; padding:10px; border-radius:7px; font:inherit; font-size:11px; font-weight:700; text-decoration:none; text-align:center; white-space:nowrap; }
 .song-actions > :only-child { grid-column:1 / -1; }
-.song-play { color:var(--action-text); background:var(--action-bg); border:1px solid var(--accent); }
 .song-saved { color:var(--text); background:var(--tint); border:1px solid var(--border); }
 .song-actions .song-edit { padding:12px 0; text-align:left; color:var(--muted); min-height:44px; }
 .song-actions .song-practice { padding:12px 0; text-align:left; color:var(--muted); font-size:10px; }
