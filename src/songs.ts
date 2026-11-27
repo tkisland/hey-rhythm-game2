@@ -66,8 +66,13 @@ export const HEY_YUMMY: Song = {
   reading: 'へいやみー',
   videoId: '5c1vfetSi8E', bpm: 150, startTime: 7, chartId: 'yummy001', publicDifficulties: ['normal'],
 };
+export const LOOK: Song = {
+  id: 'look', title: 'LOOK!!', artist: 'Hey!Mommy!',
+  reading: 'るっく',
+  videoId: 'vibCuo-dj6c', bpm: 125.000260417, startTime: 0, chartId: 'look001', publicDifficulties: ['normal'],
+};
 /** Register additional songs here; routing and storage use the stable ID. */
-export const SONGS: readonly Song[] = [DEFAULT_SONG, BISCUIT_CASE, PLAYFUL_ROMANTIC, HAPPY_GO_ROUND, POJI_POJI_GO, YOZORA_WITH_YOU, HEY_YUMMY];
+export const SONGS: readonly Song[] = [DEFAULT_SONG, BISCUIT_CASE, PLAYFUL_ROMANTIC, HAPPY_GO_ROUND, POJI_POJI_GO, YOZORA_WITH_YOU, HEY_YUMMY, LOOK];
 export function findSong(id: string | null): Song | undefined {
   return id === null ? DEFAULT_SONG : SONGS.find(song => song.id === id);
 }

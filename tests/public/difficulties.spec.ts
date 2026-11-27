@@ -114,3 +114,18 @@ test('selects Hey!Yummy! at the supplied video with 557 normal notes', async ({p
   await expect(page.locator('#chart-info')).toHaveText('150 BPM · 557 NOTES');
   expect(await page.evaluate(() => (window as any).testVideo.options.videoId)).toBe('5c1vfetSi8E');
 });
+
+test('selects LOOK!! with the supplied video and 521-note normal chart', async ({page}) => {
+  await page.goto('/');
+  await searchSongs(page, 'LOOK!!');
+  const card = page.locator('[data-song="look"]');
+  await expect(card.locator('.song-difficulty')).toHaveValue('normal');
+  await expect(card.locator('.song-meta')).toHaveText('125 BPM · 521 NOTES');
+  await card.locator('.song-play').click();
+  await expect(page).toHaveURL(/game\.html\?song=look$/);
+  await expect(page.locator('#restart')).toBeEnabled();
+  await expect(page.locator('#song-title')).toHaveText('LOOK!!');
+  await expect(page.locator('#song-difficulty')).toHaveText('ふつう');
+  await expect(page.locator('#chart-info')).toHaveText('125 BPM · 521 NOTES');
+  expect(await page.evaluate(() => (window as any).testVideo.options.videoId)).toBe('vibCuo-dj6c');
+});

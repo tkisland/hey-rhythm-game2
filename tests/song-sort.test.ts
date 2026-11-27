@@ -5,17 +5,17 @@ const titles=(mode:Parameters<typeof sortSongs>[1])=>sortSongs(SONGS,mode).map(s
 afterEach(()=>vi.unstubAllGlobals());
 it('orders the catalog by the supplied Japanese readings without changing catalog order',()=>{
  const before=[...SONGS];
- expect(titles('title')).toEqual(['SUPER MOMMY GIRLS','Happy Go Round','ビスケットケース','PLAYFUL ROMANTIC','Hey!Yummy!','POJI POJI GO','夜空ウィズユー']);
+ expect(titles('title')).toEqual(['SUPER MOMMY GIRLS','Happy Go Round','ビスケットケース','PLAYFUL ROMANTIC','Hey!Yummy!','POJI POJI GO','夜空ウィズユー','LOOK!!']);
  expect(SONGS).toEqual(before);
 });
 it('uses the supplied first release dates, not video publication or game addition order',()=>{
  expect(SONGS.map(s=>[s.reading,s.releaseDate])).toEqual([
   ['すーぱーまみーがーるず','2024-09-01'],['びすけっとけーす','2022-07-08'],
   ['ぷれいふるろまんてぃっく','2025-12-12'],['はっぴーごーらうんど','2026-09-01'],
-  ['ぽじぽじごー','2025-07-29'],['よぞらうぃずゆー','2026-05-20'],['へいやみー',undefined],
+  ['ぽじぽじごー','2025-07-29'],['よぞらうぃずゆー','2026-05-20'],['へいやみー',undefined],['るっく',undefined],
  ]);
  const oldest=['ビスケットケース','SUPER MOMMY GIRLS','POJI POJI GO','PLAYFUL ROMANTIC','夜空ウィズユー','Happy Go Round'];
- expect(titles('release-asc')).toEqual([...oldest,'Hey!Yummy!']);expect(titles('release-desc')).toEqual([...[...oldest].reverse(),'Hey!Yummy!']);
+ expect(titles('release-asc')).toEqual([...oldest,'Hey!Yummy!','LOOK!!']);expect(titles('release-desc')).toEqual([...[...oldest].reverse(),'Hey!Yummy!','LOOK!!']);
 });
 it('keeps unknown dates last in either direction and breaks ties by reading then stable ID',()=>{
  const base=SONGS[0];
