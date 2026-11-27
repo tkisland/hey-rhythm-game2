@@ -33,6 +33,7 @@ body.tutorial-visible { overflow:hidden; }
 #tutorial-feedback.success { color:#b9f56c; }
 .tutorial-actions { display:flex; justify-content:space-between; gap:12px; }
 .tutorial-actions button { min-height:44px; }
+#tutorial-next { background:var(--lime); border-color:var(--lime); color:var(--surface-inset); }
 .tutorial-tip,#tutorial-audio-status { margin:8px 0 0; font-size:10px; line-height:1.7; color:var(--muted); }
 #tutorial-audio-status:empty { display:none; }
 @media(max-width:480px) { .tutorial-dialog { padding:10px; } }
