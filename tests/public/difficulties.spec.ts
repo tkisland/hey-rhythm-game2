@@ -34,6 +34,7 @@ test('unknown difficulty and song links return to selection before loading YouTu
 });
 
 test('unpublished difficulty URLs cannot load YouTube or expose rankings',async({page})=>{
+  test.slow(); // Each song adds four full page navigations to this test.
   const youtube:string[]=[];page.on('request',request=>{if(request.url().includes('youtube.com'))youtube.push(request.url());});
   for(const song of SONGS.map(song=>song.id))for(const level of ['easy','hard']) {
     await page.goto(`/game.html?song=${song}&difficulty=${level}`);
