@@ -8,7 +8,7 @@ const japanDay = (now: number) => Math.floor((now + JST_OFFSET_MS) / DAY_MS);
 const firstRoster = ['super-mommy-girls', 'biscuit-case', 'playful-romantic', 'happy-go-round', 'poji-poji-go', 'yozora-with-you'];
 const rotations = [{
   firstDay: japanDay(Date.parse('2026-12-02T00:00:00+09:00')),
-  songs: [...firstRoster, 'hey-yummy'],
+  songs: [...firstRoster, 'hey-yummy', 'look'],
 }, {
   firstDay: japanDay(Date.parse('2026-11-26T00:00:00+09:00')),
   songs: firstRoster,

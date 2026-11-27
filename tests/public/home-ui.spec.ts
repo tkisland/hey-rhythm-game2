@@ -49,18 +49,18 @@ test('compact cards use video thumbnails with equal touch targets and survive mi
 
 test('sorts by reading and release date, preserves selection and filtering, and remembers the preference',async({page})=>{
  const order=()=>page.locator('.song-name').allTextContents();
- const titleOrder=['SUPER MOMMY GIRLS','Happy Go Round','ビスケットケース','PLAYFUL ROMANTIC','Hey!Yummy!','POJI POJI GO','夜空ウィズユー'];
+ const titleOrder=['SUPER MOMMY GIRLS','Happy Go Round','ビスケットケース','PLAYFUL ROMANTIC','Hey!Yummy!','POJI POJI GO','夜空ウィズユー','LOOK!!'];
  const oldest=['ビスケットケース','SUPER MOMMY GIRLS','POJI POJI GO','PLAYFUL ROMANTIC','夜空ウィズユー','Happy Go Round'];
  await page.goto('/');await expect(page.locator('#song-sort')).toHaveValue('title');await expect.poll(order).toEqual(titleOrder);
  const smg=page.locator('[data-song="super-mommy-girls"]');await smg.locator('.song-difficulty').selectOption('easy');
- await page.locator('#song-sort').selectOption('release-asc');await expect.poll(order).toEqual([...oldest,'Hey!Yummy!']);
+ await page.locator('#song-sort').selectOption('release-asc');await expect.poll(order).toEqual([...oldest,'Hey!Yummy!','LOOK!!']);
  await expect(smg.locator('.song-difficulty')).toHaveValue('easy');await expect(smg.locator('.song-play')).toHaveCount(0);
  await page.locator('#song-search-toggle').click();await page.locator('#song-search').fill('go');
  await expect.poll(order).toEqual(['POJI POJI GO','Happy Go Round']);
  await page.locator('#song-sort').selectOption('release-desc');await expect.poll(order).toEqual(['Happy Go Round','POJI POJI GO']);
- await page.locator('#song-search').focus();await page.keyboard.press('Escape');await expect.poll(order).toEqual([...[...oldest].reverse(),'Hey!Yummy!']);
+ await page.locator('#song-search').focus();await page.keyboard.press('Escape');await expect.poll(order).toEqual([...[...oldest].reverse(),'Hey!Yummy!','LOOK!!']);
  await expect(smg.locator('.song-difficulty')).toHaveValue('easy');
- await page.reload();await expect(page.locator('#song-sort')).toHaveValue('release-desc');await expect.poll(order).toEqual([...[...oldest].reverse(),'Hey!Yummy!']);
+ await page.reload();await expect(page.locator('#song-sort')).toHaveValue('release-desc');await expect.poll(order).toEqual([...[...oldest].reverse(),'Hey!Yummy!','LOOK!!']);
  await page.setViewportSize({width:320,height:740});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  for(const selector of ['#song-count','#song-sort','#song-search-toggle']){
