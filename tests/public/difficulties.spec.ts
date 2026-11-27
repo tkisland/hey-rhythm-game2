@@ -99,3 +99,18 @@ test('selects Yozora With You with the supplied video and 499-note normal chart'
   expect(await page.evaluate(()=>(window as any).testVideo.options.videoId)).toBe('5Z6C4Zhbkl0');
   await expect(page.locator('#song-difficulty')).toHaveText('ふつう');await expect(page.locator('#chart-info')).toContainText('499 NOTES');
 });
+
+test('selects Hey!Yummy! at the supplied video with 557 normal notes', async ({page}) => {
+  await page.goto('/');
+  await searchSongs(page, 'Hey!Yummy!');
+  const card = page.locator('[data-song="hey-yummy"]');
+  await expect(card.locator('.song-difficulty')).toHaveValue('normal');
+  await expect(card.locator('.song-meta')).toHaveText('150 BPM · 557 NOTES');
+  await card.locator('.song-play').click();
+  await expect(page).toHaveURL(/game\.html\?song=hey-yummy$/);
+  await expect(page.locator('#restart')).toBeEnabled();
+  await expect(page.locator('#song-title')).toHaveText('Hey!Yummy!');
+  await expect(page.locator('#song-difficulty')).toHaveText('ふつう');
+  await expect(page.locator('#chart-info')).toHaveText('150 BPM · 557 NOTES');
+  expect(await page.evaluate(() => (window as any).testVideo.options.videoId)).toBe('5c1vfetSi8E');
+});

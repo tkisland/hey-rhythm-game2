@@ -5,9 +5,13 @@ const JST_OFFSET_MS = 9 * 60 * 60 * 1000;
 const japanDay = (now: number) => Math.floor((now + JST_OFFSET_MS) / DAY_MS);
 
 // Keep rosters newest first. Add a new roster at a cycle boundary when songs join.
+const firstRoster = ['super-mommy-girls', 'biscuit-case', 'playful-romantic', 'happy-go-round', 'poji-poji-go', 'yozora-with-you'];
 const rotations = [{
+  firstDay: japanDay(Date.parse('2026-12-02T00:00:00+09:00')),
+  songs: [...firstRoster, 'hey-yummy'],
+}, {
   firstDay: japanDay(Date.parse('2026-11-26T00:00:00+09:00')),
-  songs: ['super-mommy-girls', 'biscuit-case', 'playful-romantic', 'happy-go-round', 'poji-poji-go', 'yozora-with-you'],
+  songs: firstRoster,
 }];
 
 export function dailySong(songs: readonly Song[], now = Date.now()): Song | undefined {

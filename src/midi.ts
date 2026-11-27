@@ -1,6 +1,6 @@
 import type { Chart, ChartNote } from './chart';
 
-export interface MidiConfig { videoId: string; title: string; offsetSeconds: number; lanes: Record<number, number>; pitchAliases?: Record<number, number> }
+export interface MidiConfig { videoId: string; title: string; offsetSeconds: number; lanes: Record<number, number>; pitchAliases?: Record<number, number>; ignoredPitches?: readonly number[] }
 interface MidiNote { tick: number; endTick: number; pitch: number; channel: number; track: number }
 interface Tempo { tick: number; tempo: number; seconds: number; track?: number }
 export const MIDI_LANES = {38:0,39:0,40:1,41:2,43:3,45:4,47:5};
@@ -141,10 +141,15 @@ export function convertMidi(buffer: Uint8Array, config: MidiConfig): Chart {
     if (!Number.isInteger(source) || source < 0 || source > 127 || !Number.isInteger(target) || target < 0 || target > 127) throw new Error('Invalid MIDI pitch alias');
     aliases.set(source,target);
   }
-  const sourceNotes = midi.notes.map(note => ({...note,pitch:aliases.get(note.pitch) ?? note.pitch}));
+  // Some source files include guide notes that are intentionally omitted from the chart.
+  const ignored = new Set(config.ignoredPitches);
+  for (const pitch of ignored) {
+    if (!Number.isInteger(pitch) || pitch < 0 || pitch > 127) throw new Error('Invalid ignored MIDI pitch');
+  }
+  const sourceNotes = midi.notes.filter(note => !ignored.has(note.pitch)).map(note => ({...note,pitch:aliases.get(note.pitch) ?? note.pitch}));
   if (midi.tempos.some(event => 60e6 / event.tempo < 40 || 60e6 / event.tempo > 300)) throw new Error('Chart BPM must be between 40 and 300');
   if (!Number.isFinite(config.offsetSeconds) || config.offsetSeconds < 0 || config.offsetSeconds > 7200) throw new Error('Invalid video offset');
-  if (!config.lanes || !midi.notes.length || midi.notes.length > 5000) throw new Error('Supply a lane map and 1–5000 notes');
+  if (!config.lanes || !sourceNotes.length || midi.notes.length > 5000) throw new Error('Supply a lane map and 1–5000 notes');
   for (const pitch of [...new Set(sourceNotes.map(note => note.pitch))]) {
     const lane = config.lanes[pitch];
     const special = BOX_PITCHES.includes(pitch) || SLIDE_PITCHES.includes(pitch) || pitch === DD_PITCH;
